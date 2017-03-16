@@ -13,6 +13,6 @@ namespace Epam.UsersAwards.DalContracts
         IEnumerable<Award> GetAllAwards();
         Award GetAwardByID(int id);
         bool Delete(int awardID);
-        Award Update(int awardID, string title);
+        Award Update(int awardID, string title, string description);
     }
 }

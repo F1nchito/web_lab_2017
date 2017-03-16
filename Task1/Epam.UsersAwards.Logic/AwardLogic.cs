@@ -37,7 +37,7 @@ namespace Epam.UsersAwards.Logic
             throw new NotImplementedException();
         }
 
-        public Award Update(int ID, string Title)
+        public Award Update(int ID, string Title, string Description)
         {
             throw new NotImplementedException();
         }

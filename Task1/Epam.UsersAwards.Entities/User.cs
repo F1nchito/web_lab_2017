@@ -11,13 +11,18 @@ namespace Epam.UsersAwards.Entities
         public int ID { get; set; }
         public string Name { get; set; }
         private DateTime dob;
-        private string userName;
-        private DateTime userDOB;
 
         public User(string userName, DateTime userDOB)
         {
-            this.userName = userName;
-            this.userDOB = userDOB;
+            Name = userName;
+            DOB = userDOB;
+        }
+
+        public User(int id, string name, DateTime dob)
+        {
+            ID = id;
+            Name = name;
+            DOB = dob;
         }
 
         public DateTime DOB

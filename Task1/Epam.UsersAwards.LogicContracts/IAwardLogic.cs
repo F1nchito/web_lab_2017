@@ -11,7 +11,7 @@ namespace Epam.UsersAwards.LogicContracts
     {
         Award Save(string AwardName, string Description);
         Award[] GetAll();
-        Award Update(int ID, string Title);
+        Award Update(int ID, string Title, string Description);
         bool Delete(int ID);
         Award GetAwardByID(int awardID);
     }
