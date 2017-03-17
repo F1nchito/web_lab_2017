@@ -11,17 +11,22 @@ namespace Epam.UsersAwards.Logic
 {
     public class UserLogic : IUserLogic
     {
-        public IUserDao userDao;
+        private IUserDao userDao;
         private IAwardDao awardDao;
-        public UserLogic()
+        public UserLogic(IUserDao userDao, IAwardDao awardDao)
         {
-            userDao = DaoProvider.UserDao;
-            awardDao = DaoProvider.AwardDao;
+            this.userDao = userDao;
+            this.awardDao = awardDao;
         }
 
-        public User[] GetAll()
+        public List<User> GetAll()
         {
-            return userDao.GetAllUsers().ToArray();
+            return userDao.GetAllUsers().ToList();
+        }
+
+        public User GetUserByID(int userID)
+        {
+            throw new NotImplementedException();
         }
 
         public User Save(string userName, DateTime userDOB)
@@ -35,7 +40,7 @@ namespace Epam.UsersAwards.Logic
                 return null;
             }
             User user = new User(userName, userDOB);
-            if (userDao.Add(user))
+            if (userDao.Add(user) != null)
             {
                 return user;
             }

@@ -11,10 +11,10 @@ namespace Epam.UsersAwards.Logic
 {
     public class AwardLogic : IAwardLogic
     {
-        public IAwardDao awardDao;
-        public AwardLogic()
+        private IAwardDao awardDao;
+        public AwardLogic(IAwardDao awardDao)
         {
-            awardDao = DaoProvider.AwardDao;
+            this.awardDao = awardDao;
         }
 
         public bool Delete(int ID)
@@ -22,7 +22,7 @@ namespace Epam.UsersAwards.Logic
             throw new NotImplementedException();
         }
 
-        public Award[] GetAll()
+        public List<Award> GetAll()
         {
             throw new NotImplementedException();
         }

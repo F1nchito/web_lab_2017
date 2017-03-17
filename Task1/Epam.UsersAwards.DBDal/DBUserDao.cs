@@ -20,7 +20,17 @@ namespace Epam.UsersAwards.DBDal
         }
         public User Add(User user)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(dbConStr))
+            {
+                var cmd = connection.CreateCommand();
+                cmd.CommandText = "UserAdd";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Name", user.Name);
+                cmd.Parameters.AddWithValue("@DOB", user.DOB);
+                connection.Open();
+                int id = (int)(decimal)cmd.ExecuteScalar();
+                return new User(id, user.Name, user.DOB);
+            }
         }
 
         public bool AddAwardToUser(int userID, int awardID)

@@ -10,7 +10,8 @@ namespace Epam.UsersAwards.LogicContracts
     public interface IUserLogic
     {
         bool userDelete(int userID);
-        User[] GetAll();
+        List<User> GetAll();
+        User GetUserByID(int userID);
         User Save(string userName, DateTime userDOB);
         bool SaveAwardToUser(string userID, string awardID);
         User Update(int ID, string Name, DateTime DOB);
