@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0B6802DF-5008-4D6F-8998-30D00FC3994F}</ProjectGuid>
+    <ProjectGuid>{C41AD629-13F9-4513-90CD-475D0CB5A8E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Epam.UsersAwards.Logic</RootNamespace>
-    <AssemblyName>Epam.UsersAwards.Logic</AssemblyName>
+    <RootNamespace>Epam.UsersAwards.NinjectConfig</RootNamespace>
+    <AssemblyName>Epam.UsersAwards.NinjectConfig</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,7 +34,6 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,9 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AwardLogic.cs" />
-    <Compile Include="DaoProvider.cs" />
-    <Compile Include="UserLogic.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,16 +52,16 @@
       <Name>Epam.UsersAwards.DalContracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Epam.UsersAwards.DBDal\Epam.UsersAwards.DBDal.csproj">
-      <Project>{8CF169BA-3CC9-4BB8-A520-41E17EB78E2C}</Project>
+      <Project>{8cf169ba-3cc9-4bb8-a520-41e17eb78e2c}</Project>
       <Name>Epam.UsersAwards.DBDal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Epam.UsersAwards.Entities\Epam.UsersAwards.Entities.csproj">
-      <Project>{948EC3AF-7004-4E6C-82D7-67DC70B8E1AA}</Project>
-      <Name>Epam.UsersAwards.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Epam.UsersAwards.LogicContracts\Epam.UsersAwards.LogicContracts.csproj">
       <Project>{62BC90D9-30A5-4C2B-9422-9DBFEF148E9D}</Project>
       <Name>Epam.UsersAwards.LogicContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Epam.UsersAwards.Logic\Epam.UsersAwards.Logic.csproj">
+      <Project>{0b6802df-5008-4d6f-8998-30d00fc3994f}</Project>
+      <Name>Epam.UsersAwards.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

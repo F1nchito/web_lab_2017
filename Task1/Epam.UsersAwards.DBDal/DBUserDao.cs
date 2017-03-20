@@ -16,7 +16,7 @@ namespace Epam.UsersAwards.DBDal
         public readonly string dbConStr;
         public DBUserDao()
         {
-            dbConStr = ConfigurationManager.ConnectionStrings["sql"].ConnectionString;//вынести в settings
+            dbConStr = ConfigurationManager.ConnectionStrings["default"].ConnectionString;//вынести в settings
         }
         public User Add(User user)
         {
@@ -28,8 +28,8 @@ namespace Epam.UsersAwards.DBDal
                 cmd.Parameters.AddWithValue("@Name", user.Name);
                 cmd.Parameters.AddWithValue("@DOB", user.DOB);
                 connection.Open();
-                int id = (int)(decimal)cmd.ExecuteScalar();
-                return new User(id, user.Name, user.DOB);
+                user.ID = (int)(decimal)cmd.ExecuteScalar();
+                return user;
             }
         }
 
@@ -62,11 +62,11 @@ namespace Epam.UsersAwards.DBDal
                 var result = cmd.ExecuteReader();
                 while (result.Read())
                 {
-                    int id = Int32.Parse((string)result["ID"]);
+                    int id = (int)result["ID"];
                     string name = (string)result["Name"];
-                    DateTime dob = Convert.ToDateTime(result["DOB"], Settings.Settings.myCulture);
-                    var user = new User(id, name, dob);
-                    user.Awards = GetUserAwards(user).ToArray();
+                    DateTime dob = Convert.ToDateTime(result["DOB"]);
+                    var user = new User() {ID=id, Name=name, DOB=dob };
+                    //user.Awards = GetUserAwards(user).ToArray();
                     yield return user;
                 }
             }
@@ -87,9 +87,9 @@ namespace Epam.UsersAwards.DBDal
                 {
                     int id = Int32.Parse((string)result["ID"]);
                     string name = (string)result["Name"];
-                    DateTime dob = Convert.ToDateTime(result["DOB"], Settings.Settings.myCulture);
-                    var user = new User(id, name, dob);
-                    user.Awards = GetUserAwards(user).ToArray();
+                    DateTime dob = Convert.ToDateTime(result["DOB"]);
+                    var user = new User() { ID = id, Name = name, DOB = dob };
+                    //user.Awards = GetUserAwards(user).ToArray();
                     return user;
                 }
                 catch (Exception)
@@ -100,7 +100,7 @@ namespace Epam.UsersAwards.DBDal
             }
         }
 
-        public User Update(int userID, string name, DateTime dob)
+        public User Update(User user)
         {
             using (var con = new SqlConnection(dbConStr))
             {
@@ -109,12 +109,12 @@ namespace Epam.UsersAwards.DBDal
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {
-                    cmd.Parameters.AddWithValue("@ID", userID);
-                    cmd.Parameters.AddWithValue("@Name", name);
-                    cmd.Parameters.AddWithValue("@DOB", dob);
+                    cmd.Parameters.AddWithValue("@ID", user.ID);
+                    cmd.Parameters.AddWithValue("@Name", user.Name);
+                    cmd.Parameters.AddWithValue("@DOB", user.DOB);
                     con.Open();
                     cmd.ExecuteNonQuery();
-                    return new User(userID, name, dob);
+                    return user;
                 }
                 catch (Exception)
                 {

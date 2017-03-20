@@ -45,7 +45,7 @@ namespace Epam.UsersAwards.MVC.App_Start
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-
+                NinjectConfig.Config.RegisterServices(kernel);
                 RegisterServices(kernel);
                 return kernel;
             }
@@ -62,14 +62,7 @@ namespace Epam.UsersAwards.MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel
-                .Bind<IUserLogic>()
-                .To<Epam.UsersAwards.Logic.UserLogic>()
-                .InSingletonScope();
-            kernel
-                .Bind<IAwardLogic>()
-                .To<Epam.UsersAwards.Logic.AwardLogic>()
-                .InSingletonScope();
+           
         }        
     }
 }

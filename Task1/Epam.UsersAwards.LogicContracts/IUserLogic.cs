@@ -12,8 +12,8 @@ namespace Epam.UsersAwards.LogicContracts
         bool userDelete(int userID);
         List<User> GetAll();
         User GetUserByID(int userID);
-        User Save(string userName, DateTime userDOB);
+        User Save(User user);
         bool SaveAwardToUser(string userID, string awardID);
-        User Update(int ID, string Name, DateTime DOB);
+        User Update(User user);
     }
 }

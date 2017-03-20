@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.UsersAwards.DBDal", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.UsersAwards.DalContracts", "Epam.UsersAwards.DalContracts\Epam.UsersAwards.DalContracts.csproj", "{482207DE-402D-46F1-AB69-DF19B7CA916C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.UsersAwards.NinjectConfig", "Epam.UsersAwards.NinjectConfig\Epam.UsersAwards.NinjectConfig.csproj", "{C41AD629-13F9-4513-90CD-475D0CB5A8E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{482207DE-402D-46F1-AB69-DF19B7CA916C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{482207DE-402D-46F1-AB69-DF19B7CA916C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{482207DE-402D-46F1-AB69-DF19B7CA916C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C41AD629-13F9-4513-90CD-475D0CB5A8E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C41AD629-13F9-4513-90CD-475D0CB5A8E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C41AD629-13F9-4513-90CD-475D0CB5A8E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C41AD629-13F9-4513-90CD-475D0CB5A8E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +70,6 @@ Global
 		{0B6802DF-5008-4D6F-8998-30D00FC3994F} = {4C77EAB1-5424-4D4A-B8EF-1726F6FC85AF}
 		{8CF169BA-3CC9-4BB8-A520-41E17EB78E2C} = {D4A82D49-CEFD-4E21-9138-FBFFDA493545}
 		{482207DE-402D-46F1-AB69-DF19B7CA916C} = {D4A82D49-CEFD-4E21-9138-FBFFDA493545}
+		{C41AD629-13F9-4513-90CD-475D0CB5A8E9} = {F8E2DD20-71C4-4A60-BBD1-01F03945EFA7}
 	EndGlobalSection
 EndGlobal

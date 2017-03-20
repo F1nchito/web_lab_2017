@@ -16,7 +16,7 @@ namespace Epam.UsersAwards.DBDal
         public readonly string dbConStr;
         public DBAwardDao()
         {
-            dbConStr = ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
+            dbConStr = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
         }
         public Award Add(Award award)
         {

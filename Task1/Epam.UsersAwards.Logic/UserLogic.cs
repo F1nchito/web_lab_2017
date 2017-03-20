@@ -29,17 +29,16 @@ namespace Epam.UsersAwards.Logic
             throw new NotImplementedException();
         }
 
-        public User Save(string userName, DateTime userDOB)
+        public User Save(User user)
         {
-            if (string.IsNullOrWhiteSpace(userName))
+            if (string.IsNullOrWhiteSpace(user.Name))
             {
                 return null;
             }
-            if (userDOB >= DateTime.Now | userDOB <= DateTime.Now.AddYears(-150))
+            if (user.DOB >= DateTime.Now | user.DOB <= DateTime.Now.AddYears(-150))
             {
                 return null;
             }
-            User user = new User(userName, userDOB);
             if (userDao.Add(user) != null)
             {
                 return user;
@@ -52,7 +51,7 @@ namespace Epam.UsersAwards.Logic
             throw new NotImplementedException();
         }
 
-        public User Update(int ID, string Name, DateTime DOB)
+        public User Update(User user)
         {
             throw new NotImplementedException();
         }

@@ -13,7 +13,7 @@ namespace Epam.UsersAwards.DalContracts
         User GetUserByID(int userID);
         IEnumerable<User> GetAllUsers();
         bool Delete(int userID);
-        User Update(int userID, string name, DateTime dob);
+        User Update(User user);
         bool AddAwardToUser(int userID, int awardID);
     }
 }

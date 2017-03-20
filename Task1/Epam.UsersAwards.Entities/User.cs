@@ -12,31 +12,20 @@ namespace Epam.UsersAwards.Entities
         public string Name { get; set; }
         private DateTime dob;
 
-        public User(string userName, DateTime userDOB)
-        {
-            Name = userName;
-            DOB = userDOB;
-        }
+        //public User(string userName, DateTime userDOB)
+        //{
+        //    Name = userName;
+        //    DOB = userDOB;
+        //}
 
-        public User(int id, string name, DateTime dob)
-        {
-            ID = id;
-            Name = name;
-            DOB = dob;
-        }
+        //public User(int id, string name, DateTime dob)
+        //{
+        //    ID = id;
+        //    Name = name;
+        //    DOB = dob;
+        //}
 
-        public DateTime DOB
-        {
-            get { return dob; }
-            set
-            {
-                if (DateTime.Now < this.DOB || DOB.AddYears(150)<= DateTime.Now)
-                {
-                    throw new ArgumentException("Недопустимая дата рождения");
-                }
-                dob = value;
-            }
-        }
+        public DateTime DOB { get; set; }
         public int Age
         {
             get
