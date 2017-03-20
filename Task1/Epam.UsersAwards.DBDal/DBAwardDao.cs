@@ -28,8 +28,8 @@ namespace Epam.UsersAwards.DBDal
                 cmd.Parameters.AddWithValue("@Title", award.Title);
                 cmd.Parameters.AddWithValue("@Description", award.Description);
                 connection.Open();
-                int id = (int)(decimal)cmd.ExecuteScalar();
-                return new Award(id, award.Title, award.Description);
+                award.ID = (int)(decimal)cmd.ExecuteScalar();
+                return award ;
             }
         }
 
@@ -57,11 +57,10 @@ namespace Epam.UsersAwards.DBDal
                 var result = cmd.ExecuteReader();
                 while (result.Read())
                 {
-                    int id = Int32.Parse((string)result["ID"]);
+                    int id = (int)result["ID"];
                     string title = (string)result["Title"];
                     string description = (string)result["Description"];
-                    var award = new Award(id, title, description);
-                    yield return award;
+                    yield return new Award() {ID =id, Title = title, Description = description };
                 }
             }
         }
@@ -78,11 +77,10 @@ namespace Epam.UsersAwards.DBDal
                 var result = cmd.ExecuteReader();
                 if (result.Read())
                 {
-                    int id = Int32.Parse((string)result["ID"]);
+                    int id = (int)result["ID"];
                     string title = (string)result["Title"];
                     string description = (string)result["Description"];
-                    var award = new Award(id, title, description);
-                    return award;
+                    return new Award() { ID = id, Title = title, Description = description};
                 }
                 else
                 {
@@ -91,22 +89,22 @@ namespace Epam.UsersAwards.DBDal
             }
         }
 
-        public Award Update(int awardID, string title, string description)
+        public Award Update(Award award)
         {
             using (var con = new SqlConnection(dbConStr))
             {
                 var cmd = con.CreateCommand();
-                cmd.CommandText = "UpdateAward";
+                cmd.CommandText = "AwardUpdate";
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {
-                    cmd.Parameters.AddWithValue("@ID", awardID.ToString());
-                    cmd.Parameters.AddWithValue("@Title", title);
-                    cmd.Parameters.AddWithValue("@Description", description);
+                    cmd.Parameters.AddWithValue("@ID", award.ID);
+                    cmd.Parameters.AddWithValue("@Title", award.Title);
+                    cmd.Parameters.AddWithValue("@Description", award.Description);
                     con.Open();
                     if (cmd.ExecuteNonQuery() >= 1)
                     {
-                        return new Award(awardID, title, description);
+                        return award;
                     }
                     else
                     {

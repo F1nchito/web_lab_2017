@@ -11,6 +11,7 @@ namespace Epam.UsersAwards.MVC.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Epam.UsersAwards.LogicContracts;
+    using Epam.UsersAwards.MVC.Models;
 
     public static class NinjectWebCommon 
     {
@@ -62,7 +63,14 @@ namespace Epam.UsersAwards.MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-           
+            kernel
+                 .Bind<AwardDM>()
+                 .ToSelf()
+                 .InSingletonScope();
+            kernel
+                 .Bind<UserDM>()
+                 .ToSelf()
+                 .InSingletonScope();
         }        
     }
 }

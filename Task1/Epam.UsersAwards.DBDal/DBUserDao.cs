@@ -85,7 +85,7 @@ namespace Epam.UsersAwards.DBDal
                 result.Read();
                 try//или все таки if()?
                 {
-                    int id = Int32.Parse((string)result["ID"]);
+                    int id = (int)result["ID"];
                     string name = (string)result["Name"];
                     DateTime dob = Convert.ToDateTime(result["DOB"]);
                     var user = new User() { ID = id, Name = name, DOB = dob };

@@ -9,9 +9,9 @@ namespace Epam.UsersAwards.LogicContracts
 {
     public interface IAwardLogic
     {
-        Award Save(string AwardName, string Description);
+        Award Save(Award award);
         List<Award> GetAll();
-        Award Update(int ID, string Title, string Description);
+        Award Update(Award award);
         bool Delete(int ID);
         Award GetAwardByID(int awardID);
     }

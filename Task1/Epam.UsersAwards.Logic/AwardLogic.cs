@@ -19,27 +19,50 @@ namespace Epam.UsersAwards.Logic
 
         public bool Delete(int ID)
         {
-            throw new NotImplementedException();
+            if(awardDao.GetAwardByID(ID) != null)
+            {
+                return awardDao.Delete(ID);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public List<Award> GetAll()
         {
-            throw new NotImplementedException();
+            return awardDao.GetAllAwards().ToList();
         }
 
         public Award GetAwardByID(int awardID)
         {
-            throw new NotImplementedException();
+            return awardDao.GetAwardByID(awardID);
         }
 
-        public Award Save(string AwardName, string Description)
+        public Award Save(Award award)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(award.Title))
+            {
+                return null;
+            }
+            if(awardDao.Add(award) != null)
+            {
+                return award;
+            }
+            throw new InvalidOperationException("Ошибка при сохранении");
         }
 
-        public Award Update(int ID, string Title, string Description)
+        public Award Update(Award award)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(award.Title))
+            {
+                return null;
+            }
+            else if(awardDao.Update(award) != null)
+            {
+                return award;
+            }
+            throw new InvalidOperationException("Ошибка при сохранении");
         }
     }
 }

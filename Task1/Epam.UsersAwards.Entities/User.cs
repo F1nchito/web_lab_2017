@@ -10,8 +10,6 @@ namespace Epam.UsersAwards.Entities
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        private DateTime dob;
-
         //public User(string userName, DateTime userDOB)
         //{
         //    Name = userName;

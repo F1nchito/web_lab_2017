@@ -12,9 +12,9 @@ namespace Epam.UsersAwards.MVC
     {
         protected void Application_Start()
         {
+            AutoMapperConfig.RegisterMaps();
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            AutoMapperConfig.RegisterMaps();
         }
     }
 }

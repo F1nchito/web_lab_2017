@@ -26,7 +26,7 @@ namespace Epam.UsersAwards.Logic
 
         public User GetUserByID(int userID)
         {
-            throw new NotImplementedException();
+            return userDao.GetUserByID(userID);
         }
 
         public User Save(User user)
@@ -53,12 +53,32 @@ namespace Epam.UsersAwards.Logic
 
         public User Update(User user)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(user.Name))
+            {
+                return null;
+            }
+            if (user.DOB >= DateTime.Now | user.DOB <= DateTime.Now.AddYears(-150))
+            {
+                return null;
+            }
+            if (userDao.Update(user) != null)
+            {
+                return user;
+            }
+            throw new InvalidOperationException("Ошибка при сохранении");
         }
 
         public bool userDelete(int userID)
         {
-            throw new NotImplementedException();
+            if(userDao.GetUserByID(userID) != null)
+            {
+                return userDao.Delete(userID);
+            }
+            else
+            {
+                return false;
+            }
+            
         }
     }
 }

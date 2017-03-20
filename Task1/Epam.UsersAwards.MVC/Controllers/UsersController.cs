@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Epam.UsersAwards.Logic;
 using Epam.UsersAwards.LogicContracts;
+using Epam.UsersAwards.MVC.Models;
 using Epam.UsersAwards.MVC.ViewModels;
+using Epam.UsersAwards.MVC.ViewModels.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +14,16 @@ namespace Epam.UsersAwards.MVC.Controllers
 {
     public class UsersController : Controller
     {
-        private IUserLogic userLogic;
+        private UserDM userDm;
 
-        public UsersController(IUserLogic userLogic)
+        public UsersController(UserDM userDm)
         {
-            this.userLogic = userLogic;
+            this.userDm = userDm;
         }
         // GET: Users
         public ActionResult Index()
         {
-            var users = userLogic.GetAll();
+            var users = userDm.GetAll();
             return View(users);
         }
 
@@ -43,8 +45,7 @@ namespace Epam.UsersAwards.MVC.Controllers
         {
             //try
             //{
-                Entities.User user = Mapper.Map<Entities.User>(model);
-                user = userLogic.Save(user);
+                userDm.Save(model);
                 return RedirectToAction("Index");
             //}
             //catch
@@ -56,39 +57,38 @@ namespace Epam.UsersAwards.MVC.Controllers
         // GET: Users/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = userDm.GetUserForEdit(id);
+            return View(model);
         }
 
         // POST: Users/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(UserEditVM model)
         {
-            try
-            {
-                // TODO: Add update logic here
-
+            //try
+            //{
+                userDm.Edit(model);
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
 
         // GET: Users/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete()
         {
             return View();
         }
 
         // POST: Users/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                userDm.Delete(id);
                 return RedirectToAction("Index");
             }
             catch
