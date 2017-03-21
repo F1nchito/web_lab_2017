@@ -27,6 +27,15 @@ namespace Epam.UsersAwards.DBDal
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Name", user.Name);
                 cmd.Parameters.AddWithValue("@DOB", user.DOB);
+                if (user.Photo != null)
+                {
+                    var picID = SavePicture(user.Photo);
+                    cmd.Parameters.AddWithValue("@picID", picID);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@picID", DBNull.Value);
+                }
                 connection.Open();
                 user.ID = (int)(decimal)cmd.ExecuteScalar();
                 return user;
@@ -65,10 +74,69 @@ namespace Epam.UsersAwards.DBDal
                     int id = (int)result["ID"];
                     string name = (string)result["Name"];
                     DateTime dob = Convert.ToDateTime(result["DOB"]);
-                    var user = new User() {ID=id, Name=name, DOB=dob };
+                    var user = new User() {ID=id, Name=name, DOB=dob, Photo = GetPicture(id) };
                     //user.Awards = GetUserAwards(user).ToArray();
                     yield return user;
                 }
+            }
+        }
+
+        public PictureData GetPicture(int id)
+        {
+            using (var con = new SqlConnection(dbConStr))
+            {
+                var cmd = con.CreateCommand();
+                cmd.CommandText = "UserPictureGetByID";
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                var result = cmd.ExecuteReader();
+                result.Read();
+                try//или все таки if()?
+                {
+                    return new PictureData() { Data = (byte[])result["Data"], ContentType = (string)result["Type"] };
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public int SavePicture(PictureData picture)
+        {
+            using (var connection = new SqlConnection(dbConStr))
+            {
+                var cmd = connection.CreateCommand();
+                cmd.CommandText = "UserPictureAdd";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Data", picture.Data);
+                cmd.Parameters.AddWithValue("@Type", picture.ContentType);
+                connection.Open();
+                return (int)(decimal)cmd.ExecuteScalar();
+            }
+        }
+
+        public bool UpdatePicture(int userID,PictureData picture)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(dbConStr))
+                {
+                    var cmd = connection.CreateCommand();
+                    cmd.CommandText = "UserPictureUpdate";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@userID", userID);
+                    cmd.Parameters.AddWithValue("@Data", picture.Data);
+                    cmd.Parameters.AddWithValue("@Type", picture.ContentType);
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
@@ -88,13 +156,12 @@ namespace Epam.UsersAwards.DBDal
                     int id = (int)result["ID"];
                     string name = (string)result["Name"];
                     DateTime dob = Convert.ToDateTime(result["DOB"]);
-                    var user = new User() { ID = id, Name = name, DOB = dob };
+                    var user = new User() { ID = id, Name = name, DOB = dob, Photo = GetPicture(id) };
                     //user.Awards = GetUserAwards(user).ToArray();
                     return user;
                 }
                 catch (Exception)
                 {
-
                     return null;
                 }
             }
@@ -102,6 +169,10 @@ namespace Epam.UsersAwards.DBDal
 
         public User Update(User user)
         {
+            if (user.Photo != null)
+            {
+                UpdatePicture(user.ID, user.Photo);
+            }
             using (var con = new SqlConnection(dbConStr))
             {
                 var cmd = con.CreateCommand();

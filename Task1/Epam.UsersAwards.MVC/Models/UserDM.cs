@@ -7,6 +7,8 @@ using Epam.UsersAwards.MVC.ViewModels;
 using Epam.UsersAwards.MVC.ViewModels.Users;
 using Epam.UsersAwards.Entities;
 using AutoMapper;
+using System.Web.Mvc;
+using System.IO;
 
 namespace Epam.UsersAwards.MVC.Models
 {
@@ -26,18 +28,43 @@ namespace Epam.UsersAwards.MVC.Models
         public UserEditVM GetUserForEdit(int id)
         {
             var user = userLogic.GetUserByID(id);
-            return Mapper.Map<UserEditVM>(user);
+            return  Mapper.Map<UserEditVM>(user);
         }
         internal bool Save(UserCreateVM model)
         {
             var user = Mapper.Map<User>(model);
+            if (model.Photo != null)
+            {
+                user.Photo = new PictureData();
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    model.Photo.InputStream.CopyTo(memoryStream);
+                    user.Photo.Data = memoryStream.ToArray();
+                    user.Photo.ContentType = model.Photo.ContentType;
+                }
+            }
             return (userLogic.Save(user) != null);
         }
 
         internal User Edit(UserEditVM model)
         {
             User user = Mapper.Map<User>(model);
+            if (model.Photo != null)
+            {
+                user.Photo = new PictureData();
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    model.Photo.InputStream.CopyTo(memoryStream);
+                    user.Photo.Data = memoryStream.ToArray();
+                    user.Photo.ContentType = model.Photo.ContentType;
+                }
+            }
             return userLogic.Update(user);
+        }
+
+        internal PictureData GetPicture(int id)
+        {
+            return userLogic.GetPicture(id);
         }
 
         internal bool Delete(int id)

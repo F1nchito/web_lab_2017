@@ -15,5 +15,6 @@ namespace Epam.UsersAwards.LogicContracts
         User Save(User user);
         bool SaveAwardToUser(string userID, string awardID);
         User Update(User user);
+        PictureData GetPicture(int id);
     }
 }

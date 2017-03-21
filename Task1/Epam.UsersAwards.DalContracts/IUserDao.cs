@@ -15,5 +15,6 @@ namespace Epam.UsersAwards.DalContracts
         bool Delete(int userID);
         User Update(User user);
         bool AddAwardToUser(int userID, int awardID);
+        PictureData GetPicture(int id);
     }
 }

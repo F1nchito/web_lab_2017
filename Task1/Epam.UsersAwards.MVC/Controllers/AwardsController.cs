@@ -1,4 +1,5 @@
-﻿using Epam.UsersAwards.MVC.Models;
+﻿using Epam.UsersAwards.Entities;
+using Epam.UsersAwards.MVC.Models;
 using Epam.UsersAwards.MVC.ViewModels.Awards;
 using System;
 using System.Collections.Generic;
@@ -92,6 +93,17 @@ namespace Epam.UsersAwards.MVC.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public ActionResult Photo(int id)
+        {
+            PictureData photo = awardDm.GetPicture(id);
+            if (photo == null)
+            {
+                return File(@"\Content\Images\anonymous-user.png", "image/png");
+            }
+            return File(photo.Data, photo.ContentType);
         }
     }
 }

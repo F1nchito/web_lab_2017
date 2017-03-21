@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Epam.UsersAwards.Entities;
 using Epam.UsersAwards.Logic;
 using Epam.UsersAwards.LogicContracts;
 using Epam.UsersAwards.MVC.Models;
@@ -43,15 +44,33 @@ namespace Epam.UsersAwards.MVC.Controllers
         [HttpPost]
         public ActionResult Create(UserCreateVM model)
         {
-            //try
-            //{
-                userDm.Save(model);
-                return RedirectToAction("Index");
-            //}
-            //catch
-            //{
-            //    return View();
-            //}
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    userDm.Save(model);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Photo(int id)
+        {
+            PictureData photo = userDm.GetPicture(id);
+            if (photo == null)
+            {
+                return File(@"\Content\Images\anonymous-user.png", "image/png");
+            }
+            return File(photo.Data, photo.ContentType);
         }
 
         // GET: Users/Edit/5

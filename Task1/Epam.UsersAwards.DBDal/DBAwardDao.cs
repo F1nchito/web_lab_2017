@@ -27,6 +27,15 @@ namespace Epam.UsersAwards.DBDal
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Title", award.Title);
                 cmd.Parameters.AddWithValue("@Description", award.Description);
+                if (award.Image != null)
+                {
+                    var picID = SavePicture(award.Image);
+                    cmd.Parameters.AddWithValue("@picID", picID);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@picID", DBNull.Value);
+                }
                 connection.Open();
                 award.ID = (int)(decimal)cmd.ExecuteScalar();
                 return award ;
@@ -60,7 +69,7 @@ namespace Epam.UsersAwards.DBDal
                     int id = (int)result["ID"];
                     string title = (string)result["Title"];
                     string description = (string)result["Description"];
-                    yield return new Award() {ID =id, Title = title, Description = description };
+                    yield return new Award() {ID =id, Title = title, Description = description, Image = GetPicture(id) };
                 }
             }
         }
@@ -80,7 +89,7 @@ namespace Epam.UsersAwards.DBDal
                     int id = (int)result["ID"];
                     string title = (string)result["Title"];
                     string description = (string)result["Description"];
-                    return new Award() { ID = id, Title = title, Description = description};
+                    return new Award() { ID = id, Title = title, Description = description, Image = GetPicture(id)};
                 }
                 else
                 {
@@ -89,8 +98,71 @@ namespace Epam.UsersAwards.DBDal
             }
         }
 
+        public PictureData GetPicture(int id)
+        {
+            using (var con = new SqlConnection(dbConStr))
+            {
+                var cmd = con.CreateCommand();
+                cmd.CommandText = "AwardPictureGetByID";
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                var result = cmd.ExecuteReader();
+                result.Read();
+                try//или все таки if()?
+                {
+                    return new PictureData() { Data = (byte[])result["Data"], ContentType = (string)result["Type"] };
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public bool UpdatePicture(int userID, PictureData picture)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(dbConStr))
+                {
+                    var cmd = connection.CreateCommand();
+                    cmd.CommandText = "AwardPictureUpdate";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@awardID", userID);
+                    cmd.Parameters.AddWithValue("@Data", picture.Data);
+                    cmd.Parameters.AddWithValue("@Type", picture.ContentType);
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public int SavePicture(PictureData picture)
+        {
+            using (var connection = new SqlConnection(dbConStr))
+            {
+                var cmd = connection.CreateCommand();
+                cmd.CommandText = "AwardPictureAdd";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Data", picture.Data);
+                cmd.Parameters.AddWithValue("@Type", picture.ContentType);
+                connection.Open();
+                return (int)(decimal)cmd.ExecuteScalar();
+            }
+        }
+
         public Award Update(Award award)
         {
+            if(award.Image != null)
+            {
+                UpdatePicture(award.ID, award.Image);
+            }
             using (var con = new SqlConnection(dbConStr))
             {
                 var cmd = con.CreateCommand();

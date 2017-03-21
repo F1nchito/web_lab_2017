@@ -110,6 +110,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\anonymous-user.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -167,6 +168,7 @@
     <Content Include="Views\Awards\Index.cshtml" />
     <Content Include="Views\Awards\Create.cshtml" />
     <Content Include="Views\Awards\Edit.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

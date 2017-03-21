@@ -24,6 +24,11 @@ namespace Epam.UsersAwards.Logic
             return userDao.GetAllUsers().ToList();
         }
 
+        public PictureData GetPicture(int id)
+        {
+            return userDao.GetPicture(id);
+        }
+
         public User GetUserByID(int userID)
         {
             return userDao.GetUserByID(userID);
@@ -65,7 +70,8 @@ namespace Epam.UsersAwards.Logic
             {
                 return user;
             }
-            throw new InvalidOperationException("Ошибка при сохранении");
+            return null;
+            //throw new InvalidOperationException("Ошибка при сохранении");
         }
 
         public bool userDelete(int userID)

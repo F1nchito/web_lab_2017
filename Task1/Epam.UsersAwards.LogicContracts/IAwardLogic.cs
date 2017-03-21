@@ -14,5 +14,6 @@ namespace Epam.UsersAwards.LogicContracts
         Award Update(Award award);
         bool Delete(int ID);
         Award GetAwardByID(int awardID);
+        PictureData GetPicture(int id);
     }
 }

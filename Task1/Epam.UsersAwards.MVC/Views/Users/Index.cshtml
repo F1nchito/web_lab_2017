@@ -21,6 +21,7 @@
             @Html.DisplayNameFor(model => model.Age)
         </th>
         <th></th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -38,6 +39,9 @@
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+            <img src="~/Users/Photo/@item.ID" alt="@item.Name's photo" width="80" height="80" class="img-circle img-thumbnail">
         </td>
     </tr>
 }

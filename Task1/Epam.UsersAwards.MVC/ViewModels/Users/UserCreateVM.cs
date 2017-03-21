@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 
 namespace Epam.UsersAwards.MVC.ViewModels
 {
@@ -15,7 +16,6 @@ namespace Epam.UsersAwards.MVC.ViewModels
         [Required]
         [Display(Name = "Date of Birth")]
         public DateTime DOB { get; set; }
-
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (DOB > DateTime.Now || DOB < DateTime.Now.AddYears(-150))
