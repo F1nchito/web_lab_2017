@@ -10,12 +10,14 @@ namespace Epam.UsersAwards.MVC.ViewModels.Awards
     public class AwardCreateVM /*: IValidatableObject*/
     {
         [Required, StringLength(50)]
-        [RegularExpression(@"[\w\d -]+", 
+        [RegularExpression(@"[A-Za-z\d -]+", 
             ErrorMessage = "Unacceptable title")]
         public string Title { get; set; }
 
         [StringLength(50)]
         public string Description { get; set; }
+
+        [Required]
         public HttpPostedFileBase Image { get; set; }
         //    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         //    {

@@ -21,7 +21,12 @@ namespace Epam.UsersAwards.Logic
 
         public List<User> GetAll()
         {
-            return userDao.GetAllUsers().ToList();
+            var users =  userDao.GetAllUsers().ToList();
+            foreach (var user in users)
+            {
+                user.Awards = GetUserAwards(user);
+            }
+            return users;
         }
 
         public PictureData GetPicture(int id)
@@ -31,7 +36,9 @@ namespace Epam.UsersAwards.Logic
 
         public User GetUserByID(int userID)
         {
-            return userDao.GetUserByID(userID);
+            var user =  userDao.GetUserByID(userID);
+            user.Awards = GetUserAwards(user);
+            return user;
         }
 
         public User Save(User user)
@@ -51,9 +58,27 @@ namespace Epam.UsersAwards.Logic
             throw new InvalidOperationException("Ошибка при сохранении");
         }
 
-        public bool SaveAwardToUser(string userID, string awardID)
+        public bool SaveAwardToUser(int userID, int awardID)
         {
-            throw new NotImplementedException();
+            var user = userDao.GetUserByID(userID);
+            var award = awardDao.GetAwardByID(awardID);
+            if (user == null || award == null)
+            {
+                return false;
+            }
+            else if (user.Awards.Contains(award))
+            {
+                return false;
+            }
+            else
+            {
+                return userDao.AddAwardToUser(userID, awardID);
+            }
+        }
+
+        public List<Award> GetUserAwards(User user)
+        {
+            return userDao.GetUserAwards(user).ToList();
         }
 
         public User Update(User user)
@@ -85,6 +110,30 @@ namespace Epam.UsersAwards.Logic
                 return false;
             }
             
+        }
+
+        public User GetUserByName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return null;
+            }
+            else
+            {
+                return userDao.GetUserByName(name);
+            }
+        }
+
+        public List<User> GetUsersByFilter(string filter)
+        {
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                return null;
+            }
+            else
+            {
+                return userDao.GetUserByFilter(filter).ToList();
+            }
         }
     }
 }

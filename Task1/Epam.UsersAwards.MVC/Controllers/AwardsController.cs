@@ -86,7 +86,6 @@ namespace Epam.UsersAwards.MVC.Controllers
             try
             {
                 awardDm.Delete(id);
-
                 return RedirectToAction("Index");
             }
             catch

@@ -13,8 +13,10 @@ namespace Epam.UsersAwards.LogicContracts
         List<User> GetAll();
         User GetUserByID(int userID);
         User Save(User user);
-        bool SaveAwardToUser(string userID, string awardID);
+        bool SaveAwardToUser(int userID, int awardID);
         User Update(User user);
         PictureData GetPicture(int id);
+        User GetUserByName(string name);
+        List<User> GetUsersByFilter(string filter);
     }
 }

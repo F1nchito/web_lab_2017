@@ -41,5 +41,6 @@ namespace Epam.UsersAwards.Entities
             }
         }
         public PictureData Photo { get; set; }
+        public List<Award> Awards { get; set; }
     }
 }

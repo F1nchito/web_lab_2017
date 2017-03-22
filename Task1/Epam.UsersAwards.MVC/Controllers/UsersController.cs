@@ -115,5 +115,18 @@ namespace Epam.UsersAwards.MVC.Controllers
                 return View();
             }
         }
+        [HttpGet]
+        public ActionResult AddAward(int userID, int awardID)
+        {
+            try
+            {
+                userDm.AddAwardToUser(userID, awardID);
+                return RedirectToAction("Index");
+            }
+            catch 
+            {
+                return View();
+            }
+        }
     }
 }

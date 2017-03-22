@@ -14,9 +14,11 @@ namespace Epam.UsersAwards.DBDal
     public class DBUserDao : IUserDao
     {
         public readonly string dbConStr;
+        private IAwardDao awardDAO;
         public DBUserDao()
         {
             dbConStr = ConfigurationManager.ConnectionStrings["default"].ConnectionString;//вынести в settings
+            awardDAO = new DBAwardDao();
         }
         public User Add(User user)
         {
@@ -44,7 +46,41 @@ namespace Epam.UsersAwards.DBDal
 
         public bool AddAwardToUser(int userID, int awardID)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(dbConStr))
+            {
+                var cmd = connection.CreateCommand();
+                cmd.CommandText = "UserAddAward";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@uID", userID);
+                cmd.Parameters.AddWithValue("@aID", awardID);
+                connection.Open();
+                return (cmd.ExecuteNonQuery() >= 1);
+            }
+        }
+
+        public IEnumerable<Award> GetUserAwards(User user)
+        {
+            using (var con = new SqlConnection(dbConStr))
+            {
+                var cmd = con.CreateCommand();
+                cmd.CommandText = "UserGetAwards";
+                cmd.Parameters.AddWithValue("@userID", user.ID);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    int id = (int)result["ID"];
+                    string title = (string)result["Title"];
+                    string description = (string)result["Description"];
+                    yield return new Award()
+                    {
+                        ID = id,
+                        Title = title,
+                        Description = description,
+                    };
+                }
+            }
         }
 
         public bool Delete(int userID)
@@ -74,7 +110,7 @@ namespace Epam.UsersAwards.DBDal
                     int id = (int)result["ID"];
                     string name = (string)result["Name"];
                     DateTime dob = Convert.ToDateTime(result["DOB"]);
-                    var user = new User() {ID=id, Name=name, DOB=dob, Photo = GetPicture(id) };
+                    var user = new User() {ID=id, Name=name, DOB=dob };
                     //user.Awards = GetUserAwards(user).ToArray();
                     yield return user;
                 }
@@ -156,7 +192,7 @@ namespace Epam.UsersAwards.DBDal
                     int id = (int)result["ID"];
                     string name = (string)result["Name"];
                     DateTime dob = Convert.ToDateTime(result["DOB"]);
-                    var user = new User() { ID = id, Name = name, DOB = dob, Photo = GetPicture(id) };
+                    var user = new User() { ID = id, Name = name, DOB = dob };
                     //user.Awards = GetUserAwards(user).ToArray();
                     return user;
                 }
@@ -192,6 +228,38 @@ namespace Epam.UsersAwards.DBDal
                     return null;
                 }
             }
+        }
+
+        public User GetUserByName(string name)
+        {
+            using (var con = new SqlConnection(dbConStr))
+            {
+                var cmd = con.CreateCommand();
+                cmd.CommandText = "UserGetByName";
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                var result = cmd.ExecuteReader();
+                result.Read();
+                try//или все таки if()?
+                {
+                    int id = (int)result["ID"];
+                    string nameDB = (string)result["Name"];
+                    DateTime dob = Convert.ToDateTime(result["DOB"]);
+                    var user = new User() { ID = id, Name = nameDB, DOB = dob };
+                    //user.Awards = GetUserAwards(user).ToArray();
+                    return user;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public IEnumerable<User> GetUserByFilter(string filter)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -35,7 +35,7 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
         <td>
-            <img src="~/Awards/Photo/@item.ID" alt="@item.Title's photo" width="80" height="80" class="img-circle img-thumbnail">
+            <img src="@Url.Action("Photo","Awards", new { id = item.ID })" alt="@item.Title's photo" width="80" height="80" class="img-circle img-thumbnail">
         </td>
     </tr>
 }
