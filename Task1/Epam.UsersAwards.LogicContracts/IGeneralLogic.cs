@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace Epam.UsersAwards.LogicContracts
 {
-    public interface IAwardLogic : IGeneralLogic<Award>
+    public interface IGeneralLogic<T>
     {
-        Award GetAwardByID(int awardID);
-        Award GetAwardByName(string name);
-        List<Award> GetAwardsByFilter(string filter);
+        List<T> GetAll();
+        T Save(T entitiy);
+        T Update(T entitiy);
+        bool Delete(int entitiyID);
+        PictureData GetPicture(int id);
+
     }
 }

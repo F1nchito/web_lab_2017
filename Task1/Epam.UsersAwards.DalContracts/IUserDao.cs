@@ -7,16 +7,12 @@ using System.Threading.Tasks;
 
 namespace Epam.UsersAwards.DalContracts
 {
-    public interface IUserDao
+    public interface IUserDao : IGeneralDao<User>
     {
-        User Add(User user);
         User GetUserByID(int userID);
         IEnumerable<User> GetAllUsers();
-        bool Delete(int userID);
-        User Update(User user);
         bool AddAwardToUser(int userID, int awardID);
         IEnumerable<Award> GetUserAwards(User user);
-        PictureData GetPicture(int id);
         User GetUserByName(string name);
         IEnumerable<User> GetUserByFilter(string filter);
     }

@@ -7,15 +7,10 @@ using System.Threading.Tasks;
 
 namespace Epam.UsersAwards.LogicContracts
 {
-    public interface IUserLogic
+    public interface IUserLogic : IGeneralLogic<User>
     {
-        bool userDelete(int userID);
-        List<User> GetAll();
         User GetUserByID(int userID);
-        User Save(User user);
         bool SaveAwardToUser(int userID, int awardID);
-        User Update(User user);
-        PictureData GetPicture(int id);
         User GetUserByName(string name);
         List<User> GetUsersByFilter(string filter);
     }

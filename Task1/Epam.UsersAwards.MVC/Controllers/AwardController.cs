@@ -9,10 +9,10 @@ using System.Web.Mvc;
 
 namespace Epam.UsersAwards.MVC.Controllers
 {
-    public class AwardsController : Controller
+    public class AwardController : Controller
     {
         private AwardDM awardDm;
-        public AwardsController(AwardDM awardDm)
+        public AwardController(AwardDM awardDm)
         {
             this.awardDm = awardDm;
         }

@@ -23,6 +23,23 @@ namespace Epam.UsersAwards.MVC.Models
             return awardLogic.GetAll();
         }
 
+        public Award GetAwardByName(string name)
+        {
+            var replacedName = name.Replace('_', ' ');
+            return awardLogic.GetAwardByName(replacedName);
+        }
+
+        public List<Award> GetAwardsByFilter(string filter)
+        {
+            return awardLogic.GetAwardsByFilter(filter);
+        }
+
+        internal AwardEditVM GetAwardForEdit(int id)
+        {
+            var award = awardLogic.GetAwardByID(id);
+            return Mapper.Map<AwardEditVM>(award);
+        }
+
         internal bool Save(AwardCreateVM model)
         {
             var award = Mapper.Map<Award>(model);
@@ -38,6 +55,7 @@ namespace Epam.UsersAwards.MVC.Models
             }
             return (awardLogic.Save(award) != null);
         }
+
 
         internal Award Edit(AwardEditVM model)
         {
@@ -59,15 +77,11 @@ namespace Epam.UsersAwards.MVC.Models
         {
             return awardLogic.Delete(id);
         }
+
         internal PictureData GetPicture(int id)
         {
             return awardLogic.GetPicture(id);
         }
 
-        internal AwardEditVM GetAwardForEdit(int id)
-        {
-            var award = awardLogic.GetAwardByID(id);
-            return Mapper.Map<AwardEditVM>(award);
-        }
     }
 }

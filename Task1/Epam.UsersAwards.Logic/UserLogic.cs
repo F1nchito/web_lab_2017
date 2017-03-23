@@ -29,6 +29,30 @@ namespace Epam.UsersAwards.Logic
             return users;
         }
 
+        public User GetUserByName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return null;
+            }
+            else
+            {
+                return userDao.GetUserByName(name);
+            }
+        }
+
+        public List<User> GetUsersByFilter(string filter)
+        {
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                return null;
+            }
+            else
+            {
+                return userDao.GetUserByFilter(filter).ToList();
+            }
+        }
+
         public PictureData GetPicture(int id)
         {
             return userDao.GetPicture(id);
@@ -99,7 +123,7 @@ namespace Epam.UsersAwards.Logic
             //throw new InvalidOperationException("Ошибка при сохранении");
         }
 
-        public bool userDelete(int userID)
+        public bool Delete(int userID)
         {
             if(userDao.GetUserByID(userID) != null)
             {
@@ -112,28 +136,5 @@ namespace Epam.UsersAwards.Logic
             
         }
 
-        public User GetUserByName(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                return null;
-            }
-            else
-            {
-                return userDao.GetUserByName(name);
-            }
-        }
-
-        public List<User> GetUsersByFilter(string filter)
-        {
-            if (string.IsNullOrWhiteSpace(filter))
-            {
-                return null;
-            }
-            else
-            {
-                return userDao.GetUserByFilter(filter).ToList();
-            }
-        }
     }
 }

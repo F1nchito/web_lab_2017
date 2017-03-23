@@ -17,15 +17,16 @@ namespace Epam.UsersAwards.DBDal
         private IAwardDao awardDAO;
         public DBUserDao()
         {
-            dbConStr = ConfigurationManager.ConnectionStrings["default"].ConnectionString;//вынести в settings
+            dbConStr = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
             awardDAO = new DBAwardDao();
         }
         public User Add(User user)
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                var cmd = connection.CreateCommand();
-                cmd.CommandText = "UserAdd";
+                //var cmd = connection.CreateCommand();
+                //cmd.CommandText = "UserAdd";
+                var cmd = new SqlCommand("UserAdd", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Name", user.Name);
                 cmd.Parameters.AddWithValue("@DOB", user.DOB);
@@ -48,8 +49,9 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                var cmd = connection.CreateCommand();
-                cmd.CommandText = "UserAddAward";
+                //var cmd = connection.CreateCommand();
+                //cmd.CommandText = "UserAddAward";
+                var cmd = new SqlCommand("UserAddAward", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@uID", userID);
                 cmd.Parameters.AddWithValue("@aID", awardID);
@@ -62,8 +64,9 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                var cmd = con.CreateCommand();
-                cmd.CommandText = "UserGetAwards";
+                //var cmd = con.CreateCommand();
+                //cmd.CommandText = "UserGetAwards";
+                var cmd = new SqlCommand("UserGetAwards", con);
                 cmd.Parameters.AddWithValue("@userID", user.ID);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
@@ -87,8 +90,9 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                var cmd = connection.CreateCommand();
-                cmd.CommandText = "UserDelete";
+                //var cmd = connection.CreateCommand();
+                //cmd.CommandText = "UserDelete";
+                var cmd = new SqlCommand("UserDelete", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ID", userID);
                 connection.Open();
@@ -100,8 +104,9 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                var cmd = con.CreateCommand();
-                cmd.CommandText = "UserGetAll";
+                //var cmd = con.CreateCommand();
+                //cmd.CommandText = "UserGetAll";
+                var cmd = new SqlCommand("UserGetAll", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 var result = cmd.ExecuteReader();
@@ -121,8 +126,9 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                var cmd = con.CreateCommand();
-                cmd.CommandText = "UserPictureGetByID";
+                //var cmd = con.CreateCommand();
+                //cmd.CommandText = "UserPictureGetByID";
+                var cmd = new SqlCommand("UserPictureGetByID", con);
                 cmd.Parameters.AddWithValue("@ID", id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
@@ -143,8 +149,9 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                var cmd = connection.CreateCommand();
-                cmd.CommandText = "UserPictureAdd";
+                //var cmd = connection.CreateCommand();
+                //cmd.CommandText = "UserPictureAdd";
+                var cmd = new SqlCommand("UserPictureAdd", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Data", picture.Data);
                 cmd.Parameters.AddWithValue("@Type", picture.ContentType);
@@ -159,8 +166,9 @@ namespace Epam.UsersAwards.DBDal
             {
                 using (var connection = new SqlConnection(dbConStr))
                 {
-                    var cmd = connection.CreateCommand();
-                    cmd.CommandText = "UserPictureUpdate";
+                    //var cmd = connection.CreateCommand();
+                    //cmd.CommandText = "UserPictureUpdate";
+                    var cmd = new SqlCommand("UserPictureUpdate", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@userID", userID);
                     cmd.Parameters.AddWithValue("@Data", picture.Data);
@@ -180,8 +188,9 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                var cmd = con.CreateCommand();
-                cmd.CommandText = "UserGetByID";
+                //var cmd = con.CreateCommand();
+                //cmd.CommandText = "UserGetByID";
+                var cmd = new SqlCommand("UserGetByID", con);
                 cmd.Parameters.AddWithValue("@ID", userID);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
@@ -211,8 +220,9 @@ namespace Epam.UsersAwards.DBDal
             }
             using (var con = new SqlConnection(dbConStr))
             {
-                var cmd = con.CreateCommand();
-                cmd.CommandText = "UserUpdate";
+                //var cmd = con.CreateCommand();
+                //cmd.CommandText = "UserUpdate";
+                var cmd = new SqlCommand("UserUpdate", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {
@@ -234,8 +244,9 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                var cmd = con.CreateCommand();
-                cmd.CommandText = "UserGetByName";
+                //var cmd = con.CreateCommand();
+                //cmd.CommandText = "UserGetByName";
+                var cmd = new SqlCommand("UserGetByName", con);
                 cmd.Parameters.AddWithValue("@Name", name);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();

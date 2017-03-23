@@ -9,21 +9,11 @@ namespace Epam.UsersAwards.Entities
     public class User
     {
         public int ID { get; set; }
-        public string Name { get; set; }
-        //public User(string userName, DateTime userDOB)
-        //{
-        //    Name = userName;
-        //    DOB = userDOB;
-        //}
 
-        //public User(int id, string name, DateTime dob)
-        //{
-        //    ID = id;
-        //    Name = name;
-        //    DOB = dob;
-        //}
+        public string Name { get; set; }
 
         public DateTime DOB { get; set; }
+
         public int Age
         {
             get
@@ -40,7 +30,9 @@ namespace Epam.UsersAwards.Entities
                 return years;
             }
         }
+
         public PictureData Photo { get; set; }
+
         public List<Award> Awards { get; set; }
     }
 }

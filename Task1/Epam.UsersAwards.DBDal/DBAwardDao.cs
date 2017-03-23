@@ -18,12 +18,112 @@ namespace Epam.UsersAwards.DBDal
         {
             dbConStr = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
         }
+
+        public IEnumerable<Award> GetAllAwards()
+        {
+            using (var con = new SqlConnection(dbConStr))
+            {
+                //var cmd = con.CreateCommand();
+                //cmd.CommandText = "AwardGetAll";
+                var cmd = new SqlCommand("AwardGetAll", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    int id = (int)result["ID"];
+                    string title = (string)result["Title"];
+                    string description = (string)result["Description"];
+                    yield return new Award() {ID =id, Title = title, Description = description};
+                }
+            }
+        }
+
+        public Award GetAwardByID(int awardID)
+        {
+            using (var con = new SqlConnection(dbConStr))
+            {
+                //var cmd = con.CreateCommand();
+                //cmd.CommandText = "AwardGetByID";
+                var cmd = new SqlCommand("AwardGetByID", con);
+                cmd.Parameters.AddWithValue("@ID", awardID);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                var result = cmd.ExecuteReader();
+                if (result.Read())
+                {
+                    int id = (int)result["ID"];
+                    string title = (string)result["Title"];
+                    string description = (string)result["Description"];
+                    return new Award() { ID = id, Title = title, Description = description};
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public Award GetAwardByName(string name)
+        {
+            using (var con = new SqlConnection(dbConStr))
+            {
+                var cmd = new SqlCommand("AwardGetByName", con);
+                cmd.Parameters.AddWithValue("@Title", name);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                var result = cmd.ExecuteReader();
+                result.Read();
+                try
+                {
+                    int id = (int)result["ID"];
+                    string title = (string)result["Title"];
+                    string description = (string)result["Description"];
+                    var award = new Award() { ID = id, Title = title, Description = description };
+                    return award;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public IEnumerable<Award> GetAwardsByFilter(string filter)
+        {
+            using (var con = new SqlConnection(dbConStr))
+            {
+                var cmd = con.CreateCommand();
+                if (filter.Length == 1)
+                {
+                    cmd.CommandText = "AwardGetAllByChar";
+                }
+                else
+                {
+                    cmd.CommandText = "AwardGetAllByFilter";
+                }
+                cmd.Parameters.AddWithValue("@Filter", filter);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    int id = (int)result["ID"];
+                    string title = (string)result["Title"];
+                    string description = (string)result["Description"];
+                    var award = new Award() { ID = id, Title = title, Description = description };
+                    yield return award;
+                }
+            }
+        }
+
         public Award Add(Award award)
         {
-            using (var connection = new SqlConnection(dbConStr))
+            using (var con = new SqlConnection(dbConStr))
             {
-                var cmd = connection.CreateCommand();
-                cmd.CommandText = "AwardAdd";
+                //var cmd = connection.CreateCommand();
+                //cmd.CommandText = "AwardAdd";
+                var cmd = new SqlCommand("AwardAdd", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Title", award.Title);
                 cmd.Parameters.AddWithValue("@Description", award.Description);
@@ -36,7 +136,7 @@ namespace Epam.UsersAwards.DBDal
                 {
                     cmd.Parameters.AddWithValue("@picID", DBNull.Value);
                 }
-                connection.Open();
+                con.Open();
                 award.ID = (int)(decimal)cmd.ExecuteScalar();
                 return award ;
             }
@@ -46,8 +146,9 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                var cmd = connection.CreateCommand();
-                cmd.CommandText = "AwardDelete";
+                //var cmd = connection.CreateCommand();
+                //cmd.CommandText = "AwardDelete";
+                var cmd = new SqlCommand("AwardDelete", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ID", awardID);
                 connection.Open();
@@ -55,55 +156,13 @@ namespace Epam.UsersAwards.DBDal
             }
         }
 
-        public IEnumerable<Award> GetAllAwards()
-        {
-            using (var con = new SqlConnection(dbConStr))
-            {
-                var cmd = con.CreateCommand();
-                cmd.CommandText = "AwardGetAll";
-                cmd.CommandType = CommandType.StoredProcedure;
-                con.Open();
-                var result = cmd.ExecuteReader();
-                while (result.Read())
-                {
-                    int id = (int)result["ID"];
-                    string title = (string)result["Title"];
-                    string description = (string)result["Description"];
-                    yield return new Award() {ID =id, Title = title, Description = description, Image = GetPicture(id) };
-                }
-            }
-        }
-
-        public Award GetAwardByID(int awardID)
-        {
-            using (var con = new SqlConnection(dbConStr))
-            {
-                var cmd = con.CreateCommand();
-                cmd.CommandText = "AwardGetByID";
-                cmd.Parameters.AddWithValue("@ID", awardID);
-                cmd.CommandType = CommandType.StoredProcedure;
-                con.Open();
-                var result = cmd.ExecuteReader();
-                if (result.Read())
-                {
-                    int id = (int)result["ID"];
-                    string title = (string)result["Title"];
-                    string description = (string)result["Description"];
-                    return new Award() { ID = id, Title = title, Description = description, Image = GetPicture(id)};
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
         public PictureData GetPicture(int id)
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                var cmd = con.CreateCommand();
-                cmd.CommandText = "AwardPictureGetByID";
+                //var cmd = con.CreateCommand();
+                //cmd.CommandText = "AwardPictureGetByID";
+                var cmd = new SqlCommand("AwardPictureGetByID", con);
                 cmd.Parameters.AddWithValue("@ID", id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
@@ -126,8 +185,9 @@ namespace Epam.UsersAwards.DBDal
             {
                 using (var connection = new SqlConnection(dbConStr))
                 {
-                    var cmd = connection.CreateCommand();
-                    cmd.CommandText = "AwardPictureUpdate";
+                    //var cmd = connection.CreateCommand();
+                    //cmd.CommandText = "AwardPictureUpdate";
+                    var cmd = new SqlCommand("AwardPictureUpdate", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@awardID", userID);
                     cmd.Parameters.AddWithValue("@Data", picture.Data);
@@ -147,8 +207,9 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                var cmd = connection.CreateCommand();
-                cmd.CommandText = "AwardPictureAdd";
+                //var cmd = connection.CreateCommand();
+                //cmd.CommandText = "AwardPictureAdd";
+                var cmd = new SqlCommand("AwardPictureAdd", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Data", picture.Data);
                 cmd.Parameters.AddWithValue("@Type", picture.ContentType);
@@ -165,8 +226,9 @@ namespace Epam.UsersAwards.DBDal
             }
             using (var con = new SqlConnection(dbConStr))
             {
-                var cmd = con.CreateCommand();
-                cmd.CommandText = "AwardUpdate";
+                //var cmd = con.CreateCommand();
+                //cmd.CommandText = "AwardUpdate";
+                var cmd = new SqlCommand("AwardUpdate", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {
@@ -189,5 +251,6 @@ namespace Epam.UsersAwards.DBDal
                 }
             }
         }
+
     }
 }

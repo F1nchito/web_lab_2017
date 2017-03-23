@@ -13,11 +13,11 @@ using System.Web.Mvc;
 
 namespace Epam.UsersAwards.MVC.Controllers
 {
-    public class UsersController : Controller
+    public class UserController : Controller
     {
         private UserDM userDm;
 
-        public UsersController(UserDM userDm)
+        public UserController(UserDM userDm)
         {
             this.userDm = userDm;
         }

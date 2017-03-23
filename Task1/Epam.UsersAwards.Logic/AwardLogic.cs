@@ -39,6 +39,30 @@ namespace Epam.UsersAwards.Logic
             return awardDao.GetAwardByID(awardID);
         }
 
+        public Award GetAwardByName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return null;
+            }
+            else
+            {
+                return awardDao.GetAwardByName(name);
+            }
+        }
+
+        public List<Award> GetAwardsByFilter(string filter)
+        {
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                return null;
+            }
+            else
+            {
+                return awardDao.GetAwardsByFilter(filter).ToList();
+            }
+        }
+
         public PictureData GetPicture(int id)
         {
             return awardDao.GetPicture(id);

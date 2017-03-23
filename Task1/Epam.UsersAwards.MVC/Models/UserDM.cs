@@ -30,15 +30,18 @@ namespace Epam.UsersAwards.MVC.Models
             var user = userLogic.GetUserByID(id);
             return  Mapper.Map<UserEditVM>(user);
         }
+
         public User GetUserByName(string name)
         {
             var replacedName = name.Replace('_', ' ');
             return userLogic.GetUserByName(replacedName);
         }
+
         public List<User> GetUsersByFilter(string filter)
         {
             return userLogic.GetUsersByFilter(filter);
         }
+
         internal bool Save(UserCreateVM model)
         {
             var user = Mapper.Map<User>(model);
@@ -78,7 +81,7 @@ namespace Epam.UsersAwards.MVC.Models
 
         internal bool Delete(int id)
         {
-            return userLogic.userDelete(id);
+            return userLogic.Delete(id);
         }
 
         internal bool AddAwardToUser(int userID, int awardID)
