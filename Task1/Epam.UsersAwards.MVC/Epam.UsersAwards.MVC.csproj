@@ -169,6 +169,9 @@
     <Content Include="Views\Awards\Create.cshtml" />
     <Content Include="Views\Awards\Edit.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\GetByName.cshtml" />
+    <Content Include="Views\Users\GetByFilter.cshtml" />
+    <Content Include="Views\Users\GetByID.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

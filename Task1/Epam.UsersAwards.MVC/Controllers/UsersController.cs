@@ -28,6 +28,19 @@ namespace Epam.UsersAwards.MVC.Controllers
             return View(users);
         }
 
+        public ActionResult GetByName(string name)
+        {
+            return View(userDm.GetUserByName(name));
+        }
+
+        public ActionResult GetByFilter(string filter)
+        {
+            return View(userDm.GetUsersByFilter(filter));
+        }
+        public ActionResult GetByID(int id)
+        {
+            return View(userDm.GetUserForEdit(id));
+        }
         // GET: Users/Details/5
         public ActionResult Details(int id)
         {

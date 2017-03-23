@@ -1,0 +1,34 @@
+﻿@model Epam.UsersAwards.MVC.ViewModels.Users.UserEditVM
+
+@{
+    ViewBag.Title = "GetByID";
+}
+
+<h2>GetByID</h2>
+
+<div>
+    <h4>UserEditVM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -187,7 +187,7 @@ namespace Epam.UsersAwards.DBDal
                 con.Open();
                 var result = cmd.ExecuteReader();
                 result.Read();
-                try//или все таки if()?
+                try
                 {
                     int id = (int)result["ID"];
                     string name = (string)result["Name"];
@@ -241,7 +241,7 @@ namespace Epam.UsersAwards.DBDal
                 con.Open();
                 var result = cmd.ExecuteReader();
                 result.Read();
-                try//или все таки if()?
+                try
                 {
                     int id = (int)result["ID"];
                     string nameDB = (string)result["Name"];
@@ -259,7 +259,31 @@ namespace Epam.UsersAwards.DBDal
 
         public IEnumerable<User> GetUserByFilter(string filter)
         {
-            throw new NotImplementedException();
+            using (var con = new SqlConnection(dbConStr))
+            {
+                var cmd = con.CreateCommand();
+                if (filter.Length == 1)
+                {
+                    cmd.CommandText = "UserGetAllByChar";
+                }
+                else
+                {
+                    cmd.CommandText = "UserGetAllByFilter";
+                }
+                cmd.Parameters.AddWithValue("@Filter", filter);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    int id = (int)result["ID"];
+                    string name = (string)result["Name"];
+                    DateTime dob = Convert.ToDateTime(result["DOB"]);
+                    var user = new User() { ID = id, Name = name, DOB = dob };
+                    //user.Awards = GetUserAwards(user).ToArray();
+                    yield return user;
+                }
+            }
         }
     }
 }

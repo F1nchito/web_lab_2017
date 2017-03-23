@@ -5,7 +5,10 @@
 }
 
 <h2>Index</h2>
-
+@foreach (var item in ViewContext.RouteData.Values)
+{
+    item.Value.ToString();
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
