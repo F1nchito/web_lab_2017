@@ -90,7 +90,7 @@ namespace Epam.UsersAwards.Logic
             {
                 return false;
             }
-            else if (user.Awards.Contains(award))
+            else if (user.Awards != null && user.Awards.Contains(award))
             {
                 return false;
             }

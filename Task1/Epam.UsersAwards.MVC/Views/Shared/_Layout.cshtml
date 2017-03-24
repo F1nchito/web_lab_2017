@@ -26,11 +26,20 @@
             </div>
         </div>
     </div>
-   @foreach (var item in ViewContext.RouteData.Values)
-   {
-       <span>@item.Value</span>
-       <span>@item.Key</span>
-   }
+    <ol class="breadcrumb">
+        @{ 
+            var controller = ViewContext.RouteData.Values["controller"].ToString();
+            var action = ViewContext.RouteData.Values["action"].ToString();
+            var id = ViewContext.RouteData.Values["id"] as string;
+        }
+        <li>@Html.RouteLink(controller, "Alls")</li>
+        @if (!String.IsNullOrEmpty(id))
+        {
+            <li>@Html.RouteLink(id, "SearchByID")</li>
+        }
+        <li class="active">@action</li>
+    </ol>
+ 
         @RenderBody()
        
 

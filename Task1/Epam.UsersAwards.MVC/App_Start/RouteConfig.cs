@@ -50,7 +50,7 @@ namespace Epam.UsersAwards.MVC
                defaults: new { controller = "User", action = "Create" }
                );
             routes.MapRoute(
-                    name: "Users",
+                    name: "Alls",
                     url: "{controller}s",
                     defaults: new { controller = "User", action = "Index" }
                 );

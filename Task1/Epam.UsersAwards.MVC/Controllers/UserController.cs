@@ -149,7 +149,7 @@ namespace Epam.UsersAwards.MVC.Controllers
             try
             {
                 userDm.AddAwardToUser(userID, awardID);
-                return RedirectToAction("Index");
+                return RedirectToRoute("Alls");
             }
             catch 
             {
