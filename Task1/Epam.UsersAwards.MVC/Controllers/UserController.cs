@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace Epam.UsersAwards.MVC.Controllers
@@ -30,17 +31,22 @@ namespace Epam.UsersAwards.MVC.Controllers
 
         public ActionResult GetByName(string name)
         {
-            return View(userDm.GetUserByName(name));
+            var model = userDm.GetUserByName(name);
+            return View(model);
         }
 
         public ActionResult GetByFilter(string filter)
         {
-            return View(userDm.GetUsersByFilter(filter));
+            var model = userDm.GetUsersByFilter(filter);
+            return View(model);
         }
+
         public ActionResult GetByID(int id)
         {
-            return View(userDm.GetUserForEdit(id));
+            var model = userDm.GetUserForEdit(id);
+            return View(model);
         }
+
         // GET: Users/Details/5
         public ActionResult Details(int id)
         {
@@ -81,6 +87,7 @@ namespace Epam.UsersAwards.MVC.Controllers
             PictureData photo = userDm.GetPicture(id);
             if (photo == null)
             {
+                //TODO: Перенсти в логику?
                 return File(@"\Content\Images\anonymous-user.png", "image/png");
             }
             return File(photo.Data, photo.ContentType);
@@ -89,6 +96,7 @@ namespace Epam.UsersAwards.MVC.Controllers
         // GET: Users/Edit/5
         public ActionResult Edit(int id)
         {
+            //TODO: State is valid
             var model = userDm.GetUserForEdit(id);
             return View(model);
         }
@@ -97,15 +105,22 @@ namespace Epam.UsersAwards.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(UserEditVM model)
         {
-            //try
-            //{
-                userDm.Edit(model);
-                return RedirectToAction("Index");
-            //}
-            //catch
-            //{
-            //    return View();
-            //}
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    userDm.Edit(model);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Users/Delete/5

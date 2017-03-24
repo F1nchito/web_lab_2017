@@ -23,6 +23,23 @@ namespace Epam.UsersAwards.MVC.Controllers
             return View(awards);
         }
 
+        public ActionResult GetByName(string name)
+        {
+            var model = awardDm.GetAwardByName(name);
+            return View(model);
+        }
+
+        public ActionResult GetByFilter(string filter)
+        {
+            var model = awardDm.GetAwardsByFilter(filter);
+            return View(model);
+        }
+
+        public ActionResult GetByID(int id)
+        {
+            var model = awardDm.GetAwardForEdit(id);
+            return View(model);
+        }
         // GET: Awards/Details/5
         public ActionResult Details(int id)
         {
@@ -98,6 +115,16 @@ namespace Epam.UsersAwards.MVC.Controllers
         public ActionResult Photo(int id)
         {
             PictureData photo = awardDm.GetPicture(id);
+            if (photo == null)
+            {
+                return File(@"\Content\Images\anonymous-user.png", "image/png");
+            }
+            return File(photo.Data, photo.ContentType);
+        }
+        [HttpGet]
+        public ActionResult SmallPhoto(int id)
+        {
+            PictureData photo = awardDm.GetThumbnail(id);
             if (photo == null)
             {
                 return File(@"\Content\Images\anonymous-user.png", "image/png");

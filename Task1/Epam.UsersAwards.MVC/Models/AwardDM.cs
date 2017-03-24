@@ -7,6 +7,7 @@ using Epam.UsersAwards.MVC.ViewModels.Awards;
 using Epam.UsersAwards.Entities;
 using AutoMapper;
 using System.IO;
+using System.Web.Helpers;
 
 namespace Epam.UsersAwards.MVC.Models
 {
@@ -81,6 +82,13 @@ namespace Epam.UsersAwards.MVC.Models
         internal PictureData GetPicture(int id)
         {
             return awardLogic.GetPicture(id);
+        }
+        internal PictureData GetThumbnail(int id)
+        {
+            var pic = awardLogic.GetPicture(id);
+            var img = new WebImage(pic.Data);
+            pic.Data = img.Resize(50, 50).GetBytes();
+            return pic;
         }
 
     }

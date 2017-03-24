@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "GetByName";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
 <h2>GetByName</h2>
@@ -37,6 +38,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) 
     @Html.ActionLink("Back to List", "Index")
 </p>

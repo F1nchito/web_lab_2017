@@ -2,11 +2,12 @@
 
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AwardLayout.cshtml";
 }
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm("Edit", "Awards", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Award", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -53,6 +54,3 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

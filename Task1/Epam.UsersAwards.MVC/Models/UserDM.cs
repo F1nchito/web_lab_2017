@@ -9,6 +9,7 @@ using Epam.UsersAwards.Entities;
 using AutoMapper;
 using System.Web.Mvc;
 using System.IO;
+using System.Web.Helpers;
 
 namespace Epam.UsersAwards.MVC.Models
 {
@@ -47,6 +48,10 @@ namespace Epam.UsersAwards.MVC.Models
             var user = Mapper.Map<User>(model);
             if (model.Photo != null)
             {
+                //TODO: webimage
+                WebImage img = new WebImage(model.Photo.InputStream);
+                img.Resize(250, 250);
+                img.GetBytes();
                 user.Photo = new PictureData();
                 using (MemoryStream memoryStream = new MemoryStream())
                 {

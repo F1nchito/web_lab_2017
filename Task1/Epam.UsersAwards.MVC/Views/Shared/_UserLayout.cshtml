@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+    @RenderSection("styles", required: false)
+}
+@section scripts{
+    @RenderSection("scripts", required: false)
+}
+<div class="container body-content">
+    USER LAYOUT
+    @RenderBody()
+    @*@RenderPage("~/Views/Shared/Partial/_FooterPartial.cshtml")*@
+</div>

@@ -13,8 +13,13 @@ namespace Epam.UsersAwards.MVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-                        routes.MapRoute(
-                   name: "SearchUsersByID",
+            routes.MapRoute(
+                   name: "UserAddAward",
+                   url: "award-user/{userID}_{awardID}",
+                   defaults: new { controller = "User", action = "AddAward" }
+               );
+            routes.MapRoute(
+                   name: "SearchByID",
                    url: "{controller}/{id}",
                    defaults: new { controller = "User", action = "GetByID" },
                    constraints: new { id = @"\d+" }
@@ -36,12 +41,12 @@ namespace Epam.UsersAwards.MVC
                     name: "UserSearchByName",
                     url: "{controller}/{name}",
                     defaults: new { controller = "User", action = "GetByName" },
-                    constraints: new { name = @"[A-Za-zА-Яа-я]\w*" }
+                    constraints: new { name = @"\w+" }
                 );
 
             routes.MapRoute(
                name: "CreateUser",
-               url: "create-{controller}",
+               url: "{action}-{controller}",
                defaults: new { controller = "User", action = "Create" }
                );
             routes.MapRoute(
@@ -54,11 +59,6 @@ namespace Epam.UsersAwards.MVC
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "User", action = "Index", id = UrlParameter.Optional }
             );
-            routes.MapRoute(
-                name: "CreateAward",
-                url: "create-award",
-                defaults: new { controller = "Award", action = "CreateAward" }
-                );
         }
     }
 }

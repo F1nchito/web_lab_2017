@@ -1,15 +1,12 @@
 ﻿@model IEnumerable<Epam.UsersAwards.Entities.Award>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GetByFilter";
     Layout = "~/Views/Shared/_AwardLayout.cshtml";
 }
 
-<h2>Index</h2>
-@foreach (var item in ViewContext.RouteData.Values)
-{
-    item.Value.ToString();
-}
+<h2>GetByFilter</h2>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -21,7 +18,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th></th>
         <th></th>
     </tr>
 
@@ -37,9 +33,6 @@
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-        <td>
-            <img src="@Url.Action("Photo","Award", new { id = item.ID })" alt="@item.Title's photo" width="80" height="80" class="img-circle img-thumbnail">
         </td>
     </tr>
 }

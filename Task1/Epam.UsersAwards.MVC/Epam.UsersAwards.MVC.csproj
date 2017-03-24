@@ -172,6 +172,13 @@
     <Content Include="Views\User\GetByName.cshtml" />
     <Content Include="Views\User\GetByFilter.cshtml" />
     <Content Include="Views\User\GetByID.cshtml" />
+    <Content Include="Views\Shared\_UserLayout.cshtml" />
+    <Content Include="Views\Shared\_AwardLayout.cshtml" />
+    <Content Include="Views\Award\Delete.cshtml" />
+    <Content Include="Views\Award\GetByFilter.cshtml" />
+    <Content Include="Views\Award\GetByName.cshtml" />
+    <Content Include="Views\User\_UserPartial.cshtml" />
+    <Content Include="Views\Award\_AwardThumbnailPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

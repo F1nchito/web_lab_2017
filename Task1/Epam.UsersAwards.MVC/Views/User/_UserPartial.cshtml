@@ -1,0 +1,36 @@
+﻿@model Epam.UsersAwards.Entities.User
+
+<div class="col-md-3 col-sm-6 col-xs-12 panel panel-default user-details">
+    <div>
+        <header>
+            <h3>@Model.Name</h3>
+        </header>
+        <section>
+            <p>Date of birth: @Model.DOB.ToShortDateString() (@Model.Age)</p>
+        </section>
+        <figure>
+            <img src="@Url.Action("Photo","User", new { id = Model.ID })" alt="@Model.Name's photo" width="80" height="80" class="img-circle img-thumbnail">
+        </figure>
+        <section>
+            <h4>Awards:</h4>
+            <div class="row">
+                @*@Html.Partial("_AwardThumbnailPartial", award);*@
+                @foreach (var award in Model.Awards)
+                        {
+                <div class="col-xs-3 col-md-3">
+                    <a href="#" class="thumbnail" data-toggle="tooltip" data-placement="top" title="@award.Title">
+                            <img src="@Url.Action("SmallPhoto","Award", new { id = award.ID })" alt="@award's photo" class="img-circle img-thumbnail">
+                    </a>
+                </div>
+                        }
+            </div>
+        </section>
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Delete", "Delete", new { id = Model.ID }, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+
+    
+</div>
+

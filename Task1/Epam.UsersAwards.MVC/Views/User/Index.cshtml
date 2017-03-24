@@ -1,7 +1,13 @@
 ﻿@model IEnumerable<Epam.UsersAwards.Entities.User>
-
+@section scripts{
+    <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+})</script>
+}
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
 <h2>Index</h2>
@@ -9,7 +15,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -23,10 +29,11 @@
         <th></th>
         <th></th>
         <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
+    </tr>*@
+<div class="row">
+    @foreach (var item in Model)
+{
+    @*<tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -36,9 +43,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Age)
         </td>
-        @*<td>
+        <td>
             <img src="~/Awards/Photo/@item.Awards[0].ID" alt="@item.Name's photo" width="80" height="80" class="img-circle img-thumbnail">
-        </td>*@
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
@@ -46,8 +53,11 @@
         </td>
         <td>
             <img src="@Url.Action("Photo","User", new { id = item.ID })" alt="@item.Name's photo" width="80" height="80" class="img-circle img-thumbnail">
-        </td>
-    </tr>
+        </td>*@
+    @Html.Partial("_UserPartial", item)
+    @*</tr>*@
 }
+</div>
 
-</table>
+
+@*</table>*@
