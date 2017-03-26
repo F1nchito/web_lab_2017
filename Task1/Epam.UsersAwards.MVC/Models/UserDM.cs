@@ -10,6 +10,7 @@ using AutoMapper;
 using System.Web.Mvc;
 using System.IO;
 using System.Web.Helpers;
+using System.Text;
 
 namespace Epam.UsersAwards.MVC.Models
 {
@@ -92,6 +93,32 @@ namespace Epam.UsersAwards.MVC.Models
         internal bool AddAwardToUser(int userID, int awardID)
         {
             return userLogic.SaveAwardToUser(userID, awardID);
+        }
+        
+        public byte[] GetAllAsFile()
+        {
+            var users = userLogic.GetAll();
+            List<string> userStrings = new List<string>(users.Count);
+            userStrings.Add($"List of all users: {Environment.NewLine}{Environment.NewLine}");
+            foreach (var user in users)
+            {
+                string awards;
+                if(user.Awards.Count == 0)
+                {
+                    awards = "no awards";
+                }
+                else
+                {
+                    awards = string.Join(", ", user.Awards.Select(award => award.Title));
+                }
+                userStrings.Add($"User with ID:{user.ID} and name {user.Name}{Environment.NewLine}" +
+                    $"Date of birth: {user.DOB.ToShortDateString()}({user.Age}){Environment.NewLine}" +
+                    $"with awards: {awards} {Environment.NewLine}{Environment.NewLine}");
+            }
+            byte[] userBytes = userStrings
+                .SelectMany(s => Encoding.ASCII.GetBytes(s))
+                .ToArray();
+            return userBytes;
         }
     }
 }

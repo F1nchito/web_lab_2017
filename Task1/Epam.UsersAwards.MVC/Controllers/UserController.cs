@@ -61,6 +61,7 @@ namespace Epam.UsersAwards.MVC.Controllers
 
         // POST: Users/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(UserCreateVM model)
         {
             try
@@ -103,6 +104,7 @@ namespace Epam.UsersAwards.MVC.Controllers
 
         // POST: Users/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(UserEditVM model)
         {
             try
@@ -131,6 +133,7 @@ namespace Epam.UsersAwards.MVC.Controllers
 
         // POST: Users/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             try
@@ -155,6 +158,12 @@ namespace Epam.UsersAwards.MVC.Controllers
             {
                 return View();
             }
+        }
+
+        public FileResult GetAllAsFile()
+        {
+            byte[] usersBytes = userDm.GetAllAsFile();
+            return File(usersBytes, System.Net.Mime.MediaTypeNames.Application.Octet, "Users.txt");
         }
     }
 }
