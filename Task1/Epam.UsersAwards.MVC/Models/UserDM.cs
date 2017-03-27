@@ -27,7 +27,7 @@ namespace Epam.UsersAwards.MVC.Models
             return userLogic.GetAll();
         }
 
-        public UserEditVM GetUserForEdit(int id)
+        public UserEditVM GetUserByID(int id)
         {
             var user = userLogic.GetUserByID(id);
             return  Mapper.Map<UserEditVM>(user);
@@ -44,7 +44,7 @@ namespace Epam.UsersAwards.MVC.Models
             return userLogic.GetUsersByFilter(filter);
         }
 
-        internal bool Save(UserCreateVM model)
+        internal User Save(UserCreateVM model)
         {
             var user = Mapper.Map<User>(model);
             if (model.Photo != null)
@@ -61,7 +61,7 @@ namespace Epam.UsersAwards.MVC.Models
                     user.Photo.ContentType = model.Photo.ContentType;
                 }
             }
-            return (userLogic.Save(user) != null);
+            return userLogic.Save(user); 
         }
 
         internal User Edit(UserEditVM model)

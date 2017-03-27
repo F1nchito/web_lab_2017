@@ -13,6 +13,7 @@ namespace Epam.UsersAwards.MVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapMvcAttributeRoutes();
             routes.MapRoute(
                    name: "UserAddAward",
                    url: "award-user/{userID}_{awardID}",

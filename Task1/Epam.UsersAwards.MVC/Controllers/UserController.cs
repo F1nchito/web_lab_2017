@@ -43,7 +43,7 @@ namespace Epam.UsersAwards.MVC.Controllers
 
         public ActionResult GetByID(int id)
         {
-            var model = userDm.GetUserForEdit(id);
+            var model = userDm.GetUserByID(id);
             return View(model);
         }
 
@@ -98,7 +98,7 @@ namespace Epam.UsersAwards.MVC.Controllers
         public ActionResult Edit(int id)
         {
             //TODO: State is valid
-            var model = userDm.GetUserForEdit(id);
+            var model = userDm.GetUserByID(id);
             return View(model);
         }
 

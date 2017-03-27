@@ -35,13 +35,13 @@ namespace Epam.UsersAwards.MVC.Models
             return awardLogic.GetAwardsByFilter(filter);
         }
 
-        internal AwardEditVM GetAwardForEdit(int id)
+        internal AwardEditVM GetAwardByID(int id)
         {
             var award = awardLogic.GetAwardByID(id);
             return Mapper.Map<AwardEditVM>(award);
         }
 
-        internal bool Save(AwardCreateVM model)
+        internal Award Save(AwardCreateVM model)
         {
             var award = Mapper.Map<Award>(model);
             if (model.Image != null)
@@ -54,7 +54,7 @@ namespace Epam.UsersAwards.MVC.Models
                     award.Image.ContentType = model.Image.ContentType;
                 }
             }
-            return (awardLogic.Save(award) != null);
+            return awardLogic.Save(award);
         }
 
 

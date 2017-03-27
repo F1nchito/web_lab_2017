@@ -37,7 +37,7 @@ namespace Epam.UsersAwards.MVC.Controllers
 
         public ActionResult GetByID(int id)
         {
-            var model = awardDm.GetAwardForEdit(id);
+            var model = awardDm.GetAwardByID(id);
             return View(model);
         }
         // GET: Awards/Details/5
@@ -71,7 +71,7 @@ namespace Epam.UsersAwards.MVC.Controllers
         // GET: Awards/Edit/5
         public ActionResult Edit(int id)
         {
-            AwardEditVM model = awardDm.GetAwardForEdit(id);
+            AwardEditVM model = awardDm.GetAwardByID(id);
             return View(model);
         }
 

@@ -14,6 +14,8 @@ namespace Epam.UsersAwards.MVC.ViewModels.Users
 
         [Required]
         [StringLength(50,MinimumLength = 1)]
+        [RegularExpression(@"[A-Za-z -]\w*",
+            ErrorMessage = "Unacceptable name")]
         public string Name { get; set; }
 
         [Required]
