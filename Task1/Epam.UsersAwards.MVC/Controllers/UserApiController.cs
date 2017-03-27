@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace Epam.UsersAwards.MVC.Controllers
@@ -22,35 +23,52 @@ namespace Epam.UsersAwards.MVC.Controllers
 
         // GET: api/UserApi
         [Route("")]
-        public List<User> Get(string filter = null)
+        public IHttpActionResult Get(string filter = null)
         {
             if (string.IsNullOrEmpty(filter))
             {
                 var users = userDm.GetAll();
-                return users;
+                return Json(users);
             }
             else
             {
                 var users = userDm.GetUsersByFilter(filter);
-                return users;
+                return Json(users);
             }
 
         }
 
        
         [Route("{id:int}")]
-        public UserEditVM Get(int id)
+        public IHttpActionResult Get(int id)
         {
+            if (id <= 0)
+            {
+                return BadRequest("ID should be positive");
+            }
             var user = userDm.GetUserByID(id);
-            return user;
+            if(user == null)
+            {
+                return NotFound();
+            }
+            return Json(user);
         }
+
         [Route("{id:int}/awards")]
-        public List<Award> GetAwards(int id)
+        public IHttpActionResult GetAwards(int id)
         {
+            if (id <= 0)
+            {
+                return BadRequest("ID should be positive");
+            }
+            if (userDm.GetUserByID(id) == null)
+            {
+                return NotFound();
+            }
             var awards = userDm.GetAwards(id);
-            return awards;
+            return Json(awards);
         }
-        // POST: api/UserApi
+
         [Route("")]
         public IHttpActionResult Post([FromBody]UserCreateVM user)
         {
@@ -65,7 +83,14 @@ namespace Epam.UsersAwards.MVC.Controllers
             else
             {
                 var userWithID = userDm.Save(user);
-                return Created($"api/user/{userWithID.ID}", userWithID);
+                if (userWithID != null)
+                {
+                    return Created($"api/user/{userWithID.ID}", userWithID);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
         }
 
@@ -90,7 +115,7 @@ namespace Epam.UsersAwards.MVC.Controllers
                 return BadRequest("User not valid");
             }
         }
-        [Route("{id:int}/awards")]
+        [Route("{id:int}/awards/{awardID:int}")]
         public IHttpActionResult Put(int id, int awardID)
         {
             if (userDm.AddAwardToUser(id, awardID))

@@ -22,26 +22,29 @@ namespace Epam.UsersAwards.MVC.Models
             this.userLogic = userLogic;
         }
 
-        internal List<User> GetAll()
+        internal List<UserShowWithAwardsVM> GetAll()
         {
-            return userLogic.GetAll();
+            var users =  userLogic.GetAll();
+            return Mapper.Map<List<UserShowWithAwardsVM>>(users);
         }
 
-        public UserEditVM GetUserByID(int id)
+        public UserShowWithAwardsVM GetUserByID(int id)
         {
             var user = userLogic.GetUserByID(id);
-            return  Mapper.Map<UserEditVM>(user);
+            return Mapper.Map<UserShowWithAwardsVM>(user);
         }
 
-        public User GetUserByName(string name)
+        public UserShowWithAwardsVM GetUserByName(string name)
         {
             var replacedName = name.Replace('_', ' ');
-            return userLogic.GetUserByName(replacedName);
+            var user = userLogic.GetUserByName(replacedName);
+            return Mapper.Map<UserShowWithAwardsVM>(user);
         }
 
-        public List<User> GetUsersByFilter(string filter)
+        public List<UserShowWithAwardsVM> GetUsersByFilter(string filter)
         {
-            return userLogic.GetUsersByFilter(filter);
+            var users =  userLogic.GetUsersByFilter(filter);
+            return Mapper.Map<List<UserShowWithAwardsVM>>(users);
         }
 
         internal User Save(UserCreateVM model)

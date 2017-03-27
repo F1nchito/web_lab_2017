@@ -26,22 +26,9 @@
             </div>
         </div>
     </div>
-    <ol class="breadcrumb">
-        @{ 
-            var controller = ViewContext.RouteData.Values["controller"].ToString();
-            var action = ViewContext.RouteData.Values["action"].ToString();
-            var id = ViewContext.RouteData.Values["id"] as string;
-        }
-        @*<li>@Html.RouteLink(controller, "Alls")</li>*@
-        @if (!String.IsNullOrEmpty(id))
-        {
-            <li>@Html.RouteLink(id, "SearchByID")</li>
-        }
-        <li class="active">@action</li>
-    </ol>
- 
+        @Html.Partial("_BreadcrumbsPartial")
+
         @RenderBody()
-       
 
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>

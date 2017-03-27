@@ -130,6 +130,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\anonymous-user.png" />
+    <Content Include="Content\Images\award-clipart-award-clipart-172_293.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -173,9 +174,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Awards\AwardCreateVM.cs" />
     <Compile Include="ViewModels\Awards\AwardEditVM.cs" />
+    <Compile Include="ViewModels\Breadcrumb.cs" />
     <Compile Include="ViewModels\Users\UserCreateVM.cs" />
     <Compile Include="ViewModels\Users\UserEditVM.cs" />
     <Compile Include="ViewModels\Users\UserListVM.cs" />
+    <Compile Include="ViewModels\Users\UserShowVM.cs" />
+    <Compile Include="ViewModels\Users\UserShowWithAwardsVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -201,6 +205,7 @@
     <Content Include="Views\Award\GetByName.cshtml" />
     <Content Include="Views\User\_UserPartial.cshtml" />
     <Content Include="Views\Award\_AwardThumbnailPartial.cshtml" />
+    <Content Include="Views\Shared\_BreadcrumbsPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

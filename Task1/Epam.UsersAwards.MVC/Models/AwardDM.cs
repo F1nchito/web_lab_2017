@@ -54,6 +54,12 @@ namespace Epam.UsersAwards.MVC.Models
                     award.Image.ContentType = model.Image.ContentType;
                 }
             }
+            else// for web api
+            {
+                var image = new WebImage(@"D:\it2017_1\Task1\Epam.UsersAwards.MVC\Content\Images\award-clipart-award-clipart-172_293.jpg");
+                award.Image.ContentType = "image/" + image.ImageFormat;
+                award.Image.Data = image.GetBytes();
+            }
             return awardLogic.Save(award);
         }
 

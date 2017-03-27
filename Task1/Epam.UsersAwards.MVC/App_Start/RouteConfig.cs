@@ -46,11 +46,6 @@ namespace Epam.UsersAwards.MVC
                 );
 
             routes.MapRoute(
-               name: "CreateUser",
-               url: "{action}-{controller}",
-               defaults: new { controller = "User", action = "Create" }
-               );
-            routes.MapRoute(
                     name: "awards",
                     url: "awards",
                     defaults: new { controller = "Award", action = "Index" }
@@ -59,6 +54,11 @@ namespace Epam.UsersAwards.MVC
                    name: "users",
                    url: "users",
                    defaults: new { controller = "User", action = "Index" }
+               );
+            routes.MapRoute(
+               name: "CreateUser",
+               url: "{action}-{controller}",
+               defaults: new { controller = "User", action = "Create" }
                );
             routes.MapRoute(
                 name: "Default",

@@ -18,6 +18,8 @@ namespace Epam.UsersAwards.MVC.App_Start
         {
             Mapper.Initialize(cfg =>
             {
+                cfg.CreateMap<User, UserShowWithAwardsVM>();
+                cfg.CreateMap<UserShowWithAwardsVM, UserEditVM>().ForMember(dest => dest.Photo, opt => opt.Ignore());
                 cfg.CreateMap<UserEditVM, User>().ForMember(dest => dest.Photo, opt => opt.Ignore()).ForMember(dest => dest.Awards, opt => opt.Ignore());
                 cfg.CreateMap<UserCreateVM, User>().ForMember(dest => dest.ID, opt => opt.Ignore()).ForMember(dest => dest.Photo, opt => opt.Ignore()).ForMember(dest => dest.Awards, opt => opt.Ignore());
                 //.ForMember(dest => dest.Photo, opt => opt.MapFrom(s => {

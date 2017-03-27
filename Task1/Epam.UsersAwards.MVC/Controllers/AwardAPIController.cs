@@ -20,28 +20,35 @@ namespace Epam.UsersAwards.MVC.Controllers
         {
             this.awardDm = awardDm;
         }
-        // GET: api/AwardAPI
+
         [Route("")]
-        public List<Award> Get(string filter=null)
+        public IHttpActionResult Get(string filter=null)
         {
             if (string.IsNullOrEmpty(filter))
             {
                 var awards = awardDm.GetAll();
-                return awards;
+                return Json(awards);
             }
             else
             {
                 var awards = awardDm.GetAwardsByFilter(filter);
-                return awards;
+                return Json(awards);
             }
         }
 
-        // GET: api/AwardAPI/5
         [Route("{id:int}")]
-        public AwardEditVM Get(int id)
+        public IHttpActionResult Get(int id)
         {
+            if (id <= 0)
+            {
+                return BadRequest("ID should be positive");
+            }
             var award = awardDm.GetAwardByID(id);
-            return award;
+            if (award == null)
+            {
+                return NotFound();
+            }
+            return Json(award);
         }
 
         //public async Task<IHttpActionResult> Upload()
@@ -60,7 +67,7 @@ namespace Epam.UsersAwards.MVC.Controllers
 
         //    return Ok();
         //}
-        // POST: api/AwardAPI
+
         [Route("")]
         public IHttpActionResult Post([FromBody]AwardCreateVM award)
         {
@@ -75,7 +82,14 @@ namespace Epam.UsersAwards.MVC.Controllers
             else
             {
                 var awardWithID = awardDm.Save(award);
-                return Created($"api/user/{awardWithID.ID}", awardWithID);
+                if (awardWithID != null)
+                {
+                    return Created($"api/user/{awardWithID.ID}", awardWithID);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
         }
 
