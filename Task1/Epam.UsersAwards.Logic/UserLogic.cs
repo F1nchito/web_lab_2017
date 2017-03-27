@@ -24,7 +24,7 @@ namespace Epam.UsersAwards.Logic
             var users =  userDao.GetAllUsers().ToList();
             foreach (var user in users)
             {
-                user.Awards = GetUserAwards(user);
+                user.Awards = GetAwards(user);
             }
             return users;
         }
@@ -61,8 +61,15 @@ namespace Epam.UsersAwards.Logic
         public User GetUserByID(int userID)
         {
             var user =  userDao.GetUserByID(userID);
-            user.Awards = GetUserAwards(user);
-            return user;
+            if (user != null)
+            {
+                user.Awards = GetAwards(user);
+                return user;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public User Save(User user)
@@ -100,7 +107,7 @@ namespace Epam.UsersAwards.Logic
             }
         }
 
-        public List<Award> GetUserAwards(User user)
+        public List<Award> GetAwards(User user)
         {
             return userDao.GetUserAwards(user).ToList();
         }

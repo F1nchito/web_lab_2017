@@ -32,7 +32,7 @@
             var action = ViewContext.RouteData.Values["action"].ToString();
             var id = ViewContext.RouteData.Values["id"] as string;
         }
-        <li>@Html.RouteLink(controller, "Alls")</li>
+        @*<li>@Html.RouteLink(controller, "Alls")</li>*@
         @if (!String.IsNullOrEmpty(id))
         {
             <li>@Html.RouteLink(id, "SearchByID")</li>

@@ -22,10 +22,18 @@ namespace Epam.UsersAwards.MVC.Controllers
         }
         // GET: api/AwardAPI
         [Route("")]
-        public List<Award> Get()
+        public List<Award> Get(string filter=null)
         {
-            var awards = awardDm.GetAll();
-            return awards;
+            if (string.IsNullOrEmpty(filter))
+            {
+                var awards = awardDm.GetAll();
+                return awards;
+            }
+            else
+            {
+                var awards = awardDm.GetAwardsByFilter(filter);
+                return awards;
+            }
         }
 
         // GET: api/AwardAPI/5

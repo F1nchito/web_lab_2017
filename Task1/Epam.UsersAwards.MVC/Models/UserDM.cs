@@ -94,7 +94,19 @@ namespace Epam.UsersAwards.MVC.Models
         {
             return userLogic.SaveAwardToUser(userID, awardID);
         }
-        
+
+        public List<Award> GetAwards(int id)
+        {
+            var user = userLogic.GetUserByID(id);
+            if(user != null)
+            {
+                return userLogic.GetAwards(user);
+            }
+            else
+            {
+                return null;
+            }
+        }
         public byte[] GetAllAsFile()
         {
             var users = userLogic.GetAll();

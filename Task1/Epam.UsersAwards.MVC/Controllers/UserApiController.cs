@@ -29,23 +29,32 @@ namespace Epam.UsersAwards.MVC.Controllers
                 var users = userDm.GetAll();
                 return users;
             }
-            return null;
+            else
+            {
+                var users = userDm.GetUsersByFilter(filter);
+                return users;
+            }
 
         }
 
-        // GET: api/UserApi/5
+       
         [Route("{id:int}")]
         public UserEditVM Get(int id)
         {
             var user = userDm.GetUserByID(id);
             return user;
         }
-
+        [Route("{id:int}/awards")]
+        public List<Award> GetAwards(int id)
+        {
+            var awards = userDm.GetAwards(id);
+            return awards;
+        }
         // POST: api/UserApi
         [Route("")]
         public IHttpActionResult Post([FromBody]UserCreateVM user)
         {
-            if(user == null)
+            if (user == null)
             {
                 return BadRequest("User should be defined in request body");
             }
@@ -79,6 +88,18 @@ namespace Epam.UsersAwards.MVC.Controllers
             else
             {
                 return BadRequest("User not valid");
+            }
+        }
+        [Route("{id:int}/awards")]
+        public IHttpActionResult Put(int id, int awardID)
+        {
+            if (userDm.AddAwardToUser(id, awardID))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
             }
         }
 
