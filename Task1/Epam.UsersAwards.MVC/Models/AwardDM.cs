@@ -8,15 +8,24 @@ using Epam.UsersAwards.Entities;
 using AutoMapper;
 using System.IO;
 using System.Web.Helpers;
+using System.Configuration;
 
 namespace Epam.UsersAwards.MVC.Models
 {
     public class AwardDM
     {
         private IAwardLogic awardLogic;
+        public int imageHeight;
+        public int imageWidth;
+        public int thumbnailHeight;
+        public int thumbnailWidth;
         public AwardDM(IAwardLogic awardLogic)
         {
             this.awardLogic = awardLogic;
+            imageHeight = Convert.ToInt32(ConfigurationManager.AppSettings.Get("imageHeight"));
+            imageWidth = Convert.ToInt32(ConfigurationManager.AppSettings.Get("imageWidth"));
+            thumbnailHeight = Convert.ToInt32(ConfigurationManager.AppSettings.Get("thumbnailHeight"));
+            thumbnailWidth = Convert.ToInt32(ConfigurationManager.AppSettings.Get("thumbnailWidth"));
         }
 
         internal List<Award> GetAll()
@@ -46,17 +55,15 @@ namespace Epam.UsersAwards.MVC.Models
             var award = Mapper.Map<Award>(model);
             if (model.Image != null)
             {
+                WebImage img = new WebImage(model.Image.InputStream);
+                img.Resize(imageWidth, imageHeight);
                 award.Image = new PictureData();
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    model.Image.InputStream.CopyTo(memoryStream);
-                    award.Image.Data = memoryStream.ToArray();
-                    award.Image.ContentType = model.Image.ContentType;
-                }
+                award.Image.Data = img.GetBytes();
+                award.Image.ContentType = "image/" + img.ImageFormat;
             }
             else// for web api
             {
-                var image = new WebImage(@"D:\it2017_1\Task1\Epam.UsersAwards.MVC\Content\Images\award-clipart-award-clipart-172_293.jpg");
+                var image = new WebImage(@"D:\it2017_1\Task1\Epam.UsersAwards.MVC\Content\Images\award-default.png");
                 award.Image.ContentType = "image/" + image.ImageFormat;
                 award.Image.Data = image.GetBytes();
             }
@@ -69,13 +76,11 @@ namespace Epam.UsersAwards.MVC.Models
             var award = Mapper.Map<Award>(model);
             if (model.Image != null)
             {
+                WebImage img = new WebImage(model.Image.InputStream);
+                img.Resize(imageWidth, imageHeight);
                 award.Image = new PictureData();
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    model.Image.InputStream.CopyTo(memoryStream);
-                    award.Image.Data = memoryStream.ToArray();
-                    award.Image.ContentType = model.Image.ContentType;
-                }
+                award.Image.Data = img.GetBytes();
+                award.Image.ContentType = "image/" + img.ImageFormat;
             }
             return awardLogic.Update(award);
         }
@@ -93,7 +98,7 @@ namespace Epam.UsersAwards.MVC.Models
         {
             var pic = awardLogic.GetPicture(id);
             var img = new WebImage(pic.Data);
-            pic.Data = img.Resize(50, 50).GetBytes();
+            pic.Data = img.Resize(thumbnailWidth, thumbnailHeight).GetBytes();
             return pic;
         }
 

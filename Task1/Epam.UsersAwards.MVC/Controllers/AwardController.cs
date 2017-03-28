@@ -71,13 +71,28 @@ namespace Epam.UsersAwards.MVC.Controllers
 
         // POST: Awards/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(AwardCreateVM model)
         {
+            ViewBag.Breadcrumb = new Breadcrumb("award", "create", null);
             try
             {
-                awardDm.Save(model);
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                var award = awardDm.Save(model);
+                    if(award == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch
             {
@@ -86,20 +101,45 @@ namespace Epam.UsersAwards.MVC.Controllers
         }
 
         // GET: Awards/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            AwardEditVM model = awardDm.GetAwardByID(id);
+            if (!id.HasValue)
+            {
+                return new HttpStatusCodeResult(400);
+            }
+            AwardEditVM model = awardDm.GetAwardByID((int)id);
+            if(model == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Breadcrumb = new Breadcrumb("award", "edit", model.Title);
             return View(model);
         }
 
         // POST: Awards/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(AwardEditVM model)
         {
+            ViewBag.Breadcrumb = new Breadcrumb("award", "edit", model.Title);
             try
             {
-                awardDm.Edit(model);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var award = awardDm.Edit(model);
+                    if (award == null)
+                    {
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch
             {
@@ -108,19 +148,38 @@ namespace Epam.UsersAwards.MVC.Controllers
         }
 
         // GET: Awards/Delete/5
-        public ActionResult Delete()
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(400);
+            }
+            var award = awardDm.GetAwardByID((int)id);
+            if (award == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Breadcrumb = new Breadcrumb("award", "delete", award.Title);
+            return View(award);
         }
 
         // POST: Awards/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(Award award)
         {
             try
             {
-                awardDm.Delete(id);
+                ViewBag.Breadcrumb = new Breadcrumb("award", "delete", award.Title);
+                var result = awardDm.Delete(award.ID);
+                if (result)
+                {
                 return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch
             {
@@ -134,7 +193,7 @@ namespace Epam.UsersAwards.MVC.Controllers
             PictureData photo = awardDm.GetPicture(id);
             if (photo == null)
             {
-                return File(@"\Content\Images\award-clipart-award-clipart-172_293.jpg", "image/jpeg");
+                return File(@"\Content\Images\award-default.png", "image/png");
             }
             return File(photo.Data, photo.ContentType);
         }
@@ -144,7 +203,7 @@ namespace Epam.UsersAwards.MVC.Controllers
             PictureData photo = awardDm.GetThumbnail(id);
             if (photo == null)
             {
-                return File(@"\Content\Images\award-clipart-award-clipart-172_293.jpg", "image /jpeg");
+                return File(@"\Content\Images\award-default-small.png", "image/png");
             }
             return File(photo.Data, photo.ContentType);
         }

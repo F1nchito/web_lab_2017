@@ -11,15 +11,20 @@ using System.Web.Mvc;
 using System.IO;
 using System.Web.Helpers;
 using System.Text;
+using System.Configuration;
 
 namespace Epam.UsersAwards.MVC.Models
 {
     public class UserDM
     {
         private IUserLogic userLogic;
+        public int imageHeight;
+        public int imageWidth;
         public UserDM(IUserLogic userLogic)
         {
             this.userLogic = userLogic;
+            imageHeight = Convert.ToInt32(ConfigurationManager.AppSettings.Get("imageHeight"));
+            imageWidth = Convert.ToInt32(ConfigurationManager.AppSettings.Get("imageWidth"));
         }
 
         internal List<UserShowWithAwardsVM> GetAll()
@@ -54,15 +59,10 @@ namespace Epam.UsersAwards.MVC.Models
             {
                 //TODO: webimage
                 WebImage img = new WebImage(model.Photo.InputStream);
-                img.Resize(250, 250);
-                img.GetBytes();
+                img.Resize(imageWidth, imageHeight);
                 user.Photo = new PictureData();
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    model.Photo.InputStream.CopyTo(memoryStream);
-                    user.Photo.Data = memoryStream.ToArray();
-                    user.Photo.ContentType = model.Photo.ContentType;
-                }
+                user.Photo.Data = img.GetBytes();
+                user.Photo.ContentType = "image/" + img.ImageFormat;
             }
             return userLogic.Save(user); 
         }
@@ -72,13 +72,11 @@ namespace Epam.UsersAwards.MVC.Models
             User user = Mapper.Map<User>(model);
             if (model.Photo != null)
             {
+                WebImage img = new WebImage(model.Photo.InputStream);
+                img.Resize(imageWidth, imageHeight);
                 user.Photo = new PictureData();
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    model.Photo.InputStream.CopyTo(memoryStream);
-                    user.Photo.Data = memoryStream.ToArray();
-                    user.Photo.ContentType = model.Photo.ContentType;
-                }
+                user.Photo.Data = img.GetBytes();
+                user.Photo.ContentType = "image/" + img.ImageFormat;
             }
             return userLogic.Update(user);
         }

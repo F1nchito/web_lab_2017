@@ -23,8 +23,6 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                //var cmd = con.CreateCommand();
-                //cmd.CommandText = "AwardGetAll";
                 var cmd = new SqlCommand("AwardGetAll", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
@@ -43,8 +41,6 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                //var cmd = con.CreateCommand();
-                //cmd.CommandText = "AwardGetByID";
                 var cmd = new SqlCommand("AwardGetByID", con);
                 cmd.Parameters.AddWithValue("@ID", awardID);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -73,8 +69,7 @@ namespace Epam.UsersAwards.DBDal
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 var result = cmd.ExecuteReader();
-                result.Read();
-                try
+                if(result.Read())
                 {
                     int id = (int)result["ID"];
                     string title = (string)result["Title"];
@@ -82,7 +77,7 @@ namespace Epam.UsersAwards.DBDal
                     var award = new Award() { ID = id, Title = title, Description = description };
                     return award;
                 }
-                catch (Exception)
+                else
                 {
                     return null;
                 }
@@ -121,8 +116,6 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                //var cmd = connection.CreateCommand();
-                //cmd.CommandText = "AwardAdd";
                 var cmd = new SqlCommand("AwardAdd", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Title", award.Title);
@@ -146,8 +139,6 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                //var cmd = connection.CreateCommand();
-                //cmd.CommandText = "AwardDelete";
                 var cmd = new SqlCommand("AwardDelete", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ID", awardID);
@@ -160,19 +151,16 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                //var cmd = con.CreateCommand();
-                //cmd.CommandText = "AwardPictureGetByID";
                 var cmd = new SqlCommand("AwardPictureGetByID", con);
                 cmd.Parameters.AddWithValue("@ID", id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 var result = cmd.ExecuteReader();
-                result.Read();
-                try//или все таки if()?
+                if(result.Read())
                 {
                     return new PictureData() { Data = (byte[])result["Data"], ContentType = (string)result["Type"] };
                 }
-                catch (Exception)
+                else
                 {
                     return null;
                 }
@@ -185,8 +173,6 @@ namespace Epam.UsersAwards.DBDal
             {
                 using (var connection = new SqlConnection(dbConStr))
                 {
-                    //var cmd = connection.CreateCommand();
-                    //cmd.CommandText = "AwardPictureUpdate";
                     var cmd = new SqlCommand("AwardPictureUpdate", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@awardID", userID);
@@ -207,8 +193,6 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                //var cmd = connection.CreateCommand();
-                //cmd.CommandText = "AwardPictureAdd";
                 var cmd = new SqlCommand("AwardPictureAdd", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Data", picture.Data);
@@ -226,8 +210,6 @@ namespace Epam.UsersAwards.DBDal
             }
             using (var con = new SqlConnection(dbConStr))
             {
-                //var cmd = con.CreateCommand();
-                //cmd.CommandText = "AwardUpdate";
                 var cmd = new SqlCommand("AwardUpdate", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try

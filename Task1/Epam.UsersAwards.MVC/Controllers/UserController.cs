@@ -87,8 +87,15 @@ namespace Epam.UsersAwards.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    userDm.Save(model);
+                    var user = userDm.Save(model);
+                    if(user == null)
+                    {
                     return HttpNotFound();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
                 else
                 {
@@ -107,8 +114,7 @@ namespace Epam.UsersAwards.MVC.Controllers
             PictureData photo = userDm.GetPicture(id);
             if (photo == null)
             {
-                //TODO: Перенсти в логику?
-                return File(@"\Content\Images\anonymous-user.png", "image/png");
+                return File(@"\Content\Images\user-default.png", "image/png");
             }
             return File(photo.Data, photo.ContentType);
         }

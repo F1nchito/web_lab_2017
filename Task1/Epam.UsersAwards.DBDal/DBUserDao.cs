@@ -24,8 +24,6 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                //var cmd = connection.CreateCommand();
-                //cmd.CommandText = "UserAdd";
                 var cmd = new SqlCommand("UserAdd", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Name", user.Name);
@@ -49,8 +47,6 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                //var cmd = connection.CreateCommand();
-                //cmd.CommandText = "UserAddAward";
                 var cmd = new SqlCommand("UserAddAward", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@uID", userID);
@@ -64,8 +60,6 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                //var cmd = con.CreateCommand();
-                //cmd.CommandText = "UserGetAwards";
                 var cmd = new SqlCommand("UserGetAwards", con);
                 cmd.Parameters.AddWithValue("@userID", user.ID);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -90,8 +84,6 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                //var cmd = connection.CreateCommand();
-                //cmd.CommandText = "UserDelete";
                 var cmd = new SqlCommand("UserDelete", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ID", userID);
@@ -104,8 +96,6 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                //var cmd = con.CreateCommand();
-                //cmd.CommandText = "UserGetAll";
                 var cmd = new SqlCommand("UserGetAll", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
@@ -126,19 +116,17 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                //var cmd = con.CreateCommand();
-                //cmd.CommandText = "UserPictureGetByID";
                 var cmd = new SqlCommand("UserPictureGetByID", con);
                 cmd.Parameters.AddWithValue("@ID", id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 var result = cmd.ExecuteReader();
                 result.Read();
-                try//или все таки if()?
+                if(result.Read())
                 {
                     return new PictureData() { Data = (byte[])result["Data"], ContentType = (string)result["Type"] };
                 }
-                catch (Exception)
+                else 
                 {
                     return null;
                 }
@@ -149,8 +137,6 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var connection = new SqlConnection(dbConStr))
             {
-                //var cmd = connection.CreateCommand();
-                //cmd.CommandText = "UserPictureAdd";
                 var cmd = new SqlCommand("UserPictureAdd", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Data", picture.Data);
@@ -166,8 +152,6 @@ namespace Epam.UsersAwards.DBDal
             {
                 using (var connection = new SqlConnection(dbConStr))
                 {
-                    //var cmd = connection.CreateCommand();
-                    //cmd.CommandText = "UserPictureUpdate";
                     var cmd = new SqlCommand("UserPictureUpdate", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@userID", userID);
@@ -188,15 +172,12 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                //var cmd = con.CreateCommand();
-                //cmd.CommandText = "UserGetByID";
                 var cmd = new SqlCommand("UserGetByID", con);
                 cmd.Parameters.AddWithValue("@ID", userID);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 var result = cmd.ExecuteReader();
-                result.Read();
-                try
+                if(result.Read())
                 {
                     int id = (int)result["ID"];
                     string name = (string)result["Name"];
@@ -205,7 +186,7 @@ namespace Epam.UsersAwards.DBDal
                     //user.Awards = GetUserAwards(user).ToArray();
                     return user;
                 }
-                catch (Exception)
+                else
                 {
                     return null;
                 }
@@ -220,8 +201,6 @@ namespace Epam.UsersAwards.DBDal
             }
             using (var con = new SqlConnection(dbConStr))
             {
-                //var cmd = con.CreateCommand();
-                //cmd.CommandText = "UserUpdate";
                 var cmd = new SqlCommand("UserUpdate", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
@@ -244,15 +223,12 @@ namespace Epam.UsersAwards.DBDal
         {
             using (var con = new SqlConnection(dbConStr))
             {
-                //var cmd = con.CreateCommand();
-                //cmd.CommandText = "UserGetByName";
                 var cmd = new SqlCommand("UserGetByName", con);
                 cmd.Parameters.AddWithValue("@Name", name);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 var result = cmd.ExecuteReader();
-                result.Read();
-                try
+                if(result.Read())
                 {
                     int id = (int)result["ID"];
                     string nameDB = (string)result["Name"];
@@ -261,7 +237,7 @@ namespace Epam.UsersAwards.DBDal
                     //user.Awards = GetUserAwards(user).ToArray();
                     return user;
                 }
-                catch (Exception)
+                else
                 {
                     return null;
                 }
