@@ -1,0 +1,21 @@
+﻿@model Epam.UsersAwards.MVC.ViewModels.Awards.AwardEditVM
+<div>
+    <div class="modal-header">
+        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <header>
+            <h4 class="modal-title" id="awardTitle">@Model.Title</h4>
+        </header>
+    </div>
+    <div class="modal-body row">
+        <div class="col-xs-6">
+            <img src="@Url.Action("Photo", "Award", new { id = Model.ID })" alt="@Model.Title's photo" class="img-circle img-thumbnail">
+        </div>
+        <div class="col-xs-6">
+            <p>Description: <br /> @Model.Description</p>
+        </div>
+    </div>
+    <div class="pull-right">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ID }, new { @class = "btn btn-danger" })
+    </div>
+</div>

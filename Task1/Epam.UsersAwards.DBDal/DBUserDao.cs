@@ -121,7 +121,6 @@ namespace Epam.UsersAwards.DBDal
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 var result = cmd.ExecuteReader();
-                result.Read();
                 if(result.Read())
                 {
                     return new PictureData() { Data = (byte[])result["Data"], ContentType = (string)result["Type"] };

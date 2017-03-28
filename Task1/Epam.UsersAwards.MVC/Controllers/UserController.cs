@@ -32,6 +32,7 @@ namespace Epam.UsersAwards.MVC.Controllers
 
         public ActionResult GetByName(string name)
         {
+            ViewBag.Breadcrumb = new Breadcrumb("users", "search", null);
             if (string.IsNullOrEmpty(name))
             {
                 return new HttpStatusCodeResult(400);
@@ -196,7 +197,7 @@ namespace Epam.UsersAwards.MVC.Controllers
             try
             {
                 userDm.AddAwardToUser(userID, awardID);
-                return RedirectToRoute("Alls");
+                return RedirectToAction(nameof(Index));
             }
             catch 
             {

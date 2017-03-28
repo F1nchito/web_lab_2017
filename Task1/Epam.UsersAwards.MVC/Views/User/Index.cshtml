@@ -1,63 +1,30 @@
 ﻿@model IEnumerable<Epam.UsersAwards.MVC.ViewModels.Users.UserShowWithAwardsVM>
 @section scripts{
-    <script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-})</script>
+<script src="~/Scripts/tooltip-toggle.js"></script>
+<script src="~/Scripts/awards-modal.js"></script>
 }
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-
 <h2>Index</h2>
-@Html.ActionLink("download", "GetAllAsFile")
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DOB)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>*@
 <div class="row">
+    <button type="button" class="btn btn-default btn-lg pull-left">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>@Html.ActionLink("Create New", "Create")
+    </button>
+    
+    <button type="button" class="btn btn-default btn-lg pull-right">
+    <span class="glyphicon glyphicon-download" aria-hidden="true"></span>@Html.ActionLink("Download All", "GetAllAsFile")
+    </button>
+</div>
     @foreach (var item in Model)
 {
-    @*<tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DOB)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            <img src="~/Awards/Photo/@item.Awards[0].ID" alt="@item.Name's photo" width="80" height="80" class="img-circle img-thumbnail">
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-        <td>
-            <img src="@Url.Action("Photo","User", new { id = item.ID })" alt="@item.Name's photo" width="80" height="80" class="img-circle img-thumbnail">
-        </td>*@
     @Html.Partial("_UserPartial", item)
-    @*</tr>*@
+  
 }
+<div id="modDialog" class="modal fade" tabindex="-1" role="dialog" >
+<div  class="modal-dialog" role="document">
+    <div class="modal-content" id="dialogContent">
+    </div>
 </div>
-
-
-@*</table>*@
+</div>

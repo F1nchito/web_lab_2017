@@ -186,6 +186,18 @@ namespace Epam.UsersAwards.MVC.Controllers
                 return View();
             }
         }
+        public ActionResult AwardPartial(int id)
+        {
+            var award = awardDm.GetAwardByID(id);
+            if (award != null)
+            {
+                return PartialView("_AwardPartialModal", award);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
 
         [HttpGet]
         public ActionResult Photo(int id)

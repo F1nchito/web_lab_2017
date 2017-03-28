@@ -144,6 +144,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\awards-modal.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -156,6 +157,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\tooltip-toggle.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +209,9 @@
     <Content Include="Views\User\_UserPartial.cshtml" />
     <Content Include="Views\Award\_AwardThumbnailPartial.cshtml" />
     <Content Include="Views\Shared\_BreadcrumbsPartial.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\Award\Details.cshtml" />
+    <Content Include="Views\Award\_AwardPartialModal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

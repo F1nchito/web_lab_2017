@@ -82,6 +82,12 @@ namespace Epam.UsersAwards.MVC.Models
                 award.Image.Data = img.GetBytes();
                 award.Image.ContentType = "image/" + img.ImageFormat;
             }
+            else// for web api
+            {
+                var image = new WebImage(@"D:\it2017_1\Task1\Epam.UsersAwards.MVC\Content\Images\award-default.png");
+                award.Image.ContentType = "image/" + image.ImageFormat;
+                award.Image.Data = image.GetBytes();
+            }
             return awardLogic.Update(award);
         }
 

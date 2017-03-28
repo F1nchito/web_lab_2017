@@ -19,6 +19,7 @@ namespace Epam.UsersAwards.MVC.ViewModels.Users
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Date of Birth")]
         [DisplayFormat(DataFormatString ="{0:d}", ApplyFormatInEditMode = true)]
         public DateTime DOB { get; set; }
 
