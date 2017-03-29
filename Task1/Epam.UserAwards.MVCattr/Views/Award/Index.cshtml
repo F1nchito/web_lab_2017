@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Epam.UsersAwards.Entities.Award>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AwardLayout.cshtml";
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@foreach (var award in Model)
+{
+    @Html.Partial("_AwardPartial", award)
+}

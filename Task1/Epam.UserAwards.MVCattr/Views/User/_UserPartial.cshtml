@@ -1,0 +1,43 @@
+﻿@model Epam.UsersAwards.MVCattr.ViewModels.Users.UserShowWithAwardsVM
+<div class="row panel panel-default">
+    <figure class="col-md-4 col-sm-6 col-xs-12 pull-left">
+        <img src="@Url.Action("Photo","User", new { id = Model.ID })" alt="@Model.Name's photo" width="250" height="250" class="img-rounded img-thumbnail">
+    </figure>    
+    <div class="col-md-8 col-sm-6 col-xs-12 pull-right">
+        <header>
+            <h3>@Model.Name</h3>
+        </header>
+        <section>
+            <h4>Date of birth: @Model.DOB.ToShortDateString() (@Model.Age)</h4>
+        </section>
+
+        <section>
+            <h4>Awards:</h4>
+                @if (!Model.Awards.Any())
+                {
+                    <p>No availible awards for this user</p>
+                }
+                else
+                {
+                    <div class="row">
+                        @foreach (var award in Model.Awards)
+                        {
+
+                        <div class="col-xs-6 col-md-2 col-sm-4">
+                            <a href="@Url.Action("AwardPartial", "Award", new { id = award.ID })" class="thumbnail modalItem" data-toggle="tooltip" data-placement="top" title="@award.Title">
+                                <img src="@Url.Action("SmallPhoto", "Award", new { id = award.ID })" alt="@award's photo" width="50" height="50" class="img-circle img-thumbnail">
+                            </a>
+                        </div>
+                        }
+                    </div>
+                }
+        </section>
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Add award", "GetAvaliableAward", new { id = Model.ID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Delete", "Delete", new { id = Model.ID }, new { @class = "btn btn-danger" })
+            
+        </div>
+    </div>
+</div>
+

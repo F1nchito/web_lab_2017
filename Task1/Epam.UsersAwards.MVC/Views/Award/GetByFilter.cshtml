@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Epam.UsersAwards.Entities.Award>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_AwardLayout.cshtml";
+}
+
+<h2>Search</h2>
+
+@foreach (var award in Model)
+{
+    @Html.Partial("_AwardPartial", award)
+}

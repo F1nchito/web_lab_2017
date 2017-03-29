@@ -1,0 +1,26 @@
+﻿@model Epam.UsersAwards.MVCattr.ViewModels.Users.UserShowWithAwardsVM
+@{
+    ViewBag.Title = "Add award to user";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Add Award to User</h2>
+
+@using (Html.BeginForm("AddAward", "User", new { userID = Model.ID }, FormMethod.Post, new { @class = "form-inline" }))
+{
+    
+            <div class="form-group dropdown">
+            <label for="awardID">Add award</label>
+            @Html.DropDownList("awardID",new SelectList(Model.Awards, dataValueField: "ID", dataTextField: "Title"), new { @class = "form-control" })
+        </div>
+        <fieldset disabled class="form-group">
+            <div class="form-group">
+                <label for="disabledSelect">to user with ID</label>
+                <select id="disabledSelect" class="form-control">
+                    <option>@Model.ID</option>
+                </select>
+            </div>
+        </fieldset>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
+

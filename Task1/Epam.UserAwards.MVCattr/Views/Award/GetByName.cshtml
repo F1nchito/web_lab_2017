@@ -1,0 +1,12 @@
+﻿@model Epam.UsersAwards.Entities.Award
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_AwardLayout.cshtml";
+}
+
+<h2>Search</h2>
+@Html.Partial("_AwardPartial", Model)
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

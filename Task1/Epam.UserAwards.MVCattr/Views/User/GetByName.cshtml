@@ -1,0 +1,15 @@
+﻿@model Epam.UsersAwards.MVCattr.ViewModels.Users.UserShowWithAwardsVM
+
+@{
+    ViewBag.Title = "GetByName";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Search</h2>
+
+<div>
+    @Html.Partial("_UserPartial", Model)
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

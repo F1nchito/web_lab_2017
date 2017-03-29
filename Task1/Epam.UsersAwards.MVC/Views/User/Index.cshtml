@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Epam.UsersAwards.MVC.ViewModels.Users.UserShowWithAwardsVM>
+@section scripts{
+<script src="~/Scripts/tooltip-toggle.js"></script>
+<script src="~/Scripts/awards-modal.js"></script>
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<h2>Index</h2>
+<div class="row">
+    <button type="button" class="btn btn-default btn-lg pull-left">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>@Html.ActionLink("Create New", "Create")
+    </button>
+    
+    <button type="button" class="btn btn-default btn-lg pull-right">
+    <span class="glyphicon glyphicon-download" aria-hidden="true"></span>@Html.ActionLink("Download All", "GetAllAsFile")
+    </button>
+</div>
+    @foreach (var item in Model)
+{
+    @Html.Partial("_UserPartial", item)
+  
+}
+<div id="modDialog" class="modal fade" tabindex="-1" role="dialog" >
+<div  class="modal-dialog" role="document">
+    <div class="modal-content" id="dialogContent">
+    </div>
+</div>
+</div>
