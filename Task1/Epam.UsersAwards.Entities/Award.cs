@@ -15,5 +15,14 @@ namespace Epam.UsersAwards.Entities
         public string Description { get; set; }
 
         public PictureData Image { get; set; }
+        public override int GetHashCode()
+        {
+            return this.ID;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.ID == (obj as Award)?.ID;
+        }
     }
 }

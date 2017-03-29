@@ -1,4 +1,5 @@
-﻿using Epam.UsersAwards.Entities;
+﻿using AutoMapper;
+using Epam.UsersAwards.Entities;
 using Epam.UsersAwards.MVC.Models;
 using Epam.UsersAwards.MVC.ViewModels;
 using Epam.UsersAwards.MVC.ViewModels.Awards;
@@ -82,7 +83,8 @@ namespace Epam.UsersAwards.MVC.Controllers
                 var award = awardDm.Save(model);
                     if(award == null)
                     {
-                        return HttpNotFound();
+                        ModelState.AddModelError("", "Ошибка при сохранении");
+                        return View();
                     }
                     else
                     {
@@ -94,8 +96,9 @@ namespace Epam.UsersAwards.MVC.Controllers
                     return View();
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                ModelState.AddModelError("", $"{ex.Message}");
                 return View();
             }
         }
@@ -107,13 +110,13 @@ namespace Epam.UsersAwards.MVC.Controllers
             {
                 return new HttpStatusCodeResult(400);
             }
-            AwardEditVM model = awardDm.GetAwardByID((int)id);
+            var model = awardDm.GetAwardByID((int)id);
             if(model == null)
             {
                 return HttpNotFound();
             }
             ViewBag.Breadcrumb = new Breadcrumb("award", "edit", model.Title);
-            return View(model);
+            return View(Mapper.Map<AwardEditVM>(model));
         }
 
         // POST: Awards/Edit/5
@@ -129,6 +132,7 @@ namespace Epam.UsersAwards.MVC.Controllers
                     var award = awardDm.Edit(model);
                     if (award == null)
                     {
+                        ModelState.AddModelError("", "Ошибка при сохранении");
                         return View();
                     }
                     else
@@ -141,8 +145,9 @@ namespace Epam.UsersAwards.MVC.Controllers
                     return View();
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                ModelState.AddModelError("", $"{ex.Message}");
                 return View();
             }
         }
@@ -160,7 +165,7 @@ namespace Epam.UsersAwards.MVC.Controllers
                 return HttpNotFound();
             }
             ViewBag.Breadcrumb = new Breadcrumb("award", "delete", award.Title);
-            return View(award);
+            return View(Mapper.Map<Award>(award));
         }
 
         // POST: Awards/Delete/5
@@ -178,11 +183,13 @@ namespace Epam.UsersAwards.MVC.Controllers
                 }
                 else
                 {
+                    ModelState.AddModelError("", "Ошибка при удалении");
                     return View();
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                ModelState.AddModelError("", $"{ex.Message}");
                 return View();
             }
         }

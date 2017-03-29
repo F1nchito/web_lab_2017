@@ -17,10 +17,11 @@ namespace Epam.UsersAwards.MVC.Controllers
     public class UserController : Controller
     {
         private UserDM userDm;
-
-        public UserController(UserDM userDm)
+        private AwardDM awardDm;
+        public UserController(UserDM userDm, AwardDM awardDm)
         {
             this.userDm = userDm;
+            this.awardDm = awardDm;
         }
         // GET: Users
         public ActionResult Index()
@@ -91,7 +92,8 @@ namespace Epam.UsersAwards.MVC.Controllers
                     var user = userDm.Save(model);
                     if(user == null)
                     {
-                    return HttpNotFound();
+                        ModelState.AddModelError("", "Ошибка при сохранении");
+                        return View();
                     }
                     else
                     {
@@ -103,8 +105,9 @@ namespace Epam.UsersAwards.MVC.Controllers
                     return View();
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                ModelState.AddModelError("", $"{ex.Message}");
                 return View();
             }
         }
@@ -148,13 +151,16 @@ namespace Epam.UsersAwards.MVC.Controllers
             ViewBag.Breadcrumb = new Breadcrumb("user", "edit", model.Name);
             if (ModelState.IsValid)
                 {
-                    userDm.Edit(model);
-                    return RedirectToAction("Index");
+                    var result = userDm.Edit(model);
+                if(result == null)
+                {
+                    ModelState.AddModelError("", "Ошибка при сохранении");
+                    return View();
+                }
+                return RedirectToAction("Index");
                 }
                 else
                 {
-                    //TODO: ERROR EVERYWHERE!
-                    ModelState.AddModelError("","qwe");
                     return View();
                 }
         }
@@ -190,8 +196,21 @@ namespace Epam.UsersAwards.MVC.Controllers
                 return new HttpStatusCodeResult(400);
             }
         }
-
-        [HttpPost]
+        public ActionResult GetAvaliableAward(int id)
+        {
+            var user = userDm.GetUserByID(id);
+            ViewBag.Breadcrumb = new Breadcrumb("user", "Add award", user.Name);
+            if (user != null)
+            {
+                var awards = awardDm.GetAll();
+                user.Awards = awards.Except(user.Awards).ToList();
+                return View(user);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
         public ActionResult AddAward(int userID, int awardID)
         {
             try
@@ -201,7 +220,7 @@ namespace Epam.UsersAwards.MVC.Controllers
             }
             catch 
             {
-                return View();
+                return new HttpStatusCodeResult(400);
             }
         }
 

@@ -3,7 +3,6 @@
     var breadcrumb = ViewBag.Breadcrumb as Breadcrumb;
 }
 <ul class="breadcrumb">
-    <li>@Html.ActionLink("Home", "Index", "Home")</li>
     @if (breadcrumb != null)
     {
         if (breadcrumb.Controller != null)

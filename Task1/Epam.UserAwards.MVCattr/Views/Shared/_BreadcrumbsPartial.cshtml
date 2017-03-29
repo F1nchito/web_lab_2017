@@ -1,0 +1,21 @@
+﻿@using Epam.UsersAwards.MVCattr.ViewModels
+@{
+    var breadcrumb = ViewBag.Breadcrumb as Breadcrumb;
+}
+<ul class="breadcrumb">
+    @if (breadcrumb != null)
+    {
+        if (breadcrumb.Controller != null)
+        {
+            <li>@Html.ActionLink(breadcrumb.Controller, "Index", ViewContext.RouteData.Values["controller"].ToString())</li>
+        }
+        if (breadcrumb.Title != null)
+        {
+            <li>@Html.ActionLink(breadcrumb.Title, "Details", ViewContext.RouteData.Values["controller"].ToString())</li>
+        }
+        if (breadcrumb.Action != null)
+        {
+            <li>@Html.ActionLink(breadcrumb.Action, ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString())</li>
+        }
+    }
+</ul>

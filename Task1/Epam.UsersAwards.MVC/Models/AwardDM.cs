@@ -44,10 +44,10 @@ namespace Epam.UsersAwards.MVC.Models
             return awardLogic.GetAwardsByFilter(filter);
         }
 
-        internal AwardEditVM GetAwardByID(int id)
+        internal Award GetAwardByID(int id)
         {
             var award = awardLogic.GetAwardByID(id);
-            return Mapper.Map<AwardEditVM>(award);
+            return award;
         }
 
         internal Award Save(AwardCreateVM model)

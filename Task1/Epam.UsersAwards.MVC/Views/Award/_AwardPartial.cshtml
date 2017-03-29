@@ -1,0 +1,18 @@
+﻿@model Epam.UsersAwards.Entities.Award
+<div class="row panel panel-default">
+    <figure class="col-md-4 col-sm-6 col-xs-12 pull-left">
+        <img src="@Url.Action("Photo","Award", new { id = Model.ID })" alt="@Model.Title's photo" width="250" height="250" class="img-rounded img-thumbnail">
+    </figure>
+    <div class="col-md-8 col-sm-6 col-xs-12 pull-right">
+        <header>
+            <h3>@Model.Title</h3>
+        </header>
+        <section>
+            <h5>Decription: @Model.Description</h5>
+        </section>
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Delete", "Delete", new { id = Model.ID }, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>

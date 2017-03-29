@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Epam.UsersAwards.MVCattr.ViewModels.Users.UserShowWithAwardsVM>
+
+@{
+    ViewBag.Title = "GetByFilter";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Search</h2>
+
+@foreach (var item in Model) {
+@Html.Partial("_UserPartial", item)
+}
+

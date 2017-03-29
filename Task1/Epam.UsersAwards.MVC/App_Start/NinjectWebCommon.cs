@@ -13,20 +13,20 @@ namespace Epam.UsersAwards.MVC.App_Start
     using Epam.UsersAwards.LogicContracts;
     using Epam.UsersAwards.MVC.Models;
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            bootstrapper.Initialize(CreateKernel);  //если тут ошибка при запуске проекта с аттрибутами- просто закоментить этот класс. Я не знаю как пофиксить это....
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -34,7 +34,7 @@ namespace Epam.UsersAwards.MVC.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -71,6 +71,6 @@ namespace Epam.UsersAwards.MVC.App_Start
                  .Bind<UserDM>()
                  .ToSelf()
                  .InSingletonScope();
-        }        
+        }
     }
 }
