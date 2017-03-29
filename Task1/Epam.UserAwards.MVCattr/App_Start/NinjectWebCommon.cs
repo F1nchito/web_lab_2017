@@ -8,10 +8,8 @@ namespace Epam.UserAwards.MVCattr.App_Start
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
-    
-    using Epam.UsersAwards.MVCattr.Models;
-    using Ninject.Web.Common;
     using Ninject;
+    using Ninject.Web.Common;
 
     public static class NinjectWebCommon 
     {
@@ -46,7 +44,7 @@ namespace Epam.UserAwards.MVCattr.App_Start
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-                UsersAwards.NinjectConfig.Config.RegisterServices(kernel);
+
                 RegisterServices(kernel);
                 return kernel;
             }
@@ -63,14 +61,6 @@ namespace Epam.UserAwards.MVCattr.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel
-                 .Bind<AwardDM>()
-                 .ToSelf()
-                 .InSingletonScope();
-            kernel
-                 .Bind<UserDM>()
-                 .ToSelf()
-                 .InSingletonScope();
         }        
     }
 }
