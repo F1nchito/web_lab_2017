@@ -12,9 +12,9 @@
         <table border="1" bgcolor="#FFFFFF" bordercolor="#000000" cellspacing="0" cellpadding="0" width="100%"><!--Header -->
             <thead>
             <tr height="100px">
-                <th width="200px"><a href="http://www.epam-group.ru/"  target="_blank" data-toggle="tooltip" title="Official website Epam"><img src="img/logo.png" alt="Official website Epam" width="200px" height="100px"></a></th>
+                <th width="200px"><a href="http://www.epam-group.ru/" tabindex="1" name="epam-group" target="_blank" data-toggle="tooltip" title="Official website Epam"><img src="img/logo.png" alt="Official website Epam" width="200px" height="100px"></a></th>
                 <th><font size="6">Epam times</font></th>
-                <th width="100px" height="100px"><img src="img/menu.png" alt="" width="50px" height="50px"></th>
+                <th width="100px" height="100px"><img src="img/menu.png"  tabindex="2" alt="menu" width="50px" height="50px"></th>
             </tr>
             </thead>
         </table>
@@ -31,13 +31,13 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <ul type="none">
-                                            <li><a href="">Lorem</a></li>
-                                            <li><a href="">Ipsum</a></li>
-                                            <li><a href="">Dolor</a></li>
-                                            <li><a href="">Sit</a></li>
-                                            <li><a href="">Amet</a></li>
-                                            <li><a href="">Consectetur</a></li>
+                                        <ul type="none";>
+                                            <li><a href="lorem" accesskey="l"tabindex="3"data-toggle="tooltip" title="Lorem">Lorem</a></li>
+                                            <li><a href="ipsum" accesskey="i" tabindex="4" data-toggle="tooltip" title="Ipsum">Ipsum</a></li>
+                                            <li><a href="dolor" accesskey="d" tabindex="5" data-toggle="tooltip" title="Dolor">Dolor</a></li>
+                                            <li><a href="sit" accesskey="s" tabindex="6" data-toggle="tooltip" title="Sit">Sit</a></li>
+                                            <li><a href="amet" accesskey="a" tabindex="9" rel="nofollow" data-toggle="tooltip" title="Amet">Amet</a></li>
+                                            <li><a href="consectetur" accesskey="c" tabindex="10" rel="nofollow" data-toggle="tooltip" title="Consectetur">Consectetur</a></li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -49,8 +49,8 @@
                                 <tr>
                                     <td>
                                         <ul type="none">
-                                            <li><a href="">Elit</a></li>
-                                            <li><a href="">Nunc</a></li>
+                                            <li><a href="elit" accesskey="e" tabindex="7" data-toggle="tooltip" title="Elit">Elit</a></li>
+                                            <li><a href="#epam-group" accesskey="n" tabindex="8" data-toggle="tooltip" title="Nunc">Nunc</a></li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -58,17 +58,17 @@
                         </table>
                     </td><!--Menu table -->
                     <td>
-                        <table cellspacing="0" cellpadding="0" width="100%">
+                        <table cellspacing="0" cellpadding="0" width="100%" height="100%">
                             <tbody>
                                 <tr>
-                    <td width="72%"><!--Content table -->
-                    <table border="1px solid #000000" cellspacing="0" cellpadding="6" width="100%" >
+                    <td width="75%" height="100%"><!--Content table -->
+                    <table border="1px solid #000000" cellspacing="0" cellpadding="7" width="100%" height="100%">
                         <tbody>
-                            <tr height="66.66%">
+                            <tr height="65%" valign="top">
                                 <td width="50%"><!--Article -->
-                                <img src="img/no_image.png" height="150px" width="150px"  align="left" alt="">
+                                <img src="img/no_image.png" height="150px" width="150px"  align="left" alt="no-image">
                                 <h2 align="center">
-                                    <a href="">Lorem ipsum</a>
+                                    <a href="#">Lorem ipsum</a>
                                 </h2>
                                 <font face="Comic sans MS">
                                     <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque debitis nihil fuga animi aut, suscipit asperiores officia quia! Fugiat odio incidunt blanditiis libero quia atque dicta architecto qui veniam consequuntur!</span>
@@ -77,9 +77,9 @@
                                 </font>
                                 </td>
                                 <td width="50%"><!--Article -->
-                                <img src="img/no_image.png" height="150px" width="150px"  align="left" alt="">
+                                <img src="img/no_image.png" height="150px" width="150px"  align="left" alt="no-image">
                                 <h2 align="center">
-                                    <a href="">Lorem ipsum</a>
+                                    <a href="#">Lorem ipsum</a>
                                 </h2>
                                 <font face="Comic sans MS">
                                     <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque debitis nihil fuga animi aut, suscipit asperiores officia quia! Fugiat odio incidunt blanditiis libero quia atque dicta architecto qui veniam consequuntur!</span>
@@ -88,7 +88,7 @@
                                 </font>
                                 </td>
                             </tr>
-                            <tr height="33.33%">
+                            <tr>
                                 <td colspan="2" align="center">
                                     <table border="1px solid #000000" cellspacing="0" cellpadding="0" width="100%">
                                     <caption><font color="#9b0a03" face="arial" size="5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</font></caption>
@@ -147,14 +147,51 @@
                         </tbody>
                     </table>
                     </td><!--Content table -->
-                    <td width="28%">
-
-                    </td>
+                    <td  valign="top"> <!--Right part -->
+                        <table border="1px solid #000000" cellspacing="0" cellpadding="7" width="100%">
+                            <tbody>
+                                <tr bgcolor="#ededed"><!--Login form-->
+                                <td>
+                                    <form action="" method="POST">
+                                        <p><label for="login">Login:</label></p>
+                                        <input tabindex="11" type="text" name="login" id="login" value="" placeholder="Enter the login">
+                                        <p><label for="password">Password:</label></p>
+                                        <input tabindex="12" type="password" name="password" id="password" value="" placeholder="Enter the password">
+                                        <p>
+                                        <input  tabindex="13" type="checkbox" id="remember">
+                                        <label for="remember">Remeber me</label>
+                                        </p>
+                                        <input tabindex="14" type="image" name="submit" src="img/button.png" alt="Login button" width="150px">
+                                    </form>
+                                </td>
+                                </tr><!--Login form-->
+                                <tr><!--Article -->
+                                <td>
+                                    <img src="img/no_image.png" height="150px" width="150px"  align="left" alt="no-image">
+                                <h2 align="center">
+                                    <a href="">Lorem ipsum</a>
+                                </h2>
+                                <font face="Comic sans MS">
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque debitis nihil fuga animi aut, suscipit asperiores officia quia! Fugiat odio incidunt blanditiis libero quia atque dicta architecto qui veniam consequuntur!</span>
+                                    <span>Autem temporibus perspiciatis deleniti quis, porro quibusdam corporis. Architecto nulla assumenda, vitae. Modi culpa debitis velit! Voluptates maiores laborum beatae aliquid repellendus aperiam consectetur architecto at in quis, officiis, esse!</span>
+                                    <span>Facilis nulla perspiciatis minus, neque nam quia placeat, iusto consequatur obcaecati itaque nihil quo quae recusandae? Eos quibusdam adipisci facilis illo ab minus cupiditate animi. Animi dolor accusamus at deleniti.</span>
+                                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora ad pariatur vel! Repellat magnam maiores fugit dignissimos quam vitae error laborum perspiciatis, ea voluptate soluta hic, veritatis quisquam harum officiis.<span>
+                                </font>
+                                </td>
+                                </tr><!--Article -->
+                            </tbody>
+                        </table>
+                    </td><!--Right part -->
                                 </tr>
                             </tbody>
                         </table>
                     </td>
                 </tr><!--Section table -->
+                <tr><!--Footer-->
+                <td colspan="3">
+                    &#169 2014 Основы HTML
+                </td>
+                </tr><!--Footer-->
             </tbody><!--Section table -->
         </table><!--Section table -->
                 
