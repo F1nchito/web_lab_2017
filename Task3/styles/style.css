@@ -1,0 +1,33 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    min-width: 1000px;
+}
+.top-block{
+    height: 50px;
+    text-align: right;
+    line-height: 50px;
+}
+.main-container{
+    width: 1000px;
+    margin: auto;
+}
+.main-header{
+    background-image: url(../img/header_bg.jpg);
+    height: 525px;
+}
+.navbar-header{
+    height: 110px;
+}
+.navbar-header *{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 110px;
+}
+.navbar-header img{
+    margin-left: 17px;
+}
+.navbar-menu li{
+
+}
