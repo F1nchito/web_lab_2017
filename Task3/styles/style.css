@@ -1,6 +1,12 @@
 *{
     box-sizing: border-box;
 }
+.background-container{
+    background-image: url(../img/top_bg.jpg);
+    background-repeat: repeat;
+    height: 525px;
+    z-index: -1;
+}
 body{
     min-width: 1000px;
 }
@@ -8,6 +14,10 @@ body{
     height: 50px;
     text-align: right;
     line-height: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    padding-right: 18px;
 }
 .main-container{
     width: 1000px;
@@ -16,18 +26,67 @@ body{
 .main-header{
     background-image: url(../img/header_bg.jpg);
     height: 525px;
+    width: 1000px;
+    margin: auto;
 }
 .navbar-header{
     height: 110px;
 }
-.navbar-header *{
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 110px;
-}
-.navbar-header img{
+.navbar-header > img{
+    float: left;
+     margin-top: 20px;
     margin-left: 17px;
 }
-.navbar-menu li{
-
+.navbar-menu{
+    float: right;
+    margin-top:40px;
+    padding-right: 15px;
+}
+.navbar-item{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 11px;
+    padding: 14px 19px;
+    display: inline-block;
+    width: 100px;
+}
+.navbar-item-acitve{
+    background-image: url(../img/home_hover.jpg);
+    background-repeat: no-repeat;
+    width: 76px;
+}
+.navbar-item-acitve > a{
+    color: #FFFFFF;
+}
+.header-content{
+    width: 461px;
+    float: right;
+    margin-top:112px;
+}
+.header-content > h2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 38px;
+    padding-top: 5px;
+    
+}
+.header-content > h2:first-child{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 44px;
+    font-weight: bold;
+    padding-top: 0;
+    color: #FFFFFF;
+}
+.header-content > p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    margin-top: 4px;
+    line-height: 1.7;
+}
+.header-content > button{
+    height: 31px;
+    width: 93px;
+    border:none;
+    font-size: 13px;
+    margin-top: 19px;
+    border-radius: 8px;
+    background: linear-gradient(to top, #a6a7a1, #ffffff)
 }
