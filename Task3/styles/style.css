@@ -5,7 +5,7 @@
     background-image: url(../img/top_bg.jpg);
     background-repeat: repeat;
     height: 525px;
-    z-index: -1;
+    border-bottom: 1px solid #FFFFFF;
 }
 body{
     min-width: 1000px;
@@ -22,6 +22,7 @@ body{
 .main-container{
     width: 1000px;
     margin: auto;
+    margin-top: -1px;
 }
 .main-header{
     background-image: url(../img/header_bg.jpg);
@@ -89,4 +90,148 @@ body{
     margin-top: 19px;
     border-radius: 8px;
     background: linear-gradient(to top, #a6a7a1, #ffffff)
+}
+.slogan{
+    background-image: url(../img/growth_bg.jpg);
+    height: 130px;
+    padding-top: 47px;
+    padding-left: 30px;
+}
+.slogan-header{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color:#566373;
+}
+.slogan-text{
+    color:#979a9f;
+    font-size: 17px;
+    margin-top: 2px;
+    margin-left: 1px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.info-container{
+    width: 650px;
+    float: left;
+    margin-left: 30px;
+    margin-top:11px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#8d8885;
+    font-size: 13px;
+    line-height: 1.4;
+}
+.welcome-container-header{
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color:#8d8885;
+}
+.welcome-container-header strong{
+    font-size: 30px;
+    color: #000000;
+}
+.welcome-header-green{
+    text-transform: uppercase;
+    color: #96a92c;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 9px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.welcome-header-content{
+    margin-top: 14px;
+    margin-bottom: 18px;
+}
+.link-more{
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color:#d4903d;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+.link-more::before{
+    content: url(../img/green_dot.jpg);
+    margin-right: 6px;
+}
+.article-img{
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+.article-header{
+    margin-top: 34px;
+    color:#000000;
+    font-size:24px;
+    font-weight: bold;
+    margin-bottom: 26px;
+}
+.article-section{
+    margin-top:26px;
+    padding-bottom: 2px;
+}
+.article-section-header{
+    color:#d4903d;
+    font-weight: bold;
+    margin-top: -2px;
+    margin-bottom: 12px;
+}
+.article-link{
+    margin-top: 18px;
+}
+.aside-section{
+    width: 255px;
+    float:right;
+    margin-right: 30px;
+    margin-top: 15px;
+}
+.login-form{
+    width: 255px;
+    background-color: #f6f6f6;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    background-image: url(../img/login_top.jpg);
+    background-repeat: no-repeat;
+}
+.login-form-header{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    color:#96a92c;
+    font-weight: bold;
+    margin-top: 34px;
+    padding-left: 20px;
+}
+.login-form-content{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 11px 32px 24px 34px;
+}
+.label-required{
+    font-size: 11px;
+    margin-left: 13px;
+}
+.label-required::after{
+    content: '*';
+    font-size: 16px;
+    color: #d4903d;
+    padding-left: 2px;
+}
+.login-form-input{
+    font-size: 11px;
+    margin-top: 6px;
+    margin-bottom: 4px;
+    padding: 5px 0px 5px 12px;
+    width: 185px;
+    height: 28px;
+    border-radius: 20px;
+}
+.login-btn{
+    border: 0;
+    color: #ffffff;
+    background: linear-gradient(to bottom, #fa941e, #d67504);
+    border-radius: 20px;
+    margin: 6px 0;
+    padding: 5px 20px;
+}
+footer{
+    clear: both;
 }
