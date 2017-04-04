@@ -1,0 +1,41 @@
+.head-l{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 38px;
+    padding-top: 5px;
+}
+.black{
+    color: #000000;
+}
+.white{
+    color: #FFFFFF;
+}
+.head-xl{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 44px;
+    font-weight: bold;
+}
+.text-xs{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 1.7;
+}
+.head-l{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 38px;
+    padding-top: 5px;
+}
+.text-s{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+.ellpsis{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.hover-orange:hover{
+    color:#d4903d;
+    cursor: pointer;
+}
+.orange{
+    color:#d4903d;
+}
