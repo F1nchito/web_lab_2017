@@ -1,0 +1,118 @@
+.aside-section{
+    width: 255px;
+    float:right;
+    margin-right: 30px;
+    margin-top: 15px;
+}
+.login-form{
+    width: 255px;
+    background-color: #f6f6f6;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    background-image: url(../img/login_top.jpg);
+    background-repeat: no-repeat;
+}
+.login-form-header{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    color:#96a92c;
+    font-weight: bold;
+    margin-top: 34px;
+    padding-left: 20px;
+}
+.login-form-content{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 11px 32px 22px 34px;
+}
+.label-required{
+    margin-left: 13px;
+}
+.label-required::after{
+    content: '*';
+    font-size: 16px;
+    color: #d4903d;
+    padding-left: 2px;
+}
+.login-form-input{
+    font-size: 11px;
+    margin-top: 6px;
+    margin-bottom: 4px;
+    padding: 5px 0px 5px 12px;
+    width: 185px;
+    height: 28px;
+    border-radius: 20px;
+}
+.login-btn{
+    border: 0;
+    color: #ffffff;
+    background: linear-gradient(to bottom, #a5a5a5, #858585);
+    border-radius: 20px;
+    margin: 6px 0;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+.login-btn:hover{
+    background: linear-gradient(to bottom, #fa941e, #d67504)
+}
+.form-link{
+    margin: 9px 0;  
+}
+.link{
+    font-size: 11px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.default-color{
+    color: #8d8885;
+}
+.info-arrow.arrow-link::before{
+    content: url(../img/orange_dot.jpg);
+}
+.arrow-link::before{
+    position: relative;
+    padding-right: 7px;
+}
+.news-container{
+    border-radius: 8px;
+    border: 1px solid #e3e3e3;
+    background-color: #f6f6f6;
+    margin-top: 8px;
+    border-top: 0;
+    width: 255px;
+}
+.news-container-header{
+    background-image: url(../img/event_top.jpg);
+    background-repeat: no-repeat;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    width: 255px;
+    margin-left: -1px;
+    color:#d4903d;
+    height: 80px;
+    font-weight: bold;
+    padding-top: 40px;
+    padding-left: 65px;
+    }
+.news-content{
+    padding: 0px 19px 10px;
+}
+.news-item{
+    background: url(../img/green_right.jpg) no-repeat left top;
+    padding-left: 34px;
+    padding-top: 12px;
+    margin-bottom: 18px;
+}
+.news-item-header{
+    color: #989560;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.news-text{
+    padding-top: 14px;
+    font-size: 11px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.5;
+    margin-bottom: 5px;
+}
