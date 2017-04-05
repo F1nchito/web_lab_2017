@@ -1,0 +1,58 @@
+.info-container{
+    width: 650px;
+    float: left;
+    margin-left: 30px;
+    margin-top:11px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+.welcome-container-header{
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color:#8d8885;
+}
+.welcome-container-header strong{
+    font-size: 30px;
+    color: #000000;
+}
+.welcome-header-small{
+    text-transform: uppercase;
+    color: #96a92c;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 9px;
+    letter-spacing: -0.4px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.welcome-header-content{
+    margin-top: 14px;
+    margin-bottom: 18px;
+}
+.link-more::before{
+    content: url(../img/green_dot.jpg);
+    margin-right: 6px;
+}
+.article-img{
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 33px;
+}
+.article-header{
+    margin-top: 34px;
+    color:#000000;
+    margin-bottom: 26px;
+}
+.article-section{
+    margin-top:26px;
+    padding-bottom: 2px;
+}
+.article-section-header{
+    color:#d4903d;
+    font-weight: bold;
+    margin-top: -2px;
+    margin-bottom: 12px;
+}
+.article-link{
+    margin-top: 18px;
+}

@@ -1,0 +1,64 @@
+.top-block{
+    height: 50px;
+    text-align: right;
+    line-height: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    padding-right: 18px;
+}
+.main-header{
+    background-image: url(../img/header_bg.jpg);
+    height: 525px;
+    width: 1000px;
+    margin: auto;
+}
+.navbar-header{
+    height: 110px;
+    padding: 19px 0 18px 17px;
+}
+.navbar-logo{
+    float: left;
+}
+.navbar-menu{
+    float: right;
+    margin-right: 10px;
+}
+.navbar-item{
+    display: inline-block;
+    line-height: 81px;
+    text-align: center;
+}
+.navbar-btn{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 21px;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.1px;
+    font-weight: bold;
+    color: #000000;
+}
+.navbar-item-acitve, .navbar-item:hover{
+    background-image: url(../img/home_hover.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.navbar-item:hover > a, .navbar-btn-active{
+    color: #FFFFFF;
+}
+.header-content{
+    width: 461px;
+    float: right;
+    margin-top:112px;
+}
+.header-text{
+    line-height: 1.7;
+}
+.header-button{
+    height: 31px;
+    width: 93px;
+    border:none;
+    margin-top: 19px;
+    border-radius: 8px;
+    background: linear-gradient(to top, #a6a7a1, #ffffff)
+}
