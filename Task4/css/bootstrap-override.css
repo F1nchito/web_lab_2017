@@ -17,3 +17,12 @@ body {
   background-color: #efefef;
   text-align: center;
 }
+.top-badge{
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    background-color: #5cb85c;
+}
+.area-resize{
+    resize: vertical;
+}

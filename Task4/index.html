@@ -5,7 +5,8 @@
     <title>Task4</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
     <link href="css/bootstrap-override.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -35,7 +36,7 @@
     </nav>
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-3">
                 <h3>
                     <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Toolbox
                 </h3>
@@ -50,7 +51,7 @@
                     <li><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Advanced</a></li>
                 </ul>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-sm-9">
                 <h3>
                     <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashoard
                 </h3>
@@ -90,10 +91,10 @@
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <ul class="nav nav-pills">
+                        <ul class="nav nav-pills nav-justified">
                             <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="badge top-badge text-success">3</span></a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></li>
                         </ul>
@@ -147,7 +148,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 col-sm-12">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -218,7 +219,7 @@
                                 neque! Delectus.</p>
                         </div>
                         <div id="settings" class="tab-pane">
-                            
+
                             <span class="glyphicon glyphicon-cog"></span>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi odit praesentium reprehenderit,
                                 sequi quidem delectus et mollitia quas, aliquam vel modi ullam molestiae, error nemo earum
@@ -243,10 +244,10 @@
                 <hr>
                 <div class="alert alert-info" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    Please remember to <a href="">Logout</a> for classified security.
+                                        Please remember to <a href="">Logout</a> for classified security.
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-12">
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="#"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Layouts &#038; Temlates</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Toolbox</a></li>
@@ -272,7 +273,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="details">Details</label>
-                                <textarea class="form-control" id="details">
+                                <textarea class="form-control area-resize" id="details">
                                 </textarea>
                             </div>
                             <div class="form-group">
@@ -294,16 +295,24 @@
                         <h4>Engagement</h4>
                     </div>
                     <div class="panel-body">
-                        <a href=""><img src="http://placehold.it/80.png" alt="..." class="img-circle"></a>
-                        <a href=""><img src="http://placehold.it/80.png" alt="..." class="img-circle"></a>
-                        <a href=""><img src="http://placehold.it/80.png" alt="..." class="img-circle"></a>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <a href=""><img src="http://placehold.it/80.png" alt="..." class="img-circle"></a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href=""><img src="http://placehold.it/80.png" alt="..." class="img-circle"></a>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href=""><img src="http://placehold.it/80.png" alt="..." class="img-circle"></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <footer class="footer">
-            <span>This Bootstrap 3 dashboard layout is compliments of <a href="">example</a></span>
+        <span>This Bootstrap 3 dashboard layout is compliments of <a href="">example</a></span>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
