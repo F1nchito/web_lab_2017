@@ -23,6 +23,9 @@ body {
     bottom: 50%;
     background-color: #5cb85c;
 }
+.attention{
+  font-weight: bold;
+}
 .area-resize{
     resize: vertical;
 }

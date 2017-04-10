@@ -11,53 +11,54 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
                     aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </button>
+                <a class="navbar-brand" href="#">Control panel</a>
             </div>
-            <a class="navbar-brand" href="#">Control panel</a>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Admin<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">My profile</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="navbar-collapse collapse" id="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Admin<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">My profile</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
-    <div class="container">
+    <main class="container">
         <div class="row">
-            <div class="col-md-3 col-sm-3">
+            <article class="col-sm-3 col-xs-12">
                 <h3>
                     <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Toolbox
                 </h3>
                 <hr>
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Alerts</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Links</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reports</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Books</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Tools</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Real time</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Advanced</a></li>
-                </ul>
-            </div>
-            <div class="col-md-9 col-sm-9">
+                <nav>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Alerts</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Links</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reports</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Books</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Tools</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Real time</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Advanced</a></li>
+                    </ul>
+                </nav>
+            </article>
+            <article class="col-sm-9 col-xs-12">
                 <h3>
                     <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashoard
                 </h3>
                 <hr>
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-xs-12">
                         <div class="well">
                             Inbox Messages <span class="badge pull-right">3</span>
                         </div>
@@ -90,7 +91,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 col-xs-12">
                         <ul class="nav nav-pills nav-justified">
                             <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></a></li>
@@ -110,45 +111,45 @@
                             </p>
                         </div>
                         <hr>
-                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <nav class="btn-group btn-group-justified">
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-info">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                    <div>Service</div>
+                                    <span class="center-block">Service</span>
                                 </button>
                             </div>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-info">
                                     <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>
-                                    <div>Cloud</div>
+                                    <span class="center-block">Cloud</span>
                                 </button>
                             </div>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-info">
                                     <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                                    <div>Tools</div>
+                                    <span class="center-block">Tools</span>
                                 </button>
                             </div>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-info">
                                     <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-                                    <div>Help</div>
+                                    <span class="center-block">Help</span>
                                 </button>
                             </div>
-                        </div>
+                        </nav>
                     </div>
                 </div>
-            </div>
+            </article>
         </div>
-        <div class="row">
-            <div class="col-md-12">
+        <section class="row">
+            <div class="col-xs-12">
                 <hr>
-                <a href=""><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reports</a>
+                <a class="attention" href=""><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reports</a>
                 <hr>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-sm-12">
+        </section>
+        <section class="row">
+            <div class="col-md-8 col-xs-12">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -247,17 +248,19 @@
                                         Please remember to <a href="">Logout</a> for classified security.
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12">
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Layouts &#038; Temlates</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Toolbox</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Widgets</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reports</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Pages</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Social Media</a></li>
-                </ul>
+            <div class="col-md-4 col-xs-12">
+                <nav>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Layouts &#038; Temlates</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Toolbox</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Widgets</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reports</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Pages</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Social Media</a></li>
+                    </ul>
+                </nav>
                 <hr>
-                <div class="panel panel-default">
+                <aside class="panel panel-default">
                     <div class="panel-heading">
                         <h4>Submit Request<span class="glyphicon glyphicon-wrench pull-right" aria-hidden="true"></span></h4>
                     </div>
@@ -289,7 +292,7 @@
                             <button type="submit" class="btn btn-primary">Post</button>
                         </form>
                     </div>
-                </div>
+                </aside>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4>Engagement</h4>
@@ -297,20 +300,20 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-4">
-                                <a href=""><img src="http://placehold.it/80.png" alt="..." class="img-circle"></a>
+                                <a href=""><img src="http://placehold.it/80.png/c5c5c5" alt="placeholder-grey" class="img-circle"></a>
                             </div>
                             <div class="col-xs-4">
-                                <a href=""><img src="http://placehold.it/80.png" alt="..." class="img-circle"></a>
+                                <a href=""><img src="http://placehold.it/80.png/f1f1f1" alt="placeholder-white" class="img-circle"></a>
                             </div>
                             <div class="col-xs-4">
-                                <a href=""><img src="http://placehold.it/80.png" alt="..." class="img-circle"></a>
+                                <a href=""><img src="http://placehold.it/80.png/f1f1f1" alt="placeholder-white" class="img-circle"></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
     <footer class="footer">
         <span>This Bootstrap 3 dashboard layout is compliments of <a href="">example</a></span>
     </footer>
