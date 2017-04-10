@@ -29,3 +29,9 @@ body {
 .area-resize{
     resize: vertical;
 }
+.hovered-link{
+  opacity: 0.5;
+}
+.hovered-link:hover{
+  opacity: 1;
+}
