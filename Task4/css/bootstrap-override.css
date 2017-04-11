@@ -35,3 +35,8 @@ body {
 .hovered-link:hover{
   opacity: 1;
 }
+.ellipsis{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
