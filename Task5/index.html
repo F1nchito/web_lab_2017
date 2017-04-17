@@ -13,17 +13,17 @@
     <div class="header">
         <img class="main-logo" src="EPAM-LOGO_nt.png" alt="epam's logo">
     </div>
-    <nav>
+    <nav class="menu">
         <input id="menu-btn" class="menu-checkbox" type="checkbox">
         <label for="menu-btn" class="menu-button"><i class="fa fa-bars fa-2x info-text" aria-hidden="true"></i></label>
         <div tabindex="0" class="menu-container">
             <ul class="menu" type="none">
                 <li class="menu-item"><a href="">EXPERT SEARCH</a></li>
                 <li class="menu-item"><a href="">SAVED EXPERTS</a></li>
-                <li class="menu-item"><a href="">PROJECTS <i class="fa fa-flag" aria-hidden="true"></i></a></li>
-                <li class="menu-item"><a href="">CONSULTATIONS</a></li>
+                <li class="menu-item"><a href="">PROJECTS <i class="fa fa-flag visible-xs" aria-hidden="true"></i></a></li>
+                <li class="menu-item"><a href="">CONSULTATIONS <i class="fa fa-phone info-text hidden-xs" aria-hidden="true"></i></a></li>
                 <li class="menu-item"><a href="">EVENTS</a></li>
-                <li class="menu-item"><a href=""><i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT</a></li>
+                <li class="menu-item"><a href=""><i class="fa fa-sign-out default-color-xs info-text" aria-hidden="true"></i> LOGOUT</a></li>
                 <li class="menu-item menu-item-info">
                     <a href="">
                         <i class="fa fa-user" aria-hidden="true"></i> 
@@ -34,11 +34,11 @@
             </ul>
         </div>
     </nav>
-    <main>
+    <div class="main">
         <div>
             <i class="fa fa-chevron-left" aria-hidden="true"></i> Projects List
         </div>
-        <div>
+        <div class="relative">
         <input id="last-project" class="checkbox-collapse" type="checkbox">
         <h2 class="heading heading-lg inline-block">
             Test Project last 
@@ -89,10 +89,10 @@
              --><input class="hidden" type="radio" name="tab" id="tab2"><!--
              --><label class="tab" for="tab2">CONSULTATIONS <i class="fa fa-phone info-text" aria-hidden="true"></i></label><!--
              --><div class="tab-content1"><!--
-                --><div class="operation-container"><a href=""><button class="operation-btn">EXPAND ALL</button></a></div><!--
-                --><div class="operation-container"><a href=""><button class="operation-btn operation-img">EXPORT</button></a></div><!--
-                --><div class="operation-container operation-btn-mown"><a class="" href=""><button class="operation-btn"><i class="fa fa-filter" aria-hidden="true"></i> FILTERS</button></a></div><!--
-                    --><div class="operation-container operation-container-select"><select class="operation-select" name="sort" id="">
+                --><div class="operation-container"><a href="" class="operation-btn">EXPAND ALL</a></div><!--
+                --><div class="operation-container operation-export"><a class="operation-btn operation-img" href="">EXPORT</a></div><!--
+                --><div class="operation-container operation-btn-mown"><a class="operation-btn" href=""><i class="fa fa-filter" aria-hidden="true"></i> FILTERS</a></div><!--
+                    --><div class="operation-container operation-container-select"><select class="operation-select" name="sort" id="sort-select">
                         <option value="1">Sort by Status</option>
                     </select></div>
             </div>
@@ -126,12 +126,12 @@
                 </ul>
             </section>
             <footer>
-                <ul>
-                    <li class="expert-block-btn uppercase"><a href=""><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li>
-                    <li class="expert-block-btn uppercase"><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li>
-                    <li class="expert-block-btn uppercase"><a href=""><i class="fa fa-times" aria-hidden="true"></i> decline</a></li>
-                </ul>
-            </footer>
+                <ul class="expert-block-btns"><!--
+                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-times" aria-hidden="true"></i> decline</a></li><!--
+                --></ul><!--
+           --></footer>
         </article>
         <article class="expert-block">
             <header class="info-text expert-block-header">
@@ -149,17 +149,17 @@
                 </p>
             </header>
             <footer>
-                <ul>
-                    <li class="expert-block-btn uppercase"><a href=""><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li>
-                    <li class="expert-block-btn uppercase"><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li>
-                    <li class="expert-block-btn uppercase"><a href=""><i class="fa fa-times" aria-hidden="true"></i> decline</a></li>
+                <ul class="expert-block-btns"><!--
+                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-times" aria-hidden="true"></i> decline</a></li>
                 </ul>
             </footer>
         </article>
           <article class="expert-block">
             <header class="info-text expert-block-header">
                 <span class="info-text uppercase">customer</span>
-                <span class="right badge-info badge">viewed</span>
+                <span class="right badge-default badge">viewed</span>
                 <span class="block-time right secondary-text">03/21/15</span>
                 <h2 class="heading heading-md primary-text strong">Nikita Reshetnikov</h2>
                 <p class="block">
@@ -172,14 +172,14 @@
                 </p>
             </header>
             <footer>
-                <ul>
-                    <li class="expert-block-btn uppercase"><a href=""><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li>
-                    <li class="expert-block-btn uppercase"><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li>
-                    <li class="expert-block-btn uppercase"><a href=""><i class="fa fa-times" aria-hidden="true"></i> decline</a></li>
-                </ul>
+                <ul class="expert-block-btns"><!--
+                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-times" aria-hidden="true"></i> decline</a></li><!--
+                --></ul>
             </footer>
         </article>
-    </main>
+    </div>
 </body>
 
 </html>
