@@ -1,0 +1,69 @@
+.ellipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    }
+.heading{
+     padding: 10px 0;
+ }
+ .heading-md{
+     font-size: 26px;
+ }
+ .heading-sm{
+     font-size: 18px;
+ }
+ .heading-lg{
+     font-size: 36px;
+ }
+ .primary-text{
+     color: #000000;
+ }
+ .block{
+     padding: 4px 0;
+ }
+ .secondary-text{
+     color:$color-primary-deep;
+ }
+ .strong{
+     font-weight: bold;
+ }
+ .underline{
+    text-decoration: underline;
+ }
+ .inline-block{
+     display: inline-block;
+ }
+ .uppercase{
+     text-transform: uppercase;
+ }
+ .right{
+     float: right;
+ }
+ .left{
+     float: left;
+ }
+.relative{
+        position: relative;
+}
+ .header{
+      padding: 5px 5px;
+  }
+  .info-text {
+    color: $color-info;
+}
+.hidden{
+        display: none;
+    }
+@include phone(){
+    .default-color-xs{
+        color:#8b8b8b;
+    }
+    .hidden-xs{
+        display: none;
+    }
+}
+@include tablet(){
+.visible-xs{
+         display: none;
+     }    
+}

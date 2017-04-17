@@ -1,0 +1,73 @@
+    .menu-item{
+        border-bottom: 1px solid #000000;
+        padding: 20px 0 20px 15px;
+        a{
+            color:$color-primary;
+            text-decoration: none;
+            &:hover{
+                cursor: pointer;
+                color: $color-default;
+            }
+        }
+    }
+    .username-block{
+        display: block;
+        padding-left: 15px;
+    }
+    @include phone(){
+    
+    .menu-container{
+        width: 240px;
+        min-height: 100%;
+        position: fixed;
+        top: $header-height-xs;
+        z-index: 100;
+        left:-240px;
+        transition: all 1s;
+        background-color: #333333;
+    }
+    
+    .menu-checkbox{
+       position: absolute;
+       left: -9999px;
+       &:checked ~ .menu-container{
+            left: 0px;
+            z-index: 100;
+        }
+        &:checked ~ .menu-button::after{
+            position: fixed;
+            background-color: #777;
+            opacity: 0.4;
+            content: "";
+            left: 0;
+            top:0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+    
+    .menu-button{
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 99;
+        border: none;
+        background-color: $color-default;
+        }
+    }
+    @include tablet(){
+     .menu-container{
+         position: fixed;
+         top: 100px;
+         left:0;
+         width: 240px;
+         background-color: #333333;
+         bottom: 0;
+     }
+     .menu-checkbox{
+         display: none;
+     }
+     .menu-button{
+         display: none;
+     }   
+    }

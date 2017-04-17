@@ -1,0 +1,40 @@
+   .tab{
+        display: inline-block;
+        border: 1px solid $color-primary;
+        background-color: $color-primary;
+        width: 50%;
+        height: 40px;
+        line-height: 40px;
+        @extend .ellipsis;
+        text-align: center;
+        border-bottom: none;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        #consultation:checked + &{
+            border: 1px solid $color-primary;
+            background-color: $color-bg-main;
+            border-bottom: 0;
+        }
+        #experts:checked + &{
+        border: 1px solid $color-primary;
+        background-color: $color-bg-main;
+        border-bottom: 0;
+        }
+        &-consultation{
+            display: none;
+            border: 1px solid $color-primary;
+            border-top: none;
+            padding: 15px 5px 10px;
+            #consultation:checked ~ &{
+                display: block;
+            }
+        }
+        &-experts{
+            border: 1px solid $color-primary;
+            border-top: none;
+            padding: 15px 5px 10px;
+            #consultation:checked ~ &{
+                display: none;
+            }
+        }
+    }

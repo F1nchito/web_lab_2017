@@ -5,27 +5,26 @@
     <title>Task5</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/reset.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body contenteditable="true">
     <div class="header">
-        <img class="main-logo" src="EPAM-LOGO_nt.png" alt="epam's logo">
+        <a href=""><img class="main-logo" src="img/EPAM-LOGO.png" alt="epam's logo"></a>
     </div>
-    <nav class="menu">
+    <nav>
         <input id="menu-btn" class="menu-checkbox" type="checkbox">
         <label for="menu-btn" class="menu-button"><i class="fa fa-bars fa-2x info-text" aria-hidden="true"></i></label>
         <div tabindex="0" class="menu-container">
-            <ul class="menu" type="none">
-                <li class="menu-item"><a href="">EXPERT SEARCH</a></li>
-                <li class="menu-item"><a href="">SAVED EXPERTS</a></li>
-                <li class="menu-item"><a href="">PROJECTS <i class="fa fa-flag visible-xs" aria-hidden="true"></i></a></li>
-                <li class="menu-item"><a href="">CONSULTATIONS <i class="fa fa-phone info-text hidden-xs" aria-hidden="true"></i></a></li>
-                <li class="menu-item"><a href="">EVENTS</a></li>
-                <li class="menu-item"><a href=""><i class="fa fa-sign-out default-color-xs info-text" aria-hidden="true"></i> LOGOUT</a></li>
+            <ul class="menu">
+                <li class="menu-item uppercase"><a href="#">expert search</a></li>
+                <li class="menu-item uppercase"><a href="#">saved experts</a></li>
+                <li class="menu-item uppercase"><a href="#">projects <i class="fa fa-flag visible-xs" aria-hidden="true"></i></a></li>
+                <li class="menu-item uppercase"><a href="#">consultations <i class="fa fa-phone info-text hidden-xs" aria-hidden="true"></i></a></li>
+                <li class="menu-item uppercase"><a href="#">events</a></li>
+                <li class="menu-item uppercase"><a href="#"><i class="fa fa-sign-out default-color-xs info-text" aria-hidden="true"></i> logout</a></li>
                 <li class="menu-item menu-item-info">
-                    <a href="">
+                    <a href="#">
                         <i class="fa fa-user" aria-hidden="true"></i> 
                         <span> Logged in as</span>
                         <span class="username-block">Girish Gopalan</span>
@@ -40,7 +39,7 @@
         </div>
         <div class="relative">
         <input id="last-project" class="checkbox-collapse" type="checkbox">
-        <h2 class="heading heading-lg inline-block">
+        <h2 class="heading heading-lg">
             Test Project last 
         <label class="lable-collapse" for="last-project"></label>
         </h2>
@@ -84,19 +83,19 @@
         </div>
         
         <div class="content-container"><!--
-             --><input class="hidden" checked type="radio" name="tab" id="tab1"><!--
-            --><label class="tab" for="tab1">EXPERTS <i class="fa fa-flag info-text" aria-hidden="true"></i></label><!--
-             --><input class="hidden" type="radio" name="tab" id="tab2"><!--
-             --><label class="tab" for="tab2">CONSULTATIONS <i class="fa fa-phone info-text" aria-hidden="true"></i></label><!--
-             --><div class="tab-content1"><!--
-                --><div class="operation-container"><a href="" class="operation-btn">EXPAND ALL</a></div><!--
-                --><div class="operation-container operation-export"><a class="operation-btn operation-img" href="">EXPORT</a></div><!--
-                --><div class="operation-container operation-btn-mown"><a class="operation-btn" href=""><i class="fa fa-filter" aria-hidden="true"></i> FILTERS</a></div><!--
+             --><input class="hidden" checked type="radio" name="tab" id="experts"><!--
+            --><label class="tab uppercase" for="experts">experts <i class="fa fa-flag info-text" aria-hidden="true"></i></label><!--
+             --><input class="hidden" type="radio" name="tab" id="consultation"><!--
+             --><label class="tab uppercase" for="consultation">consultations <i class="fa fa-phone info-text" aria-hidden="true"></i></label><!--
+             --><div class="tab-experts"><!--
+                --><div class="operation-container uppercase"><a href="#" class="operation-btn">expand all</a></div><!--
+                --><div class="operation-container operation-export uppercase"><a class="operation-btn operation-img" href="#">export</a></div><!--
+                --><div class="operation-container operation-btn-mown uppercase"><a class="operation-btn" href="#"><i class="fa fa-filter" aria-hidden="true"></i> filters</a></div><!--
                     --><div class="operation-container operation-container-select"><select class="operation-select" name="sort" id="sort-select">
                         <option value="1">Sort by Status</option>
                     </select></div>
             </div>
-            <div class="tab-content2">
+            <div class="tab-consultation">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore optio, dolor tenetur inventore atque corporis nulla laudantium quasi illo, asperiores?
             </div>
         </div>
@@ -109,7 +108,7 @@
                 <h2 class="heading heading-md primary-text strong">Mikhail Semichev</h2>
                 <p class="block">
                     <span class="heading-sm primary-text strong">EPAM</span>
-                    <span class="info-text badge">PUBLIC</span>
+                    <span class="info-text badge uppercase">public</span>
                 </p>
                 <p class="block">
                     <span class="primary-text">FE developer</span>
@@ -127,9 +126,9 @@
             </section>
             <footer>
                 <ul class="expert-block-btns"><!--
-                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li><!--
-                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li><!--
-                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-times" aria-hidden="true"></i> decline</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href="#"><i class="fa fa-times" aria-hidden="true"></i> decline</a></li><!--
                 --></ul><!--
            --></footer>
         </article>
@@ -141,7 +140,7 @@
                 <h2 class="heading heading-md primary-text strong">Mikhail Kuznetsov</h2>
                 <p class="block">
                     <span class="heading-sm primary-text strong">Yandex</span>
-                    <span class="info-text badge">PUBLIC PARENT</span>
+                    <span class="info-text badge uppercase">public parent</span>
                 </p>
                 <p class="block">
                     <span class="primary-text">FE developer</span>
@@ -150,9 +149,9 @@
             </header>
             <footer>
                 <ul class="expert-block-btns"><!--
-                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li><!--
-                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li><!--
-                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-times" aria-hidden="true"></i> decline</a></li>
+                    --><li class="expert-block-btn uppercase"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href="#"><i class="fa fa-times" aria-hidden="true"></i> decline</a></li>
                 </ul>
             </footer>
         </article>
@@ -164,7 +163,7 @@
                 <h2 class="heading heading-md primary-text strong">Nikita Reshetnikov</h2>
                 <p class="block">
                     <span class="heading-sm primary-text strong">Google</span>
-                    <span class="info-text badge">PUBLIC</span>
+                    <span class="info-text badge uppercase">public</span>
                 </p>
                 <p class="block">
                     <span class="primary-text">FE developer</span>
@@ -173,9 +172,9 @@
             </header>
             <footer>
                 <ul class="expert-block-btns"><!--
-                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li><!--
-                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li><!--
-                    --><li class="expert-block-btn uppercase"><a href=""><i class="fa fa-times" aria-hidden="true"></i> decline</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> schedule</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> request info</a></li><!--
+                    --><li class="expert-block-btn uppercase"><a href="#"><i class="fa fa-times" aria-hidden="true"></i> decline</a></li><!--
                 --></ul>
             </footer>
         </article>

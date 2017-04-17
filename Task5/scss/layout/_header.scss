@@ -1,0 +1,24 @@
+.main-logo{
+    display: block;
+    width: 120px;
+    margin: auto;
+    }
+@include phone(){
+.header{
+    z-index: 99;
+    position: fixed;
+    width: 100%;
+    height: $header-height-xs;
+    background-color: $color-default;
+    }    
+}
+@include tablet(){
+    .header{
+         width: 240px;
+         float:left;
+         position: fixed;
+     }
+     .main-logo{
+         width: 240px;
+     }    
+}

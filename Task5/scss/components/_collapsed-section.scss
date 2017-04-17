@@ -1,0 +1,53 @@
+.checkbox-collapse{
+     display: none;
+     &:checked ~ h2 .lable-collapse::after{
+        content: '\f056';
+        font-family: "FontAwesome";
+    }
+    &:checked ~ .container-collapse{
+        max-height: 500px;
+        display: block;
+    }
+ }
+.container-collapse{
+     max-height: 0;
+     transition: all 1s;
+     overflow: hidden;
+ }
+.lable-collapse{
+    cursor: pointer;
+    font-size: 24px;
+    &::after{
+        content: '\f055';
+        font-family: "FontAwesome";
+        color: $color-primary-deep;
+    }
+}
+.details-list{
+    width: 100%;
+    li{
+    border-top: 1px solid $color-primary;
+    padding: 10px 0;
+        span{
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+            &:first-child{
+                font-weight: bold;
+            }
+            &:last-child{
+                text-align: right;
+                color: $color-primary-deep;
+            }
+        }
+    }
+}
+@include tablet(){
+    .details-list{
+         width: 50%;
+         vertical-align: top;
+         &:first-child{
+            padding-right: 15px;
+        }    
+     }
+}
