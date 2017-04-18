@@ -1,0 +1,19 @@
+.badge{
+        @extend .uppercase;
+        border-radius: 6px;
+        border: 1px solid;
+        padding: 4px 12px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: -3px;
+        &-info{
+            color: $color-default;
+            border-color: $color-info;
+            background-color: $color-info; 
+        }
+        &-default{
+            color: $color-default;
+            border-color: $color-primary-deep;
+            background-color: $color-primary-deep; 
+        }
+}

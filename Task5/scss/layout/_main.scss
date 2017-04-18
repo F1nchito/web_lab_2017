@@ -1,0 +1,25 @@
+ .backward-btn{
+     text-decoration: none;
+     color: $color-primary-deep;
+ }
+ .main{
+     min-height: 100%;
+     padding: 10px;
+     width: 100%;
+     background-color: $color-bg-main;
+ @include phone(){
+         padding-top: 50px;
+    }
+@include tablet(){
+         margin-left:240px;
+         width: auto;
+         padding: 10px 4%;
+    }
+@include desktop(){
+         padding: 10px 10%;
+    }
+}
+.content-container{
+        width: 100%;
+        padding: 20px 0;
+    }

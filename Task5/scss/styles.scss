@@ -1,0 +1,23 @@
+@import "helpers/_variables";
+@import "helpers/_mixins.scss";
+@import "base/_reset.scss";
+@import "vendors/font-awesome/font-awesome.scss";
+@import "helpers/_helpers.scss";
+@import "layout/_header.scss";
+@import "layout/_menu.scss";
+@import "layout/_main.scss";
+@import "components/_tabs.scss";
+@import "components/_operation.scss";
+@import "components/_collapsed-section.scss";
+@import "components/_badge.scss";
+@import "components/_expert-block.scss";
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ body, html{
+     min-height: 100%;
+     min-width: 400px;
+ }
+

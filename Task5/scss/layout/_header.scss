@@ -1,0 +1,26 @@
+.main-logo{
+    width: 120px;
+    }
+.header{
+      padding: 5px 5px;
+  }
+@include phone(){
+.header{
+    z-index: 99;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    height: $header-height-xs;
+    background-color: $color-default;
+    }    
+}
+@include tablet(){
+    .header{
+         width: $menu-width-sm;
+         float:left;
+         position: fixed;
+     }
+     .main-logo{
+         width: $menu-width-sm;
+     }    
+}
