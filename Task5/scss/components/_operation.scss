@@ -21,7 +21,7 @@
         border: 1px solid #d3d3d3;
         cursor: pointer;
         outline: none;
-        background: linear-gradient(#ededed, #f1f1f1 37%, #e1e1e1 57%, #e4e4e4);
+        @include btn-gradient;
     }
 
     .operation-select{
@@ -44,7 +44,7 @@
         .operation-btn:focus::after{
             box-shadow: -1px 1px #1368ff;
         }
-    .operation-btn::after{
+        .operation-btn::after{
         position: absolute;
         top: 14px;
         left: 9px;
@@ -53,9 +53,14 @@
         width: 18px ; 
         height: 21px;
         transform: rotate(30deg) skewY(30deg); 
-        background: 
-                linear-gradient(-49.1deg, #e4e4e4, #e1e1e1 43%, #f1f1f1 63%, #ededed);
+        @include btn-arrow-gradient;
         content: '';
+        }
+        .operation-btn:hover::after{
+            @include btn-arrow-gradient-hover;
+        }
+        .operation-btn:active::after{
+            @include btn-arrow-gradient-hover;
         }
     }
     .operation-img::before{

@@ -1,5 +1,5 @@
     .menu-item{
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid $color-default-dark;
         padding: 20px 0 20px 15px;
         a{
             color:$color-primary;
@@ -36,7 +36,7 @@
         }
         &:checked ~ .menu-button::after{
             position: fixed;
-            background-color: #777;
+            background-color: $color-primary-deep;
             opacity: 0.4;
             content: "";
             left: 0;
@@ -64,10 +64,7 @@
          background-color: #333333;
          bottom: 0;
      }
-     .menu-checkbox{
+     .menu-checkbox,.menu-button{
          display: none;
      }
-     .menu-button{
-         display: none;
-     }   
     }

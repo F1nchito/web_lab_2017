@@ -1,11 +1,13 @@
 .main-logo{
-    display: block;
     width: 120px;
-    margin: auto;
     }
+.header{
+      padding: 5px 5px;
+  }
 @include phone(){
 .header{
     z-index: 99;
+    text-align: center;
     position: fixed;
     width: 100%;
     height: $header-height-xs;
@@ -14,11 +16,11 @@
 }
 @include tablet(){
     .header{
-         width: 240px;
+         width: $menu-width-sm;
          float:left;
          position: fixed;
      }
      .main-logo{
-         width: 240px;
+         width: $menu-width-sm;
      }    
 }

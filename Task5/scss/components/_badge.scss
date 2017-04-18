@@ -1,5 +1,5 @@
 .badge{
-        text-transform: uppercase;
+        @extend .uppercase;
         border-radius: 6px;
         border: 1px solid;
         padding: 4px 12px;
