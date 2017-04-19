@@ -1,0 +1,67 @@
+.sprite {
+    background-image: url("../img/sprite.png");
+    background-repeat: no-repeat;
+    @include desktop(){
+    display: block;
+    margin-bottom: 8px;
+    }
+    @include hd{
+        margin-right: 5px;
+    }
+}
+
+.sprite-icon-mail {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background-position: -5px -5px;
+}
+
+.sprite-nav-about {
+    width: 32px;
+    height: 32px;
+    background-position: -47px -5px;
+}
+
+.sprite-nav-alist {
+    width: 32px;
+    height: 32px;
+    background-position: -5px -47px;
+}
+
+.sprite-nav-blog {
+    width: 32px;
+    height: 32px;
+    background-position: -47px -47px;
+}
+
+.sprite-nav-contribute {
+    width: 32px;
+    height: 32px;
+    background-position: -89px -5px;
+}
+
+.sprite-nav-tastemakers {
+    width: 32px;
+    height: 32px;
+    background-position: -89px -47px;
+}
+
+.social-sm {
+    background-image: url("../img/social-sm.png");
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.social-sm-icon-facebook-16 {
+    width: 16px;
+    height: 16px;
+    background-position: -5px -5px;
+}
+
+.social-sm-icon-twitter-16 {
+    width: 16px;
+    height: 16px;
+    background-position: -31px -5px;
+}
+

@@ -1,14 +1,20 @@
 @import "helpers/_variables.scss";
 @import "helpers/_mixins.scss";
 @import "base/_reset.scss";
+@import "base/sprites.scss";
 @import "layout/_header.scss";
 @import "layout/_content.scss";
 *{
     box-sizing: border-box;
 }
+body{
+    height: 100vh;
+}
 .wrapper{
     display: flex;
     flex-direction: column;
+    padding: 5px;
+    flex:1;
     @include hd(){
         flex-direction: row;
     }
