@@ -1,0 +1,49 @@
+header{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    @include tablet(){
+        align-items: center;
+        flex-direction: row;
+    }
+    @include desktop(){
+        justify-content: space-between;
+    }
+    @include hd(){
+        min-width: 200px;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}
+.menu ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    @include hd(){
+        flex-direction: column;
+    }
+}
+.menu{
+    @include tablet(){
+        flex:1;
+    }
+    @include desktop(){
+        flex: 0.8;
+    }
+    @include hd(){
+        flex:0;
+    }
+}
+.main-logo{
+    width: 120px;
+    margin: 0 auto;
+    @include tablet(){
+        order: -1;
+    }
+}
+.social{
+    display: none;
+    @include hd(){
+        display: block;
+    }
+}

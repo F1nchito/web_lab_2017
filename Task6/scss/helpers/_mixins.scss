@@ -1,0 +1,22 @@
+
+@mixin tablet{
+    @media (min-width:#{$xs-width-screen}){
+        @content;
+    }
+}
+
+@mixin desktop{
+    @media (min-width: #{$sm-width-screen}){
+        @content;
+    }
+}
+@mixin hd{
+    @media (min-width: #{$md-width-screen}){
+        @content;
+    }
+}
+@mixin fullhd{
+    @media (min-width: #{$lg-width-screen}){
+        @content;
+    }
+}

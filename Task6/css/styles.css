@@ -1,0 +1,169 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; }
+  @media (min-width: 481px) {
+    header {
+      align-items: center;
+      flex-direction: row; } }
+  @media (min-width: 768px) {
+    header {
+      justify-content: space-between; } }
+  @media (min-width: 992px) {
+    header {
+      min-width: 200px;
+      flex-direction: column;
+      justify-content: flex-start; } }
+
+.menu ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+  @media (min-width: 992px) {
+    .menu ul {
+      flex-direction: column; } }
+
+@media (min-width: 481px) {
+  .menu {
+    flex: 1; } }
+
+@media (min-width: 768px) {
+  .menu {
+    flex: 0.8; } }
+
+@media (min-width: 992px) {
+  .menu {
+    flex: 0; } }
+
+.main-logo {
+  width: 120px;
+  margin: 0 auto; }
+  @media (min-width: 481px) {
+    .main-logo {
+      order: -1; } }
+
+.social {
+  display: none; }
+  @media (min-width: 992px) {
+    .social {
+      display: block; } }
+
+.info-block {
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: stretch;
+  background: url("../img/0052_foodsense.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw auto; }
+  @media (min-width: 481px) {
+    .info-block {
+      height: 300px; } }
+  @media (min-width: 768px) {
+    .info-block {
+      height: 400px;
+      align-items: flex-start;
+      background-size: 100% auto; } }
+  .info-block p {
+    padding: 10px;
+    background-color: #000000;
+    color: #ffffff;
+    font-style: italic;
+    font-size: 12px; }
+  .info-block p:first-child {
+    background: rgba(255, 255, 255, 0.8);
+    color: #000000;
+    font-size: 16px; }
+
+.featured nav {
+  display: none; }
+  @media (min-width: 768px) {
+    .featured nav {
+      display: flex;
+      align-items: stretch;
+      flex-direction: column; }
+      .featured nav ul {
+        display: flex;
+        justify-content: space-around; } }
+
+.visible-fullhd {
+  display: none; }
+  @media (min-width: 1176px) {
+    .visible-fullhd {
+      display: block; } }
+
+.newsletter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+  .newsletter-info {
+    width: 80%; }
+  .newsletter-icon {
+    width: 32px;
+    height: 32px;
+    background: url("../img/icon-mailinglist-32.png"); }
+
+.blog {
+  display: flex;
+  flex-direction: column; }
+  @media (min-width: 481px) {
+    .blog {
+      flex-direction: row;
+      flex-wrap: wrap; }
+      .blog article {
+        width: 50%;
+        padding: 5px; } }
+  @media (min-width: 768px) {
+    .blog {
+      flex-wrap: nowrap; }
+      .blog article img {
+        max-height: 100px; } }
+
+* {
+  box-sizing: border-box; }
+
+.wrapper {
+  display: flex;
+  flex-direction: column; }
+  @media (min-width: 992px) {
+    .wrapper {
+      flex-direction: row; } }

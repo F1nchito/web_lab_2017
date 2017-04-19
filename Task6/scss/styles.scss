@@ -1,0 +1,17 @@
+@import "helpers/_variables.scss";
+@import "helpers/_mixins.scss";
+@import "base/_reset.scss";
+@import "layout/_header.scss";
+@import "layout/_content.scss";
+*{
+    box-sizing: border-box;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    @include hd(){
+        flex-direction: row;
+    }
+}
+
+
