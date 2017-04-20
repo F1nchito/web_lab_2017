@@ -11,13 +11,17 @@
     @include desktop(){
         height: 400px;
         align-items: flex-start;
-        background-size: 100% auto;
+        background-size: 100% 100%;
+    }
+    @include fullhd(){
+        background-size: cover;
+        background-position: center;
     }
     background: url("../img/0052_foodsense.jpg");
     background-repeat: no-repeat;
     background-size: 100vw auto;
     p{
-        padding: 10px;
+        @include standart-padding;
         background-color: #000000;
         color: #ffffff;
         font-style: italic;
@@ -29,121 +33,11 @@
         font-size: 16px;
     }
 }
-.featured nav{
-    display: none;
-    @include desktop(){
-        display: flex;
-        flex-direction: column;
-        ul{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background-color: #eff8f7;
-            height: 35px;
-        }
-    }
-    
-}
-.featured-btn{
-    text-decoration: none;
-    color: $text-link;
-}
+
 .visible-fullhd{
     display: none;
     @include fullhd(){
         display: block;
     }
 }
-.newsletter{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 5px;
-    @include desktop(){
-        flex-wrap: nowrap;
-        flex-direction: row;
-        align-items: center;
-    }
-    &-info{
-        padding-bottom: 10px;
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        span{
-            flex: 0.9;
-        }
-        @include desktop(){
-            padding: 0;
-            flex:3;
-            align-items: center;
-            justify-content: space-around;
-        }
-    }
-    &-icon{
-        width: 32px;
-        height: 32px;
-        background: url("../img/icon-mailinglist-32.png");
-        }
-    form{
-        @include desktop(){
-            flex:2;
-        }
-    }
-}
-.email{
-    &-btn{
-        width: 30%;
-    }
-    &-field{
-        width: 60%;
-    }
 
-}
-.blog{
-    article{
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        img{
-            padding: 5px;
-            border: 1px solid #e5e5e5;
-            align-self: center;
-        }
-        h3{
-            padding: 10px 0;
-            color: $text-link;
-            font-size: 18px;
-        }
-    }
-    display: flex;
-    flex-direction: column;
-    @include tablet(){
-        flex-direction: row;
-        flex-wrap: wrap;
-        article{
-            width: 50%;
-            padding: 5px;
-            img{
-                max-height: 150px;
-            }
-        }
-    }
-    @include desktop(){
-        flex-wrap: nowrap;
-        article img{
-            max-height: 100px;
-        }
-    }
-}
-.meta{
-    padding-top: 10px; 
-    time{
-        color: #AAA;
-    }
-    a{
-        text-decoration: none;
-        color: $text-link;
-    }
-}

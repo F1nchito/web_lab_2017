@@ -1,0 +1,22 @@
+.footer{
+    @include standart-padding;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid $default-color;
+}
+.footer-social ul{
+    display: flex;
+}
+.footer-info{
+    font-size: 10px;
+    .link-block{
+        a{
+        text-decoration: none;
+        color: $text-link;
+        }
+    }
+    @include desktop(){
+        font-size: 12px;
+    }
+}

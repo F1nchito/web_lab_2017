@@ -25,7 +25,7 @@ header{
 }
 .menu{
     padding: 10px 0;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid $default-color;
     @include tablet(){
         flex:1;
         border-bottom: none;
@@ -42,6 +42,9 @@ header{
         font-family: Georgia, 'Times New Roman', Times, serif;
         font-style: italic;
         font-size: 12px;
+        &:hover{
+            color: #EC6635;
+        }
         @include desktop{
             display: flex;
             flex-direction: column;
@@ -60,13 +63,5 @@ header{
     @include tablet(){
         order: -1;
         margin: 0;
-    }
-}
-.social{
-    display: none;
-    @include hd(){
-        display: flex;
-        flex-direction: column;
-        width: 140px;
     }
 }

@@ -20,3 +20,10 @@
         @content;
     }
 }
+
+@mixin standart-padding{
+    padding: 10px;
+}
+@mixin small-padding{
+    padding: 5px;
+}
