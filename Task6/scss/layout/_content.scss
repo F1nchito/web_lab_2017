@@ -32,6 +32,11 @@
         color: #000000;
         font-size: 16px;
     }
+    @include desktop(){
+    p:last-child{
+        margin-bottom: 30px;
+    }
+    }
 }
 
 .visible-fullhd{
