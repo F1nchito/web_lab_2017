@@ -1,0 +1,48 @@
+.newsletter{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    @include small-padding;
+    @include desktop(){
+        flex-wrap: nowrap;
+        flex-direction: row;
+        align-items: center;
+    }
+    &-info{
+        padding-bottom: 10px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        span{
+            flex: 0.9;
+            font-style: italic;
+        }
+        @include desktop(){
+            padding: 0;
+            flex:3;
+            align-items: center;
+            justify-content: space-around;
+        }
+    }
+    &-icon{
+        width: 32px;
+        height: 32px;
+        background: url("../img/icon-mailinglist-32.png");
+        }
+    form{
+        @include desktop(){
+            flex:2;
+            @include standart-padding;
+        }
+    }
+}
+.email{
+    &-btn{
+        width: 30%;
+    }
+    &-field{
+        width: 60%;
+    }
+
+}

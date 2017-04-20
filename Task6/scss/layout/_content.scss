@@ -1,0 +1,43 @@
+.info-block{
+    height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: stretch;
+    @include tablet(){
+        height: 300px;
+    }
+    @include desktop(){
+        height: 400px;
+        align-items: flex-start;
+        background-size: 100% 100%;
+    }
+    @include fullhd(){
+        background-size: cover;
+        background-position: center;
+    }
+    background: url("../img/0052_foodsense.jpg");
+    background-repeat: no-repeat;
+    background-size: 100vw auto;
+    p{
+        @include standart-padding;
+        background-color: #000000;
+        color: #ffffff;
+        font-style: italic;
+        font-size: 12px;
+    }
+    p:first-child{
+        background: rgba(255,255,255,.8);
+        color: #000000;
+        font-size: 16px;
+    }
+}
+
+.visible-fullhd{
+    display: none;
+    @include fullhd(){
+        display: block;
+    }
+}
+

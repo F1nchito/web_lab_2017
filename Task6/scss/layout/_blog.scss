@@ -1,0 +1,53 @@
+.blog{
+    article{
+        @include standart-padding;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        img{
+            @include small-padding;
+            border: 1px solid $default-color;
+            align-self: center;
+            width: 100%;
+        }
+        .article-header{
+            padding: 10px 0;
+            font-size: 18px;
+            a{
+                color: $text-link;
+                text-decoration: none;
+            }
+        }
+    }
+    display: flex;
+    flex-direction: column;
+    @include tablet(){
+        flex-direction: row;
+        flex-wrap: wrap;
+        article{
+            width: 50%;
+            padding: 5px;
+            img{
+                max-width: 100%;
+            }
+        }
+    }
+    @include desktop(){
+        flex-wrap: nowrap;
+    }
+}
+.article-content{
+    max-height: 150px;
+    overflow: hidden;
+}
+.meta{
+    padding-top: 10px; 
+    time{
+        color: #AAA;
+    }
+    a{
+        text-decoration: none;
+        border-bottom: 1px dotted $default-color;
+        color: $text-link;
+    }
+}
