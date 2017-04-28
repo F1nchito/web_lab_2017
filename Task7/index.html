@@ -1,45 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Task 7</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
+
+<head>
+    <title>Task 7</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
     <div class="container">
-    <div class="task-container">
-        <h3 class="task-header">Task 1</h3>
-        <label for="t1input">Enter expression:</label>
-        <input class="input-xl" id="t1input" type="text">
-        <input type="button" id="calculate" value="Calculate">
-        <p>Result: <output class="ellipse" id="t1result"></output></p>
-    </div>
-    <div class="task-container">
-        <h3 class="task-header">Task 2</h3>
-        <label for="t2input">Target string:</label>
-        <input class="input-xl" id="t2input" type="text">
-        <input type="button" id="erase" value="Erase repeats">
-        <p>Result: <output class="ellipse" id="t2result"></output></p>
-    </div>
-    <div class="task-container">
-        <h3 class="task-header">Task 3</h3>
-        <label for="t3input">Date:</label>
-        <input class="input-xl" id="t3input" type="text">
-        <label for="t3inputformat">Format:</label>
-        <input class="input-xl" id="t3inputformat" type="text">
-        <select id="lang">
+        <div class="task-container">
+            <h3 class="task-header">Task 1</h3>
+            <label for="t1input">Enter expression:</label>
+            <input class="input-xl" id="t1input" type="text">
+            <input type="button" id="calculate" value="Calculate">
+            <p>Result:
+                <output class="ellipse" id="t1result"></output>
+            </p>
+        </div>
+        <div class="task-container">
+            <h3 class="task-header">Task 2</h3>
+            <label for="t2input">Target string:</label>
+            <input class="input-xl" id="t2input" type="text">
+            <input type="button" id="erase" value="Erase repeats">
+            <p>Result:
+                <output class="ellipse" id="t2result"></output>
+            </p>
+        </div>
+        <div class="task-container">
+            <h3 class="task-header">Task 3</h3>
+            <label for="t3input">Date:</label>
+            <input class="input-xl" id="t3input" type="text">
+            <label for="t3inputformat">Format:</label>
+            <input class="input-xl" id="t3inputformat" type="text">
+            <select id="lang">
             <option value="ru-RU">Русский</option>
             <option value="en-US">English</option>
             <option value="es-ES">Español</option>
         </select>
-        <input type="button" id="insert" value="Format!">
-        <p>Result: <output class="ellipse" id="t3result"></output></p>
-    </div>
+            <input type="button" id="insert" value="Format!">
+            <p>Result:
+                <output class="ellipse" id="t3result"></output>
+            </p>
+        </div>
     </div>
     <script src="js/l10n.js"></script>
     <script src="js/task1.js"></script>
     <script src="js/task2.js"></script>
     <script src="js/task3.js"></script>
-    </body>
+</body>
+
 </html>
