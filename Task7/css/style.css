@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    padding-top: 50px;
+    width: 700px;
+    margin: 0 auto;
+}
+
+.task-container {
+    padding: 10px;
+    background-color: #eeeeee;
+    margin-bottom: 30px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    box-shadow: 3px 3px 4px 0 #dddddd;
+}
+
+.task-header {
+    text-align: center;
+}
+
+.input-xl {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.ellipse {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}
