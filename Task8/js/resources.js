@@ -1,0 +1,108 @@
+;AIRAPP.namespace('resources');
+AIRAPP.resources = (function() {
+    'use strict';
+
+    /*var resourcesCache = {},
+        callback = null,
+        capacity = 0,
+        loaded = 0,
+        assets = {
+            image:'./img/'
+        };
+
+    function load(urls) {
+        capacity = urls.length;
+        urls.forEach(function(url) {
+            _load(url);
+        });
+    };
+
+    function _load(url) {
+        if(resourcesCache.hasOwnProperty(url)){
+            return resourcesCache[url];
+        }else{
+        var img = new Image();
+        img.src = assets.image + url;
+        img.onload = function(){
+            resourcesCache[url] = img;
+            if(Object.keys(resourcesCache).length === capacity){
+                callback();
+            }
+        };
+        }
+    };
+
+    function get(url) {
+        return resourcesCache[url];
+    };
+    
+    function onReady(func) {
+        callback = func;
+    };
+
+    return  {
+        load : load,
+        get : get,
+        onReady: onReady
+    };*/
+    // var resourceCache = {};
+    // var loading = [];
+    // var readyCallbacks = [];
+
+    // // Load an image url or an array of image urls
+    // function load(urlOrArr) {
+    //     if(urlOrArr instanceof Array) {
+    //         urlOrArr.forEach(function(url) {
+    //             _load(url);
+    //         });
+    //     }
+    //     else {
+    //         _load(urlOrArr);
+    //     }
+    // }
+
+    // function _load(url) {
+    //     if(resourceCache[url]) {
+    //         return resourceCache[url];
+    //     }
+    //     else {
+    //         var img = new Image();
+    //         img.onload = function() {
+    //             resourceCache[url] = img;
+
+    //             if(isReady()) {
+    //                 readyCallbacks.forEach(function(func) { func(); });
+    //             }
+    //         };
+    //         resourceCache[url] = false;
+    //         img.src = url;
+    //     }
+    // }
+
+    // function get(url) {
+    //     return resourceCache[url];
+    // }
+
+    // function isReady() {
+    //     var ready = true;
+    //     for(var k in resourceCache) {
+    //         if(resourceCache.hasOwnProperty(k) &&
+    //            !resourceCache[k]) {
+    //             ready = false;
+    //         }
+    //     }
+    //     return ready;
+    // }
+
+    // function onReady(func) {
+    //     readyCallbacks.push(func);
+    // }
+
+    // return  { 
+    //     load: load,
+    //     get: get,
+    //     onReady: onReady,
+    //     isReady: isReady
+    // };
+})();
+   
