@@ -1,6 +1,6 @@
 ;(function() {
     var pressedKeys = {};
-
+        lastFire = 0;
     function setKey(event, status) {
         var code = event.keyCode;
         var key;
@@ -66,6 +66,10 @@ function handleInput(player) {
     if(input.isDown('SPACE'))
     { 
     player.shoot();
+        // if(Date.now() - lastFire > 100){
+        // lastFire = Date.now();
+
+        // }
         /*&&
        !isGameOver &&
        Date.now() - lastFire > 100) {

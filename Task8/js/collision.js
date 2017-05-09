@@ -11,11 +11,16 @@ function MacroCollision(obj1,obj2){
 }
 function Collision(obj) {
     for (var i = 0; i < allObj.length; i++) {
-        if(allObj[i]!== obj){
+        if(allObj[i]!= obj && typeof allObj[i]!="undefined" && typeof obj!="undefined"){
             if(MacroCollision(obj,allObj[i])){
                 obj.hit();
                 allObj[i].hit();
             }
+        }
+    }
+    for (var index = 0; index < allObj.length; index++) {
+        if(typeof allObj[index]=="undefined"){
+            allObj.splice(index, 1);
         }
     }
 }
