@@ -1,6 +1,6 @@
-;AIRAPP.namespace('resources');
-AIRAPP.resources = (function() {
-    'use strict';
+// ;AIRAPP.namespace('resources');
+// AIRAPP.resources = (function() {
+//     'use strict';
 
     /*var resourcesCache = {},
         callback = null,
@@ -104,5 +104,5 @@ AIRAPP.resources = (function() {
     //     onReady: onReady,
     //     isReady: isReady
     // };
-})();
+// })();
    
