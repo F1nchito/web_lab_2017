@@ -1,6 +1,6 @@
 AIRAPP.set('settings', function(){
     var width = 895,
-    height = 440;
+        height = 700;
 
     function getWidth() {
         return width;

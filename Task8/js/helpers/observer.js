@@ -17,7 +17,6 @@ AIRAPP.set('helpers.publisher', function(){
     };
 
     function unsubscribe(type,fn, context) {
-        console.log('unsub');
         visitSubs('unsub',type, fn,context);
     };
 

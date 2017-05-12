@@ -1,5 +1,8 @@
-var allObj = [];
-function MacroCollision(obj1,obj2){
+'use strict';
+
+AIRAPP.set('manager_collision',function(){
+
+function macroCollision(obj1,obj2){
   var XColl=false;
   var YColl=false;
 
@@ -9,18 +12,26 @@ function MacroCollision(obj1,obj2){
   if (XColl&YColl){return true;}
   return false;
 }
-function Collision(obj) {
-    for (var i = 0; i < allObj.length; i++) {
-        if(allObj[i]!= obj && typeof allObj[i]!="undefined" && typeof obj!="undefined"){
-            if(MacroCollision(obj,allObj[i])){
-                obj.hit();
-                allObj[i].hit();
+
+function checkCollisions(arr){
+    var collisions = [],
+        objArr = arr,
+        i,j,count;
+    for( i=0, count = arr.length; i < count; i++){
+        for( j=0; j<count; j++){
+            if(arr[i]!== arr[j] && macroCollision(arr[i],arr[j])){
+                collisions.push([arr[i],arr[j]]);
+                }
             }
         }
-    }
-    for (var index = 0; index < allObj.length; index++) {
-        if(typeof allObj[index]=="undefined"){
-            allObj.splice(index, 1);
-        }
-    }
+        return collisions;
+    };
+function collision(arr) {
+    var i, collisions;    
+  collisions = checkCollisions(arr);
+  for(i = 0; i < collisions.length; i++){
+      collisions[i][0].collisionWith(collisions[i][1]);
+  }
 }
+return collision;
+});

@@ -2,21 +2,31 @@
 
 AIRAPP.set('entities.Enemy',['helpers','settings','entities','sprites'], function(helpers,settings,entities,sprites){
 var GameObject = entities.GameObject;
-
-function Enemy(position, size) {
+var weapon = entities.parts.weapon;
+var movement = entities.parts.move_strategy;
+function Enemy(position) {
     GameObject.apply(this, arguments);
-    this.sprite = sprites.getSprite("canvas", "img/green.png");
+    this.sprite = sprites.getSprite("canvas", "green.png");
+    this.size = [this.sprite.img.width/this.sprite.numbersOfFrames,this.sprite.img.height];
+    this.collisions.player = true;
+    this.collisions.bullet = false;
+    this.weapon = new weapon.Weapon(new weapon.CasualWeapon);
+    this.move_strategy = new movement.MoveStrategy(new movement.CasualMove);
 };
 
 Enemy.prototype = Object.create(GameObject.prototype);
 Enemy.prototype.constructor = Enemy;
 Enemy.prototype.hit = function () {
     this.die();
-    // delete allObj[allObj.indexOf(this)];
-    // allObj.delete(allObj.indexOf(this), 1);
 };
-Enemy.prototype.shoot = function () {
-    allObj.push(new Bullet([this.position[0] - 10, this.position[1]-10], [0, 5], 'up'));
+Enemy.prototype.move = function(direction){
+    this.move_strategy.move(this,direction);
+}
+Enemy.prototype.shoot = function (direction) {
+    var bullet = this.weapon.shoot(this.position, this.size,direction);
+    if(bullet){
+    this.activate('create',bullet);
+    }
 }
 return Enemy;
 });

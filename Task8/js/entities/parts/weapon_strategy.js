@@ -15,10 +15,11 @@ Default.prototype.shoot = function(lastFire){
 var CasualWeapon = function(){this.lastFire = 0;};
 CasualWeapon.prototype = Object.create(Default.prototype);
 CasualWeapon.prototype.shoot = function(position, size, direction){
-    var w = this.lastFire;
-    if(Date.now() - this.lastFire > 100){
-        this.lastFire = Date.now();
-        return new Bullet([position[0] - 50, position[1] - 10], [0, 5], 'up');
+    var w = this.lastFire,
+        now = Date.now();
+    if(now - this.lastFire > 400){
+        this.lastFire = now;
+        return new Bullet([position[0]+size[0]/2, position[1]], direction);
     }else{
         return null;
     }

@@ -1,13 +1,17 @@
 'use strict';
 
-AIRAPP.set('entities.Player',['helpers','settings','entities','sprites'], function(helpers,settings,entities,sprites){
+AIRAPP.set('entities.Player',['collision_strategy','game_engine','settings','entities','sprites'], function(collision_strategy,game_engine,settings,entities,sprites){
 var GameObject = entities.GameObject;
 var weapon = entities.parts.weapon;
-function Player(position, size) {
+var movement = entities.parts.move_strategy;
+function Player(position) {
     GameObject.apply(this, arguments);
-    this.weapon = new weapon.Weapon(new weapon.CasualWeapon); 
-    this.sprite = sprites.getSprite("canvas", "img/red.png");
+    this.weapon = new weapon.Weapon(new weapon.CasualWeapon);  
+    this.sprite = sprites.getSprite("canvas", "B-17.png");
     this.health = 3;
+    this.size = [this.sprite.img.width/this.sprite.numbersOfFrames,this.sprite.img.height];
+    this.collisions.bullet = false;
+    this.move_strategy = new movement.MoveStrategy(new movement.Default);
 };
 
 Player.prototype = Object.create(GameObject.prototype);
@@ -18,11 +22,14 @@ Player.prototype.hit = function () {
     this.die();
 }
 };
+Player.prototype.move = function(direction){
+    this.move_strategy.move(this,direction);
+};
 Player.prototype.shoot = function () {
-    var bullet = this.weapon.shoot(this.position,[1,1],'up');
-    // bullet.subscribe('died', removeElem ,this);
-    bullet ? allObj.push(bullet) : null;
-    // allObj.push(new Bullet([this.position[0] + (this.size[0] / 2), this.position[1]-10], [0,0 ], 'up'));
+    var bullet = this.weapon.shoot(this.position, this.size,'up');
+    if(bullet){
+    this.activate('create',bullet);
+}
 };
 return Player;
 });

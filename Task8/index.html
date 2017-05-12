@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
     <div class="container">
         <canvas id="canvas" class="canvas"></canvas>
     </div>
     <script src="js/helpers/namespace.js"></script>
+    <script src="js/settings.js"></script>
     <script src="js/helpers/resources.js"></script>
+    <script src="js/helpers/canvas.js"></script>
     <script src="js/helpers/observer.js"></script>
     <script src="js/helpers/inherit.js"></script>
-    <script src="js/settings.js"></script>
-        <script src="js/sprite.js"></script>
+    <script src="js/sprite.js"></script>
+    <script src="js/entities/parts/move_strategy.js"></script>
     <script src="js/entities/game_object.js"></script>
-                <script src="js/entities/bullet.js"></script>
-    <script src="js/entities/parts/strategy.js"></script>
-        <script src="js/entities/player.js"></script>
-            <script src="js/entities/enemy.js"></script>
-<script src="js/input.js"></script>
-<script src="js/collision.js"></script>
-    <script src="js/index.js"></script>
-    </body>
+    <script src="js/entities/bullet.js"></script>
+    <script src="js/entities/parts/weapon_strategy.js"></script>
+    <script src="js/entities/player.js"></script>
+    <script src="js/entities/enemy.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/collision.js"></script>
+    <script src="js/game_engine.js"></script>
+    <!--<script src="js/index.js"></script>-->
+    <script src="js/game_init.js"></script>
+</body>
+
 </html>
