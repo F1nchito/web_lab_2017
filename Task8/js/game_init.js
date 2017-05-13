@@ -5,6 +5,9 @@ resources.load([
     'B-17.png',
     'bullet.png',
     'green.png',
-    'red.png'
+    'red.png',
+    'health.png',
+    'weapon.png',
+    'background.png'
 ]);
 }(AIRAPP.resources));

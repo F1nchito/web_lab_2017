@@ -1,12 +1,13 @@
 ;
 AIRAPP.set('game_engine', ['settings','manager_collision', 'entities', 'renderer', 'publisher'], function (settings,manager_collision, entities, renderer, publisher) {
     var objectsArr = [],
-        player, enemy,
+        player, enemy, background,
         enemyArr = [],
         bulletArr = [];
 
     function gameLoop() {
         renderer.newFrame();
+        background.draw()
         handleInput(player);
         objectsArr.forEach(function (element) {
             if (element instanceof entities.Bullet) {
@@ -14,6 +15,8 @@ AIRAPP.set('game_engine', ['settings','manager_collision', 'entities', 'renderer
             }else if(element instanceof entities.Enemy){
                 element.move("down");
                 element.shoot("down");
+            }else if(element instanceof entities.Bonus){
+                element.move("down");
             }
             element.sprite.draw([element.position[0], element.position[1]]);
         }, this);
@@ -22,12 +25,13 @@ AIRAPP.set('game_engine', ['settings','manager_collision', 'entities', 'renderer
     };
 
     function startGame() {
+        player = new entities.Player([200, 150]),
+        enemy = new entities.Enemy([300, 0], new entities.parts.weapon.Weapon(new entities.parts.weapon.TrippleGun));
+        background = new entities.Background('background.png', 5);
         renderer.init();
-        player = new entities.Player([500, 200]);
         addElem(player);
-        enemy = new entities.Enemy([50, 50], [100, 100]);
         addElem(enemy);
-        addElem(new entities.Enemy([160, 60], [100, 100]));
+        addElem(new entities.Enemy([0, 0],'health'));
         handleInput(player);
         window.arr = objectsArr;
         gameLoop();

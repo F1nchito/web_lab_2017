@@ -1,17 +1,14 @@
 'use strict';
 AIRAPP.set('sprites',['renderer','resources'], function (renderer, resources) {
 
-var Sprite = function(painter, src){
- this.painter = painter;
-//  this.img = new Image();
-//  this.img.src = src;
+var Sprite = function(src,numbersOfFrames){
  this.img = resources.get(src);
  this.frameIndex = 0;
- this.numbersOfFrames = 3;
+ this.numbersOfFrames = numbersOfFrames;
 };
 
 Sprite.prototype.draw = function(coordinates){
-    renderer.draw(this,coordinates,
+    renderer.draw(this.img,coordinates,
     this.frameIndex*(this.img.width/(this.numbersOfFrames)),
     0,
     this.img.width/(this.numbersOfFrames),

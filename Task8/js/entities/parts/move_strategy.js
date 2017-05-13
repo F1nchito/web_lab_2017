@@ -31,7 +31,7 @@ Default.prototype.move = function (object,direction) {
             if (newPosition[0] + object.size[0] <= settings.width && newPosition[0]  >= 0) {
                 object.position[0] = newPosition[0];
             }else{
-                return false;
+                return true;
             }
             break;
         case "right":
@@ -39,7 +39,7 @@ Default.prototype.move = function (object,direction) {
             if (newPosition[0] + object.size[0] <= settings.width && newPosition[0] >= 0) {
                 object.position[0] = newPosition[0];
             }else{
-                return false;
+                return true;
             }
             break;
         default: return false;
@@ -47,20 +47,53 @@ Default.prototype.move = function (object,direction) {
     }
 }
 
-var CasualMove = function(){
+function changeDirection(direction){
+    var newDirection;
+    if(direction === 'right'){
+        newDirection = 'left';
+    }else if(direction ==='left'){
+        newDirection = 'right';
+    }
+    return newDirection;
+}
+
+var ChangingMove = function(initDirectory,maxSideMove){
+    this.lastDir = initDirectory,
+    this.count = 0;
+    this.maxCount = maxSideMove;
 };
-CasualMove.prototype = Object.create(Default.prototype);
-CasualMove.prototype.move = function(object,direction){
+ChangingMove.prototype = Object.create(Default.prototype);
+ChangingMove.prototype.move = function(object, direction){
+    var moveOnField = Default.prototype.move(object, direction);
+    if(this.count > this.maxCount || Default.prototype.move(object, this.lastDir) === true){
+        this.lastDir = changeDirection(this.lastDir);
+        Default.prototype.move(object, this.lastDir);
+        this.count = 0;
+    }else{
+        this.count++;
+    }
+if(moveOnField === false){
+      object.die(); 
+}
+};
+
+var BorderMove = function(){
+};
+BorderMove.prototype = Object.create(Default.prototype);
+BorderMove.prototype.move = function(object,direction){
 if(Default.prototype.move(object, direction) === false){
       object.die(); 
 }
 };
+
 MoveStrategy.prototype.move = function(object,direction){
     return this.type.move(object,direction);
 };
+
 return{
     MoveStrategy: MoveStrategy,
     Default: Default,
-    CasualMove: CasualMove
+    BorderMove: BorderMove,
+    ChangingMove : ChangingMove
 };
 });

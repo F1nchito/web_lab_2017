@@ -7,10 +7,12 @@ var movement = entities.parts.move_strategy;
 function Player(position) {
     GameObject.apply(this, arguments);
     this.weapon = new weapon.Weapon(new weapon.CasualWeapon);  
-    this.sprite = sprites.getSprite("canvas", "B-17.png");
+    this.sprite = sprites.getSprite("B-17.png",3);
     this.health = 3;
+    this.speed = 8;
     this.size = [this.sprite.img.width/this.sprite.numbersOfFrames,this.sprite.img.height];
-    this.collisions.bullet = false;
+    this.collisions.enemy = true;
+    this.collisions.bonus = true;
     this.move_strategy = new movement.MoveStrategy(new movement.Default);
 };
 

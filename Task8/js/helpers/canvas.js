@@ -58,13 +58,16 @@
         node.height = settings.height;
     };
 
-    r.draw = function(sprite,coordinates,sx,sy,swidth,sheight,width,height){
+    r.draw = function(img,coordinates,sx,sy,swidth,sheight,width,height){
         switch (arguments.length) {
             case 2:
-        context.drawImage(sprite.img, coordinates[0], coordinates[1]);
+        context.drawImage(img, coordinates[0], coordinates[1]);
+                break;
+                case 4:
+        context.drawImage(img, coordinates[0], coordinates[1],sx,sy);
                 break;
             case 8:
-                context.drawImage(sprite.img,sx,sy,swidth,sheight,coordinates[0],coordinates[1],width,height);
+                context.drawImage(img,sx,sy,swidth,sheight,coordinates[0],coordinates[1],width,height);
                 break;
             default:
                 break;

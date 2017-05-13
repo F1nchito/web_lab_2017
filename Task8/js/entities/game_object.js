@@ -6,7 +6,7 @@ var movement = entities.parts.move_strategy;
 var GameObject = function (position) {
     publisher.apply(this,[]);
     this.health = 1;   
-    this.speed = 5;
+    this.speed = 1;
     this.collisions = {
         player : false,
         enemy : false,
@@ -14,9 +14,8 @@ var GameObject = function (position) {
         bonus : false
     };
     this.position = [position[0] || 0, position[1] || 0],
-        // this.size = [size[0] || 0, size[1] || 0];
-        this.move_strategy = new movement.MoveStrategy(new movement.CasualMove);
         this.size = [0,0];
+        this.move_strategy = new movement.MoveStrategy(new movement.BorderMove());
 };
 
 helpers.inherit.inherit(GameObject,publisher);
@@ -25,16 +24,27 @@ GameObject.prototype.die = function () {
     this.activate('died',this);
 }
 
+GameObject.prototype.gainBonus = function (object) {
+    if(object.bonus === 'health'){
+        this.health++;
+    }else if(object.bonus instanceof entities.parts.weapon.Weapon){
+        this.weapon = object.bonus;
+    }
+}
+
 GameObject.prototype.collisionWith = function (object){
     if(object instanceof entities.Player && this.collisions.player){
         this.hit(object);
-    }else if(object instanceof entities.Enemy && this.collisions.enemy){
+    }
+    if(object instanceof entities.Enemy && this.collisions.enemy){
         this.hit(object);
-    }else if(object instanceof entities.Bullet && this.collisions.bullet){
+    }
+    if(object instanceof entities.Bullet && this.collisions.bullet){
         this.hit(object);
-    }/*else if(object instanceof entities.Bonus && this.collisions.bonus){
-        this.hit(object); 
-    }*/
+    }
+    if(object instanceof entities.Bonus && this.collisions.bonus){
+        this.gainBonus(object); 
+    }
 }
 /*GameObject.prototype.move = function (direction) {
     var newPosition = [];
