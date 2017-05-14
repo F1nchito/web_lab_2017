@@ -1,12 +1,12 @@
-;
-(function () {
-    var pressedKeys = {};
-    lastFire = 0,
-    settings = AIRAPP.settings;
+'use strict';
+
+AIRAPP.set('inputer', ['settings'], function (settings) {
+    var pressedKeys = {},
+        lastFire = 0;
 
     function setKey(event, status) {
-        var code = event.keyCode;
-        var key;
+        var code = event.keyCode,
+            key;
 
         switch (code) {
             case 32:
@@ -24,12 +24,15 @@
             case 40:
                 key = 'DOWN';
                 break;
+            case 27:
+                key = 'ESC';
+                break;
             default:
                 key = String.fromCharCode(code);
         }
 
         pressedKeys[key] = status;
-    }
+    };
 
     document.addEventListener('keydown', function (e) {
         setKey(e, true);
@@ -43,31 +46,36 @@
         pressedKeys = {};
     });
 
-    window.input = {
-        isDown: function (key) {
-            return pressedKeys[key.toUpperCase()];
+    function isDown(key) {
+        return pressedKeys[key.toUpperCase()];
+    }
+
+    function handleInput(player) {
+        if (isDown('DOWN') || isDown('s')) {
+            player.move('down');
         }
+
+        if (isDown('UP') || isDown('w')) {
+            player.move('up');
+        }
+
+        if (isDown('LEFT') || isDown('a')) {
+            player.move('left');
+        }
+
+        if (isDown('RIGHT') || isDown('d')) {
+            player.move('right');
+        }
+
+        if (isDown('SPACE')) {
+            player.shoot();
+        }
+        // if (isDown('ESC')) {
+        //     game_engine.pauseGame();
+        // }
     };
-})();
-
-function handleInput(player) {
-    if (input.isDown('DOWN') || input.isDown('s')) {
-        player.move("down");
-    }
-
-    if (input.isDown('UP') || input.isDown('w')) {
-        player.move("up");
-    }
-
-    if (input.isDown('LEFT') || input.isDown('a')) {
-        player.move("left");
-    }
-
-    if (input.isDown('RIGHT') || input.isDown('d')) {
-        player.move("right");
-    }
-
-    if (input.isDown('SPACE')) {
-        player.shoot();
-    }
-};
+    return {
+        isDown: isDown,
+        handleInput: handleInput
+    };
+});
