@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="menucontainer" id="menucontainer">
+        <button class="start-btn" id="startgame">Start Game</button>
+    </div>
+    <div class="container" id="gamecontainer">
+        <canvas id="canvas" class="canvas"></canvas>
+        <div class="info" id="info">
+            <p>Level <span id="level"></span></p>
+            <p><span id="enemycount"></span> enemy left</p>
+            <p id="health"></p>
+        </div>
+    </div>
+    <script src="js/helpers/namespace.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/helpers/resources.js"></script>
+    <script src="js/helpers/canvas.js"></script>
+    <script src="js/helpers/observer.js"></script>
+    <script src="js/helpers/inherit.js"></script>
+    <script src="js/sprite.js"></script>
+    <script src="js/entities/parts/move_strategy.js"></script>
+    <script src="js/entities/game_object.js"></script>
+    <script src="js/entities/bullet.js"></script>
+    <script src="js/entities/explosion.js"></script>
+    <script src="js/entities/parts/weapon_strategy.js"></script>
+    <script src="js/entities/bonus.js"></script>
+    <script src="js/entities/player.js"></script>
+    <script src="js/entities/enemy.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/collision.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/factory/enemy_factory.js"></script>
+    <script src="js/game_engine.js"></script>
+    <script src="js/game_init.js"></script>
+</body>
+
+</html>
