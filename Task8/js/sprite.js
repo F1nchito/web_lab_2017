@@ -10,11 +10,11 @@ AIRAPP.set('sprites', ['renderer', 'resources'], function (renderer, resources) 
 
     Sprite.prototype.draw = function (coordinates) {
         renderer.draw(this.img, coordinates,
-            this.frameIndex * (this.img.width / (this.numbersOfFrames)),
+            this.frameIndex * (this.img.width / this.numbersOfFrames),
             0,
-            this.img.width / (this.numbersOfFrames),
+            this.img.width / this.numbersOfFrames,
             this.img.height,
-            this.img.width / (this.numbersOfFrames),
+            this.img.width / this.numbersOfFrames,
             this.img.height
         );
         this.frameIndex++;

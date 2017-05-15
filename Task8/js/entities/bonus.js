@@ -1,8 +1,7 @@
 'use strict';
 
 AIRAPP.set('entities.Bonus', ['helpers', 'settings', 'entities', 'sprites'], function (helpers, settings, entities, sprites) {
-    var GameObject = entities.GameObject,
-        weapons = entities.parts.weapon;
+    var GameObject = entities.GameObject;
 
     function Bonus(position, bonus) {
         GameObject.apply(this, arguments);

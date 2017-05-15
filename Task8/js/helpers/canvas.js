@@ -4,7 +4,6 @@ AIRAPP.set('renderer', ['settings', 'sprites'], function (settings, sprites) {
         node,
         healthNode,
         levelNode,
-        infoNode,
         enemyCountNode,
         context;
 
@@ -49,7 +48,7 @@ AIRAPP.set('renderer', ['settings', 'sprites'], function (settings, sprites) {
     };
 
     r.setFont = function (size, font) {
-        context.font = size+'px '+font;
+        context.font = size + 'px ' + font;
     };
 
     r.text = function (text, x, y) {
@@ -76,10 +75,35 @@ AIRAPP.set('renderer', ['settings', 'sprites'], function (settings, sprites) {
     r.drawEnemyAmount = function (count) {
         enemyCountNode.innerHTML = count;
     };
+    r.pauseScreen = function () {
+        var pauseW,
+            pause = 'Paused',
+            anotherTextW,
+            anotherText = 'press ESC for continue or SPACE for exit';
+
+        r.fillStyle('#333');
+        r.fillRect(0, 0, settings.width, settings.height);
+        r.setFont(26, 'Arial');
+        r.fillStyle('#eee');
+        pauseW = r.getTextWidth(pause);
+        anotherTextW = r.getTextWidth(anotherText);
+        r.text(pause, settings.width / 2 - pauseW / 2, settings.height / 2);
+        r.text(anotherText, settings.width / 2 - anotherTextW / 2, settings.height / 2 + 50);
+    };
+    r.changeLvlScreen = function (level) {
+        var levelText = 'Level ' + level,
+            levelTextW;
+
+        r.fillStyle('#333');
+        r.fillRect(0, 0, settings.width, settings.height);
+        r.setFont(26, 'Arial');
+        r.fillStyle('#eee');
+        levelTextW = r.getTextWidth(levelText);
+        r.text(levelText, settings.width / 2 - levelTextW/2, settings.height / 2);
+    };
     r.init = function () {
         node = document.getElementById('canvas');
         context = node.getContext('2d');
-        infoNode = document.getElementById('info');
         healthNode = document.getElementById('health');
         levelNode = document.getElementById('level');
         enemyCountNode = document.getElementById('enemycount');

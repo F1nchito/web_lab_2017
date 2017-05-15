@@ -1,26 +1,26 @@
-AIRAPP.set('resources', function () {
     'use strict';
+    AIRAPP.set('resources', function () {
 
-    var resourcesCache = {},
-        callback = null,
-        capacity = 0,
-        loaded = 0,
-        assets = {
-            image: './img/'
+        var resourcesCache = {},
+            callback = null,
+            capacity = 0,
+            assets = {
+                image: './img/'
+            };
+
+        function load(urls) {
+            capacity = urls.length;
+            urls.forEach(function (url) {
+                _load(url);
+            });
         };
 
-    function load(urls) {
-        capacity = urls.length;
-        urls.forEach(function (url) {
-            _load(url);
-        });
-    };
-
-    function _load(url) {
-        if (resourcesCache.hasOwnProperty(url)) {
-            return resourcesCache[url];
-        } else {
+        function _load(url) {
+            if (resourcesCache.hasOwnProperty(url)) {
+                return resourcesCache[url];
+            }
             var img = new Image();
+
             img.src = assets.image + url;
             img.onload = function () {
                 resourcesCache[url] = img;
@@ -28,20 +28,18 @@ AIRAPP.set('resources', function () {
                     callback();
                 }
             };
-        }
-    };
+        };
+        function get(url) {
+            return resourcesCache[url];
+        };
 
-    function get(url) {
-        return resourcesCache[url];
-    };
+        function onReady(func) {
+            callback = func;
+        };
 
-    function onReady(func) {
-        callback = func;
-    };
-
-    return {
-        load: load,
-        get: get,
-        onReady: onReady
-    };
-});
+        return {
+            load: load,
+            get: get,
+            onReady: onReady
+        };
+    });

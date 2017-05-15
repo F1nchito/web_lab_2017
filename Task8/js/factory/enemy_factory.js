@@ -38,7 +38,7 @@ AIRAPP.set('factory.enemy_factory', ['collision_strategy', 'game_engine', 'setti
 
                 enemy.move_strategy = movement;
                 enemy.health = level * 10;
-                this.weapon = gun;
+                enemy.weapon = gun;
                 return enemy;
             }
         };

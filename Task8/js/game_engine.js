@@ -1,4 +1,4 @@
-;
+'use strict';
 AIRAPP.set('game_engine', ['inputer', 'factory', 'settings', 'manager_collision', 'entities', 'renderer', 'publisher'], function (inputer, factory, settings, manager_collision, entities, renderer, publisher) {
     var objectsArr = [],
         gameState,
@@ -9,12 +9,10 @@ AIRAPP.set('game_engine', ['inputer', 'factory', 'settings', 'manager_collision'
         spawnCount = 3,
         player,
         enemy,
+        i,
         background,
         level = 1,
-        cycle = 1,
-        enemyArr = [],
-        loopID,
-        bulletArr = [];
+        cycle = 1;
 
     function gameInit() {
         menu();
@@ -45,25 +43,21 @@ AIRAPP.set('game_engine', ['inputer', 'factory', 'settings', 'manager_collision'
         }
         inputer.handleInput(player);
         if (gameState === 'paused') {
-            renderer.fillStyle('#333');
-            renderer.fillRect(0, 0, settings.width, settings.height);
-            renderer.setFont(26, 'Arial');
-            renderer.fillStyle('#eee');
-            renderer.text('paused', settings.width / 2, settings.height / 2);
+            if (inputer.isDown('SPACE')) {
+                menu();
+                return;
+            }
+            renderer.pauseScreen();
         } else if (gameState === 'changelvl') {
-            renderer.fillStyle('#333');
-            renderer.fillRect(0, 0, settings.width, settings.height);
-            renderer.setFont(26, 'Arial');
-            renderer.fillStyle('#eee');
-            renderer.text('Level ' + level, settings.width / 2, settings.height / 2);
+            renderer.changeLvlScreen(level);
             if (cycle > 200) {
                 startGame(null, level);
                 return;
             }
             cycle++;
         } else if (gameState === 'ingame' || gameState === 'boss') {
-            if ((cycle % 500 === 0||objectsArr.length === 1) && gameState === 'ingame') {
-                for (var i = 0; i < spawnCount; i++) {
+            if ((cycle % 500 === 0 || objectsArr.length === 1) && gameState === 'ingame') {
+                for (i = 0; i < spawnCount; i++) {
                     enemy = enemyFactory.nextEnemy(level);
                     if (enemy) {
                         addElem(enemy);
@@ -110,13 +104,16 @@ AIRAPP.set('game_engine', ['inputer', 'factory', 'settings', 'manager_collision'
     }
 
     function gameOver(element) {
+        var text = 'GAME OVER';
+
         gameState = 'game_over';
         renderer.fillStyle('#333');
         renderer.fillRect(0, 0, settings.width, settings.height);
         renderer.setFont(26, 'Arial');
         renderer.fillStyle('#eee');
-        renderer.text('GAME OVER', settings.width / 2, settings.height / 2);
-        renderer.text('press space', settings.width / 2, settings.height / 2 + 50);
+        renderer.text(text, settings.width / 2 - renderer.getTextWidth(text)/2, settings.height / 2);
+        text = 'press space';
+        renderer.text(text, settings.width / 2- renderer.getTextWidth(text)/2, settings.height / 2 + 50);
     }
 
     function startGame(e, lvl) {

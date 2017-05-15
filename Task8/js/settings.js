@@ -7,8 +7,9 @@ AIRAPP.set('settings', function () {
         infoWidth = windowWidth * 0.9,
         infoHeight = windowHeight * 0.15,
         enemiesOnLvl = 5,
+        weaponCd = 1300,
+        enemyHealth = 1,
         maxHealth = 5;
-    //  var width = 894,
 
     function getWidth() {
         return width;
@@ -18,7 +19,9 @@ AIRAPP.set('settings', function () {
         return height;
     }
     return {
-        enemiesOnLvl:enemiesOnLvl,
+        enemyHealth: enemyHealth,
+        weaponCd: weaponCd,
+        enemiesOnLvl: enemiesOnLvl,
         windowWidth: windowWidth,
         windowHeight: windowHeight,
         maxHealth: maxHealth,

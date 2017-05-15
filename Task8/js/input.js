@@ -1,8 +1,7 @@
 'use strict';
 
 AIRAPP.set('inputer', ['settings'], function (settings) {
-    var pressedKeys = {},
-        lastFire = 0;
+    var pressedKeys = {};
 
     function setKey(event, status) {
         var code = event.keyCode,
@@ -70,9 +69,6 @@ AIRAPP.set('inputer', ['settings'], function (settings) {
         if (isDown('SPACE')) {
             player.shoot();
         }
-        // if (isDown('ESC')) {
-        //     game_engine.pauseGame();
-        // }
     };
     return {
         isDown: isDown,

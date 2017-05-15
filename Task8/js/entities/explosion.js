@@ -7,7 +7,6 @@ AIRAPP.set('entities.Explosion', ['helpers', 'settings', 'entities', 'sprites'],
         GameObject.apply(this, arguments);
         this.sprite = sprites.getSprite('explosion.png', 12, false);
         this.size = [this.sprite.img.width / this.sprite.numbersOfFrames, this.sprite.img.height];
-        this.collisions.player = false;
         this.position = position;
     };
     Explosion.prototype = Object.create(GameObject.prototype);

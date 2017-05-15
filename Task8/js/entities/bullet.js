@@ -21,10 +21,5 @@ AIRAPP.set('entities.Bullet', ['helpers', 'settings', 'entities', 'sprites'], fu
     Bullet.prototype.move = function () {
         this.move_strategy.move(this, this.direction);
     };
-    // Bullet.prototype.move = function (direction) {
-    //     if(!GameObject.prototype.move.call(this, direction)){
-    //         this.die();
-    // }
-    // };
     return Bullet;
 });

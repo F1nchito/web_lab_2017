@@ -1,9 +1,9 @@
 'use strict';
 
 AIRAPP.set('entities.Enemy', ['helpers', 'settings', 'entities', 'sprites'], function (helpers, settings, entities, sprites) {
-    var GameObject = entities.GameObject;
-    var weapon = entities.parts.weapon;
-    var movement = entities.parts.move_strategy;
+    var GameObject = entities.GameObject,
+        weapon = entities.parts.weapon,
+        movement = entities.parts.move_strategy;
 
     function Enemy(sprite, position, bonus) {
         GameObject.call(this, position);
@@ -33,9 +33,10 @@ AIRAPP.set('entities.Enemy', ['helpers', 'settings', 'entities', 'sprites'], fun
     };
     Enemy.prototype.shoot = function (direction) {
         var bullet = this.weapon.shoot(this.position, this.size, direction);
+
         if (bullet) {
             this.activate('create', bullet);
         }
-    }
+    };
     return Enemy;
 });
