@@ -89,16 +89,14 @@ PRODUCTAPP.set('controller', ['Product', 'product_model', 'view', 'validator'], 
     function validatePaste(e) {
         var $input = $(this),
             validateInput = {},
-            newVal,
-            oldValue = $input.val();
+            newVal;
 
-        setTimeout(function () {
-            newVal = $input.val();
-            validateInput[$input.attr('name')] = newVal;
-            if (validator.validate(validateInput)) {
-                $input.val(oldValue);
-            }
-        }, 0);
+        newVal = e.originalEvent.clipboardData.getData('text');
+        validateInput[$input.attr('name')] = newVal;
+        if (validator.validate(validateInput)) {
+            e.preventDefault();
+            return;
+        }
     }
 
     function validateSingle() {
