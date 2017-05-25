@@ -111,9 +111,10 @@ AIRAPP.set('game_engine', ['inputer', 'factory', 'settings', 'manager_collision'
         renderer.fillRect(0, 0, settings.width, settings.height);
         renderer.setFont(26, 'Arial');
         renderer.fillStyle('#eee');
-        renderer.text(text, settings.width / 2 - renderer.getTextWidth(text)/2, settings.height / 2);
+        renderer.text(text, settings.width / 2 - renderer.getTextWidth(text) / 2, settings.height / 2);
         text = 'press space';
-        renderer.text(text, settings.width / 2- renderer.getTextWidth(text)/2, settings.height / 2 + 50);
+        renderer.text(text, settings.width / 2 - renderer.getTextWidth(text) / 2, settings.height / 2 + 50);
+        objectsArr = [];
     }
 
     function startGame(e, lvl) {
