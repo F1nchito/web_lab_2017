@@ -7,7 +7,7 @@ PRODUCTAPP.set('view', ['Product'], function (Product) {
         locationInfo = {
             Russia: ['Moscow', 'Saratov', 'Sochi'],
             USA: ['New York', 'Los-Angeles', 'Las-Vegas'],
-            Japan : ['Tokio','Osaka','Yokohama']
+            Japan: ['Tokio', 'Osaka', 'Yokohama']
         };
 
     function drawCities(country) {
@@ -24,10 +24,11 @@ PRODUCTAPP.set('view', ['Product'], function (Product) {
             documentH = $(document).height(),
             windowH = $(window).height(),
             windowW = $(window).width();
+
         $('.overlay').css({
-                'width': windowW,
-                'height': documentH
-            })
+            'width': windowW,
+            'height': documentH
+        })
             .fadeTo(400, 0.4);
         if (body) {
             $modal.html(body);
@@ -72,7 +73,8 @@ PRODUCTAPP.set('view', ['Product'], function (Product) {
                 helpSpan = input + ' + span';
 
             $(helpSpan).html(element.msg);
-            $(input).parent().addClass('has-error');
+            $(input).parent()
+            .addClass('has-error');
         }, this);
     }
 
@@ -80,7 +82,8 @@ PRODUCTAPP.set('view', ['Product'], function (Product) {
         var input = '#' + element,
             helpSpan = input + ' + span';
 
-        $(input).parent().removeClass('has-error');
+        $(input).parent()
+        .removeClass('has-error');
         $(helpSpan).html('');
     }
 
