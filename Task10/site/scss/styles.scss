@@ -1,0 +1,71 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+.sort{
+    &:after{
+        content: '\25B2';
+    }
+    &-desc{
+        &:after{
+            content: '\25BC';
+        }
+    }
+}
+.desc{
+    &:after{
+        content: '\25BC';
+    }
+}
+.table-col-sm{
+    max-width: 50px;
+}
+#modal-boxes{
+    position: absolute;
+    top:0;
+}
+.overlay{
+    position: absolute;
+    z-index: 9998;
+    background-color: #000000;
+    display: none;
+}
+.popup {
+  position:fixed;
+  width:560px;
+  display:none;
+  z-index:9999;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px #666;
+  &-header {
+   padding: 15px 20px;
+   text-align: center;
+   font-weight: bold;
+   border-bottom: 1px solid #eee;
+   background: #eee;
+  }
+  &-body {
+   padding:20px;
+  }
+}
+.checkbox-select{
+    width:  100%;
+    border-bottom: 1px #ccc solid;
+}
+.row .form-group-bordered {
+    border-left: 1px #ccc solid;
+}
+.close{
+    &:after{
+        content: '\1F5D9';
+    }
+}
+.control-wide{
+    display: block;
+}
+.btn-group-separated{
+    & > .btn-group:not(:last-child){
+        padding-right: 5px;
+    }
+    & > .btn-group:not(:first-child){
+        padding-left: 5px;
+    }
+}
