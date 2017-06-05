@@ -1,9 +1,14 @@
+const fs = require('fs');
 const Ajv = require('ajv');
 const ajv = Ajv({
     allErrors: true,
-    removeAdditional: 'all'
+    removeAdditional: 'all',
+    format: 'full'
 });
 const productSchema = require('./product_schema.js');
+let writeStream = fs.createWriteStream('valerrors.txt', {
+    'flags': 'a'
+});
 ajv.addSchema(productSchema, 'new-product');
 
 function errorResponce(schemaErrors) {
@@ -46,10 +51,18 @@ function errorResponce(schemaErrors) {
     });
     return errors;
 };
+
+function logErrors(errors) {
+    writeStream.write(new Date() + '\r\n');
+    errors.forEach(function (element) {
+        writeStream.write(element.target + '\r\n' + element.msg + '\r\n')
+    }, this);
+}
 module.exports = (schemaName) => {
     return (req, res, next) => {
         let valid = ajv.validate(schemaName, req.body);
         if (!valid) {
+            logErrors(errorResponce(ajv.errors));
             return res.status(400).send(errorResponce(ajv.errors));
         }
         next();

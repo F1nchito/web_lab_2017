@@ -20,7 +20,17 @@ module.exports = {
         'price': {
             'type': 'number',
             'exclusiveMinimum': 0
+        },
+        'delivery':{
+            'type':'string'
+        },
+        'country': {
+            'type':'string'
+        },
+        'city': {
+            'type':'array',
+            'items':{'type':'string'}
         }
     },
-    'required': ['name', 'email', 'count', 'price']
-}
+    'required': ['name', 'email', 'count', 'price','delivery']
+};

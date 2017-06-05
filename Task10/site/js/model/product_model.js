@@ -6,6 +6,7 @@ PRODUCTAPP.set('product_model', [], function () {
             repo,
             filteredRepo,
             filterRegexp;
+
         $.ajax('http://localhost:3000/api')
             .done(function (res) {
                 repo = res;
@@ -39,7 +40,10 @@ PRODUCTAPP.set('product_model', [], function () {
                 } else {
                     deferredObject.reject('empty');
                 }
-            }); //TODO: сделать логирование и на неудачу
+            })
+            .fail(function (params) {
+                throw new Error(params);
+            });
         return deferredObject.promise();
     }
 
@@ -47,9 +51,6 @@ PRODUCTAPP.set('product_model', [], function () {
         var deferredObject = $.Deferred(),
             product;
 
-        // product = _.find(repo, function (p) {
-        //     return p.id === id;
-        // });
         $.ajax('http://localhost:3000/api/' + id)
             .done(function (responce) {
                 product = responce;
@@ -60,7 +61,7 @@ PRODUCTAPP.set('product_model', [], function () {
                 }
             })
             .fail(function (res) {
-                console.log(res);
+                deferredObject.reject(res);
             });
 
         return deferredObject.promise();
@@ -68,70 +69,55 @@ PRODUCTAPP.set('product_model', [], function () {
 
     function addProduct(product) {
         var deferredObject = $.Deferred();
-       
+
         $.ajax({
-            url:'http://localhost:3000/api/',
+            url: 'http://localhost:3000/api/',
             method: 'POST',
-            data :JSON.stringify(product),
+            data: JSON.stringify(product),
             dataType: 'json',
-            contentType :'application/json'
+            contentType: 'application/json'
         })
-        .done(function (params) {
-            deferredObject.resolve(product);
-        })
-        .fail(function (res) {
-            deferredObject.reject(res);
-        });
-        // if (_.includes(repo, product)) {
-        //     deferredObject.reject('Product with ' + product.id + 'already consists');
-        // } else {
-        //     repo.push(product);
-        //     deferredObject.resolve(product);
-        // }
+            .done(function (params) {
+                deferredObject.resolve(product);
+            })
+            .fail(function (res) {
+                deferredObject.reject(res);
+            });
         return deferredObject.promise();
     };
 
     function deleteProduct(id) {
         var deferredObject = $.Deferred();
-$.ajax({
-    url: 'http://localhost:3000/api/' + id,
-    method: 'DELETE'
-})
-.done(function (params) {
-    deferredObject.resolve(params);
-});
-        // getProductByID(id).done(function (product) {
-        //         _.remove(repo, function (elem) {
-        //             return elem.id === id;
-        //         });
-        //     })
-        //     .then(function () {
-        //         deferredObject.resolve('done');
-        //     });
+
+        $.ajax({
+            url: 'http://localhost:3000/api/' + id,
+            method: 'DELETE'
+        })
+            .done(function (params) {
+                deferredObject.resolve(params);
+            })
+            .fail(function (params) {
+                deferredObject.reject(params);
+            });
         return deferredObject.promise();
     };
 
     function editProduct(product) {
         var deferredObject = $.Deferred();
+
         $.ajax({
             url: 'http://localhost:3000/api/' + product.id,
             method: 'PUT',
-            data :JSON.stringify(product),
+            data: JSON.stringify(product),
             dataType: 'json',
-            contentType :'application/json'
+            contentType: 'application/json'
         })
-        .done(function (params) {
-            deferredObject.resolve(params);
-        });
-        // getProductByID(product.id).done(function (oldProduct) {
-        //     oldProduct.name = product.name;
-        //     oldProduct.email = product.email;
-        //     oldProduct.count = product.count;
-        //     oldProduct.price = product.price;
-        //     oldProduct.delivery = product.delivery;
-        //     oldProduct.country = product.country;
-        //     oldProduct.city = product.city;
-        // });
+            .done(function (params) {
+                deferredObject.resolve(params);
+            })
+            .fail(function (res) {
+                deferredObject.reject(res);
+            });
         return deferredObject.promise();
     }
     return {

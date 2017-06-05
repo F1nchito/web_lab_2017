@@ -144,14 +144,14 @@ PRODUCTAPP.set('controller', ['Product', 'product_model', 'view', 'validator'], 
             object.coutry = undefined;
             object.city = undefined;
         }
-        return new Product(object.name, object.email, object.count, object.price, object.delivery, object.country, object.city);
+        return new Product(object.name, object.email, +object.count, object.price, object.delivery, object.country, object.city);
     };
 
     function getAll(sort, filter) {
         product_model.getAll(sort, filter)
             .done(view.drawAll)
-            .fail(function (result) {
-                throw new Error('getAll failed');
+            .fail(function (error) {
+                throw new Error(error);
             });
     };
 
@@ -171,19 +171,19 @@ PRODUCTAPP.set('controller', ['Product', 'product_model', 'view', 'validator'], 
         e.preventDefault();
         product = bindModel(productData);
         product.price = product.price.fromDollarNotation();
-        // if (validator.validate(product)) {
-        //     errors = validator.getErrors();
-        //     view.showErrors(errors);
-        //     $('#' + errors[0].target).focus();
-        //     return;
-        // }
+        if (validator.validate(product)) {
+            errors = validator.getErrors();
+            view.showErrors(errors);
+            $('#' + errors[0].target).focus();
+            return;
+        }
         product_model.addProduct(bindModel(product))
             .done(function (result) {
                 $('#filter').val('');
                 view.closeModal(getAll('nameAscending'));
             })
             .fail(function (res) {
-                var errors = JSON.parse(res.responseText);
+                errors = JSON.parse(res.responseText);
                 view.showErrors(errors);
                 return;
             });
@@ -209,8 +209,10 @@ PRODUCTAPP.set('controller', ['Product', 'product_model', 'view', 'validator'], 
                 $('#filter').val('');
                 view.closeModal(getAll('nameAscending'));
             })
-            .fail(function () {
-                throw new Error('edit failed');
+            .fail(function (res) {
+                errors = JSON.parse(res.responseText);
+                view.showErrors(errors);
+                return;
             });
     };
 
@@ -222,8 +224,8 @@ PRODUCTAPP.set('controller', ['Product', 'product_model', 'view', 'validator'], 
                 $('#filter').val('');
                 view.closeModal(getAll('nameAscending'));
             })
-            .fail(function () {
-                throw new Error('delete failed');
+            .fail(function (error) {
+                throw new Error(error);
             });
     };
 
